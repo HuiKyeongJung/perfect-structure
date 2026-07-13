@@ -2,49 +2,56 @@ name: "Project Automation (Move to In Progress)"
 
 on:
   issues:
-    types: [assigned] # 이슈에 담당자가 지정되었을 때 트리거
+    types: [assigned]
 
 jobs:
   move-to-in-progress:
     runs-on: ubuntu-latest
+    # 🔒 핵심: GitHub Actions 환경에 프로젝트 보드 쓰기 권한을 명시적으로 부여합니다.
     permissions:
-      repository-projects: write # 프로젝트 보드를 수정할 수 있는 권한 부여
+      repository-projects: write
       issues: write
+      contents: read
+
     steps:
       - name: Move Issue to In Progress Column
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORGANIZATION_NAME: "f-mac-mows"
-          PROJECT_NUMBER: "3"
+          ORGANIZATION_NAME: "f-mac-mows" 
+          PROJECT_NUMBER: "3" 
           COLUMN_NAME: "In Progress"
         run: |
-          PROJECT_ID=$(gh api graphql -f query='
-            query($org: String!, $number: Int!) {
-              user(login: $org) {
+          RESPONSE=$(gh api graphql -f query='
+            query($owner: String!, $number: Int!) {
+              user(login: $owner) {
                 projectV2(number: $number) { id }
               }
-              organization(login: $org) {
-                projectV2(number: $number) { id }
-              }
-            }' -F org="$ORGANIZATION_NAME" -F number=$PROJECT_NUMBER \
-            --template '{{if .data.user.projectV2}}{{.data.user.projectV2.id}}{{else if .data.organization.projectV2}}{{.data.organization.projectV2.id}}{{end}}' | tr -d '[:space:]')
+            }' -F owner="$ORGANIZATION_NAME" -F number=$PROJECT_NUMBER)
 
-          if [ -z "$PROJECT_ID" ]; then
-            echo "❌ 프로젝트를 찾을 수 없습니다. 설정한 Org 이름과 프로젝트 번호를 확인해주세요."
+          HAS_ERRORS=$(echo "$RESPONSE" | jq '.errors')
+          if [ "$HAS_ERRORS" != "null" ]; then
+            echo "❌ GitHub API 조회 실패! 권한이나 경로를 확인해주세요."
+            echo "상세 에러 내용: $RESPONSE"
+            exit 1
+          fi
+
+          PROJECT_ID=$(echo "$RESPONSE" | jq -r '.data.user.projectV2.id')
+          if [ "$PROJECT_ID" == "null" ] || [ -z "$PROJECT_ID" ]; then
+            echo "❌ 프로젝트 ID를 가져오지 못했습니다."
             exit 1
           fi
 
           echo "🎯 찾은 프로젝트 ID: $PROJECT_ID"
 
-          # 2. 이슈를 해당 프로젝트에 아이템으로 링크(추가)하고 아이템 ID를 가져옵니다.
-          ITEM_ID=$(gh api graphql -f query='
+          ITEM_RESPONSE=$(gh api graphql -f query='
             mutation($project: ID!, $content: ID!) {
               addProjectV2ItemById(input: {projectId: $project, contentId: $content}) {
                 item { id }
               }
-            }' -F project="$PROJECT_ID" -F content="${{ github.event.issue.node_id }}" --template '{{.data.addProjectV2ItemById.item.id}}' | tr -d '[:space:]')
+            }' -F project="$PROJECT_ID" -F content="${{ github.event.issue.node_id }}")
 
-          # 3. 'Status' 필드의 ID와 'In Progress' 옵션의 ID를 조회합니다.
+          ITEM_ID=$(echo "$ITEM_RESPONSE" | jq -r '.data.addProjectV2ItemById.item.id')
+
           FIELDS=$(gh api graphql -f query='
             query($project: ID!) {
               node(id: $project) {
@@ -64,7 +71,6 @@ jobs:
           STATUS_FIELD_ID=$(echo "$FIELDS" | jq -r '.data.node.fields.nodes[] | select(.name == "Status") | .id')
           OPTION_ID=$(echo "$FIELDS" | jq -r --arg col "$COLUMN_NAME" '.data.node.fields.nodes[] | select(.name == "Status") | .options[] | select(.name == $col) | .id')
 
-          # 4. 아이템의 Status 값을 'In Progress'로 업데이트합니다.
           gh api graphql -f query='
             mutation($project: ID!, $item: ID!, $field: ID!, $value: String!) {
               updateProjectV2ItemFieldValue(input: {
@@ -75,4 +81,4 @@ jobs:
               }) { clientMutationId }
             }' -F project="$PROJECT_ID" -F item="$ITEM_ID" -F field="$STATUS_FIELD_ID" -F value="$OPTION_ID"
           
-          echo "✅ 이슈가 성공적으로 '$COLUMN_NAME' 칼럼으로 이동되었습니다."
+          echo "✅ 이슈가 성공적으로 '$COLUMN_NAME' 컬럼으로 이동되었습니다."
