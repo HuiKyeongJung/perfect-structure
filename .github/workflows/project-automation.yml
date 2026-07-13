@@ -15,8 +15,8 @@ jobs:
     steps:
       - name: Move Issue to In Progress Column
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER_NAME: "f-mac-mows" 
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+          OWNER_NAME: "f-mac-mows"
           PROJECT_NUMBER: "3" 
           COLUMN_NAME: "In Progress"
         run: |
