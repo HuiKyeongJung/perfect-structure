@@ -124,6 +124,11 @@ def transform(rows: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
             continue
 
         aid = make_article_id(url)
+        provided_id = str(row.get("article ID") or "").strip()
+        if provided_id and provided_id != aid:
+            # xlsx에 기재된 ID가 있으면 URL 계산값과 일치해야 한다 (수기 오류·복사 실수 방어)
+            errors.append(f"{lineno}행: article ID 불일치 — 기재 {provided_id!r} ≠ URL 계산 {aid!r}")
+            continue
         if aid in seen_ids:
             errors.append(f"{lineno}행: article_id 충돌 {aid} (최초 {seen_ids[aid]}행)")
             continue
