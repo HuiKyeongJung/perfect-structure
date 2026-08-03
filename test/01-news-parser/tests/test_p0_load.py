@@ -84,9 +84,9 @@ def build_xlsx(tmp_path: Path, rows: list[list]) -> Path:
     return path
 
 
-def row(title="기사 제목", posted=None, url="https://example.com/a/1",
+def row(aid=None, title="기사 제목", posted=None, url="https://example.com/a/1",
         text="본문. 취업자가 13만 명 줄었다.", src=10, query="통계", journalist="김기자", tc=2):
-    return [None, title, posted or datetime(2025, 6, 23), url, text, src, query, journalist, tc]
+    return [aid, title, posted or datetime(2025, 6, 23), url, text, src, query, journalist, tc]
 
 
 def test_transform_excludes_class4_keeps_invariant(tmp_path):
@@ -113,6 +113,19 @@ def test_transform_core_schema_fields(tmp_path):
     assert a["posted_date"] == "2025-06-23"
     assert a["article_id"] == make_article_id("https://example.com/a/1")
     assert aux[0]["article_id"] == a["article_id"]  # 사이드카는 url·id로 조인 가능
+
+
+def test_transform_provided_id_match_ok(tmp_path):
+    good = make_article_id("https://example.com/a/1")
+    rows = read_rows(build_xlsx(tmp_path, [row(aid=good, url="https://example.com/a/1")]))
+    articles, _, _ = transform(rows)
+    assert articles[0]["article_id"] == good
+
+
+def test_transform_provided_id_mismatch_raises(tmp_path):
+    rows = read_rows(build_xlsx(tmp_path, [row(aid="A00000000", url="https://example.com/a/1")]))
+    with pytest.raises(ValueError, match="article ID 불일치"):
+        transform(rows)
 
 
 def test_transform_duplicate_url_raises(tmp_path):
