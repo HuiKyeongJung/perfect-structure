@@ -4,9 +4,10 @@
 규칙은 골든셋(cleaned_articles_ex.xlsx) 역산 관찰로 도출했다 (52건 중 50건이 선두/말미 노이즈만).
 - 선두: '입력 <ts> [업데이트 <ts>] [댓글수]' 앵커 절단 (짧은 헤더·긴 포털 내비 공통)
         + 뉴스레터형('N호 YYYY.MM.DD HH:MM') + 타임스탬프 없는 기사용 섹션+제목 폴백
-- 중간: '[칼럼 전문 링크]' 류 리터럴 제거
 - 말미: UI 전용 앵커(가장 이른 위치)부터 끝까지 절단
 - v2: 말미 잔여 꼬리(해시 없는 태그 키워드·기자명) 휴리스틱
+- v4: 본문 중간은 건드리지 않는다 — [칼럼 전문 링크]·<사진>·[편집자주] 같은
+      기사 고유 마커는 특정 기사의 특수 사례라 규칙화하지 않고 보존 (후속 단계에서 처리)
 
 원칙: 패턴이 없으면 그대로 통과(과잉 삭제 금지) · 제거는 삭제가 아니라 removed_spans 기록
       · 정제본+제거분으로 원문 복원 가능해야 함(보존 인바리언트).
@@ -23,7 +24,7 @@ import re
 import sys
 from pathlib import Path
 
-PIPELINE_VERSION = "clean_v3"
+PIPELINE_VERSION = "clean_v4"
 
 # ── 선두(프리픽스) 규칙 ──────────────────────────────────────────
 # R1: '입력 2025.06.23. 09:03 업데이트 2025.06.23. 17:40 0 ' — 업데이트·댓글수는 옵션
@@ -34,9 +35,6 @@ RE_HEADER = re.compile(
 # R2: 뉴스레터형 '604호 2025.09.15 11:00 '
 RE_NEWSLETTER = re.compile(rf"\d{{1,4}}호\s+{_TS}\s*")
 PREFIX_SEARCH_LIMIT = 1200  # 앵커가 이 위치 안에서 시작해야 헤더로 인정 (긴 포털 내비 ~850자)
-
-# ── 중간(미드) 규칙 ─────────────────────────────────────────────
-RE_MID_LITERALS = [re.compile(r"\[\s*칼럼\s*전문\s*링크\s*\]\s*")]
 
 # ── 말미(서픽스) 앵커 — 전부 기사 본문에 나올 수 없는 UI 전용 문구 ──
 SUFFIX_ANCHORS = [
@@ -158,19 +156,10 @@ def clean_text(text: str, title: str) -> tuple[str, list[dict]]:
         body_end = s[0]
         spans.append({"start": s[0], "end": len(text), "rule": s[1]})
 
-    # 미드 리터럴 (본문 구간 안에서만)
-    for pat in RE_MID_LITERALS:
-        for m in pat.finditer(text, body_start, body_end):
-            spans.append({"start": m.start(), "end": m.end(), "rule": "mid_literal"})
-
     # v2: 말미 잔여 꼬리 (서픽스 절단 후 남은 본문 구간의 끝)
-    mid_spans = sorted([sp for sp in spans if sp["rule"] == "mid_literal"], key=lambda x: x["start"])
-    seg_end = body_end
-    t = find_tail_residue(text, body_start, seg_end)
+    t = find_tail_residue(text, body_start, body_end)
     if t and all(not (sp["start"] <= t[0] < sp["end"]) for sp in spans):
-        spans.append({"start": t[0], "end": seg_end, "rule": t[1]})
-        # 꼬리 구간과 겹치는 미드 스팬 제거(포함됨)
-        spans = [sp for sp in spans if not (sp["rule"] == "mid_literal" and sp["start"] >= t[0])]
+        spans.append({"start": t[0], "end": body_end, "rule": t[1]})
 
     spans.sort(key=lambda x: x["start"])
     # 겹침 방지(안전망): 앞 스팬과 겹치면 뒤 스팬을 버림
@@ -212,7 +201,7 @@ def main(argv=None) -> None:
     ap.add_argument("--trace", type=Path, default=Path("data/articles_clean_trace.jsonl"))
     args = ap.parse_args(argv)
 
-    n = {"prefix": 0, "suffix": 0, "mid": 0, "tail": 0, "untouched": 0}
+    n = {"prefix": 0, "suffix": 0, "tail": 0, "untouched": 0}
     out_lines = []
     trace_lines = []
     with open(args.input, encoding="utf-8") as f:
@@ -226,8 +215,6 @@ def main(argv=None) -> None:
                          "comment_widget", "video_player", "video_time", "ads_close", "hot_news",
                          "most_viewed", "recommend", "taboola", "newsletter_promo") for r in rules):
                 n["suffix"] += 1
-            if "mid_literal" in rules:
-                n["mid"] += 1
             if any(r.startswith("tail") for r in rules):
                 n["tail"] += 1
             if not spans:
@@ -250,7 +237,7 @@ def main(argv=None) -> None:
     args.trace.parent.mkdir(parents=True, exist_ok=True)
     args.trace.write_text("\n".join(trace_lines) + "\n", encoding="utf-8")
     print(f"{PIPELINE_VERSION}: {len(out_lines)}건 정제 — 선두 {n['prefix']} · 말미 {n['suffix']} · "
-          f"중간 {n['mid']} · 꼬리 {n['tail']} · 무변경 {n['untouched']}")
+          f"꼬리 {n['tail']} · 무변경 {n['untouched']}")
     print(f"본문(코어 5필드): {args.output}")
     print(f"감사 사이드카(removed_spans): {args.trace}")
 

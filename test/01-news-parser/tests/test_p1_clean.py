@@ -105,11 +105,12 @@ class TestSuffix:
 # ── 중간·꼬리 규칙 ────────────────────────────────────────
 
 class TestMidAndTail:
-    def test_mid_column_link(self):
+    def test_mid_markers_preserved(self):
+        # v4: 기사 고유 마커([칼럼 전문 링크]·<사진>·[편집자주])는 규칙화하지 않고 보존
         text = "첫 단락이다. [칼럼 전문 링크] 둘째 단락이다."
         clean, spans = clean_text(text, TITLE)
-        assert clean == "첫 단락이다. 둘째 단락이다."
-        assert any(sp["rule"] == "mid_literal" for sp in spans)
+        assert clean == text
+        assert spans == []
 
     def test_tail_keywords(self):
         text = "마지막 문장이 끝났다. 수박 배추 우럭 히트플레이션"
