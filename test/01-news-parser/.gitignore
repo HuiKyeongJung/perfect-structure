@@ -1,0 +1,21 @@
+# ── 데이터 원본·산출물 (용량·기사 원문 저작권 — 저장소에 포함하지 않음) ──
+news.csv
+articles.xlsx
+*.xlsx
+~$*
+data/
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.ipynb_checkpoints/
+
+# ── 비밀키·환경변수 (HCX API 키 등 — 절대 커밋 금지) ──
+.env
+.env.*
+
+# ── OS·에디터 ──
+Thumbs.db
+.DS_Store
