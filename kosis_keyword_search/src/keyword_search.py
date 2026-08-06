@@ -8,6 +8,7 @@ KOSIS keyword search MVP.
 
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlencode
@@ -22,7 +23,7 @@ def load_api_key() -> str:
     .env 파일에서 KOSIS_API_KEY를 읽어온다.
     python-dotenv를 설치하지 않아도 실행되도록 직접 읽는 방식이다.
     """
-    env_path = Path(__file__).resolve().parent / ".env"
+    env_path = Path(__file__).resolve().parent.parent / ".env"
 
     if os.getenv("KOSIS_API_KEY"):
         return os.getenv("KOSIS_API_KEY", "").strip()
@@ -62,6 +63,7 @@ def build_search_url(
     params = {
         "method": "getList",
         "apiKey": api_key,
+        "format": "json",
         "searchNm": keyword,
         "sort": sort,
         "startCount": str(start_count),
@@ -75,7 +77,7 @@ def build_search_url(
 
 
 def fetch_json(url: str) -> Any:
-    """KOSIS API에 요청을 보내고 JSON 응답을 파이썬 객체로 바꾼다."""
+    """KOSIS API 응답을 읽고, KOSIS식 응답을 Python dict/list로 변환한다."""
     request = Request(
         url,
         headers={
@@ -87,24 +89,32 @@ def fetch_json(url: str) -> Any:
     with urlopen(request, timeout=15) as response:
         raw_text = response.read().decode("utf-8")
 
-    return json.loads(raw_text)
+    if not raw_text.strip():
+        raise ValueError("KOSIS API 응답이 비어 있습니다.")
+
+    try:
+        return json.loads(raw_text)     # 이 부분이 불필요한 부분을 제거하고 쌍따옴표를 붙여서
+    except json.JSONDecodeError:        # JSON으로 변환하는 작업을 수행한다.
+        fixed_text = re.sub(
+            r'([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)',
+            r'\1"\2"\3',
+            raw_text,
+        )
+        return json.loads(fixed_text)
 
 
 def normalize_response_items(data: Any) -> list[dict[str, Any]]:
-    """
-    KOSIS 응답을 결과 리스트 형태로 맞춘다.
-
-    API 응답 형태가 리스트일 수도 있고,
-    딕셔너리 안에 리스트가 들어있을 수도 있어서 둘 다 처리한다.
-    """
-    if isinstance(data, list):
-        return [item for item in data if isinstance(item, dict)]
-
     if isinstance(data, dict):
+        if data.get("err") == "30":
+            return []
+
         for key in ("result", "data", "list", "rows"):
             value = data.get(key)
             if isinstance(value, list):
                 return [item for item in value if isinstance(item, dict)]
+
+    if isinstance(data, list):
+        return [item for item in data if isinstance(item, dict)]
 
     return []
 
