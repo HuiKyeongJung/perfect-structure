@@ -202,13 +202,20 @@ def search_keywords(claim_id: str, keywords: list[str]) -> dict[str, Any]:
 
         results.append(search_keyword(clean_keyword, api_key))
 
+    matched_keywords = [
+        result["keyword"]
+        for result in results
+        if result["exists"] is True
+    ]
+
     return {
-        "claim_id": claim_id,
+        "claim_id": "claim_001",
         "module": "kosis_keyword_search",
         "status": "success",
         "searched_count": len(results),
-        "matched_count": sum(1 for result in results if result["exists"]),
+        "matched_count": len(matched_keywords),
         "results": results,
+        "matched_keywords": matched_keywords,
     }
 
 
