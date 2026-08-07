@@ -120,7 +120,6 @@ def to_list(value: Any) -> list[str]:
 
     return [str(value).strip()]
 
-
 def split_path(value: Any) -> list[str]:
     """
     MT_ATITLE 같은 경로 문자열을 리스트로 나눈다.
@@ -134,16 +133,25 @@ def split_path(value: Any) -> list[str]:
 
     return [part.strip() for part in parts if part.strip()]
 
+def build_contents_list(item: dict[str, Any], query: str) -> list[str]:
+    contents = []
+
+    for key in ("CONTENTS", "ITEM03", "STAT_NM", "TBL_NM"):
+        value = item.get(key)
+        if value not in (None, ""):
+            contents.append(str(value).strip())
+
+    if query:
+        contents.append(query)
+
+    return contents
 
 def convert_to_v2_result(item: dict[str, Any], query: str) -> dict[str, Any]:
-    """
-    KOSIS 검색 결과 1개를 04번 task 팀원이 요청한 형태로 변환한다.
-    """
     return {
-        "in_ORG_NM": to_list(item.get("ORG_NM")),
-        "in_TBL_NM": to_list(item.get("TBL_NM")),
+        "ORG_NM": item.get("ORG_NM"),
+        "TBL_NM": item.get("TBL_NM"),
         "in_MT_ATITLE": split_path(item.get("MT_ATITLE")),
-        "in_CONTENTS": to_list(item.get("CONTENTS")),
+        "in_CONTENTS": build_contents_list(item, query),
         "QUERY": query,
     }
 
@@ -163,7 +171,7 @@ def search_keyword_v2(
     data = fetch_json(url)
     items = normalize_response_items(data)
 
-    return [convert_to_v2_result(item, keyword) for item in items]
+    return [convert_to_v2_result(item, keyword) for item in items[:3]]
 
 
 def load_search_keywords(file_path: str) -> list[str]:
