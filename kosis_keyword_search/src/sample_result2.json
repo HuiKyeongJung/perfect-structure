@@ -1,9 +1,9 @@
 {
-  "claim_id": "claim_001",
+  "claim_id": "claim_test_001",
   "module": "kosis_keyword_search",
   "status": "success",
-  "searched_count": 5,
-  "matched_count": 4,
+  "searched_count": 9,
+  "matched_count": 7,
   "results": [
     {
       "keyword": "소비자물가지수",
@@ -75,6 +75,70 @@
       ]
     },
     {
+      "keyword": "물가",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_404Y014",
+          "title": "생산자물가지수(기본분류)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22042",
+          "title": "월별 소비자물가 등락률"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_403Y003",
+          "title": "수입금액지수"
+        }
+      ]
+    },
+    {
+      "keyword": "월별 소비자물가 등락률",
+      "exists": true,
+      "status": "success",
+      "result_count": 2,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22042",
+          "title": "월별 소비자물가 등락률"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20581",
+          "title": "소비자물가 등락률(시도/시)"
+        }
+      ]
+    },
+    {
+      "keyword": "물가상승률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WEO012",
+          "title": "물가상승률, 기간말 소비자물가지수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WEO011",
+          "title": "물가상승률, 소비자물가지수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22009",
+          "title": "식료품 및 에너지제외지수(2020=100)"
+        }
+      ]
+    },
+    {
       "keyword": "전국 소비자물가지수",
       "exists": true,
       "status": "success",
@@ -96,6 +160,13 @@
           "title": "소비자물가지수(2020=100)"
         }
       ]
+    },
+    {
+      "keyword": "소비자물가찌수",
+      "exists": false,
+      "status": "success",
+      "result_count": 0,
+      "top_results": []
     },
     {
       "keyword": "없는키워드테스트",
