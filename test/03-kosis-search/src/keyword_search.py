@@ -243,8 +243,8 @@ def main() -> None:
     직접 실행할 때 사용하는 예시 실행 코드.
     """
     base_dir = Path(__file__).resolve().parent
-    input_path = base_dir / "sample_keywords.json"
-    output_path = base_dir / "sample_result.json"
+    input_path = base_dir / "sample_keywords100.json"
+    output_path = base_dir / "sample_result100.json"
 
     claim_id, keywords = load_keywords_from_json(str(input_path))
     result = search_keywords(claim_id, keywords)
