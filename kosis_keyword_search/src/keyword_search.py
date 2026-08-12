@@ -218,24 +218,98 @@ def search_keywords(claim_id: str, keywords: list[str]) -> dict[str, Any]:
         "matched_keywords": matched_keywords,
     }
 
-
-def load_keywords_from_json(file_path: str) -> tuple[str, list[str]]:
+def search_claims(claims: list[dict[str, Any]]) -> dict[str, Any]:
     """
-    sample_keywords.json 같은 입력 파일에서 claim_id와 expanded_keywords를 읽는다.
+    여러 claim을 받아서 claim별로 키워드 검색을 실행한다.
+    """
+    claim_results = []
+
+    for claim in claims:
+        claim_id = claim["claim_id"]
+        metric = claim.get("metric", "")
+        keywords = claim.get("expanded_keywords", [])
+
+        result = search_keywords(claim_id, keywords)
+        result["metric"] = metric
+
+        claim_results.append(result)
+
+    return {
+        "module": "kosis_keyword_search",
+        "status": "success",
+        "claim_count": len(claim_results),
+        "claims": claim_results,
+    }
+
+
+def load_keywords_from_json(file_path: str) -> list[dict[str, Any]]:
+    """
+    입력 JSON에서 claim별 검색 키워드를 읽는다.
+
+    지원 형식:
+    [
+      {
+        "claim_id": "claim_001",
+        "metric": "...",
+        "expanded_keywords": [...]
+      },
+      {
+        "claim_id": "claim_002",
+        "metric": "...",
+        "expanded_keywords": [...]
+      }
+    ]
+
+    단일 claim dict가 들어와도 list로 감싸서 처리한다.
     """
     path = Path(file_path)
 
     with path.open("r", encoding="utf-8") as f:
         data = json.load(f)
 
-    claim_id = data.get("claim_id", "claim_unknown")
-    keywords = data.get("expanded_keywords", [])
+    if isinstance(data, dict):
+        data = [data]
 
-    if not isinstance(keywords, list):
-        raise ValueError("expanded_keywords는 리스트 형태여야 합니다.")
+    if not isinstance(data, list):
+        raise ValueError("입력 JSON은 dict 또는 list 형태여야 합니다.")
 
-    return claim_id, keywords
+    claims = []
 
+    for item in data:
+        if not isinstance(item, dict):
+            continue
+
+        claim_id = item.get("claim_id", "claim_unknown")
+        metric = item.get("metric", "")
+        keywords = item.get("expanded_keywords", [])
+
+        if not isinstance(keywords, list):
+            raise ValueError(f"{claim_id}의 expanded_keywords는 리스트 형태여야 합니다.")
+
+        cleaned_keywords = []
+        seen = set()
+
+        for keyword in keywords:
+            keyword = str(keyword).strip()
+
+            if not keyword:
+                continue
+
+            if keyword in seen:
+                continue
+
+            seen.add(keyword)
+            cleaned_keywords.append(keyword)
+
+        claims.append(
+            {
+                "claim_id": claim_id,
+                "metric": metric,
+                "expanded_keywords": cleaned_keywords,
+            }
+        )
+
+    return claims
 
 def save_result_json(result: dict[str, Any], file_path: str) -> None:
     """검색 결과를 JSON 파일로 저장한다."""
@@ -250,11 +324,11 @@ def main() -> None:
     직접 실행할 때 사용하는 예시 실행 코드.
     """
     base_dir = Path(__file__).resolve().parent
-    input_path = base_dir / "sample_keywords100.json"
-    output_path = base_dir / "sample_result100.json"
+    input_path = base_dir / "role2_convert_keywords.json"
+    output_path = base_dir / "role2_result.json"
 
-    claim_id, keywords = load_keywords_from_json(str(input_path))
-    result = search_keywords(claim_id, keywords)
+    claims = load_keywords_from_json(str(input_path))
+    result = search_claims(claims)
 
     save_result_json(result, str(output_path))
 
