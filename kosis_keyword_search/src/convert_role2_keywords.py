@@ -66,8 +66,8 @@ def convert_claim(item: dict[str, Any]) -> dict[str, Any]:
 def main() -> None:
     base_dir = Path(__file__).resolve().parent
 
-    input_path = base_dir / "role2_sample_keywords.json"
-    output_path = base_dir / "role2_convert_keywords.json"
+    input_path = base_dir / "role2_sample_keywords2.json"
+    output_path = base_dir / "role2_convert_keywords2.json"
 
     role2_data = load_json(input_path)
     claims = normalize_role2_data(role2_data)
