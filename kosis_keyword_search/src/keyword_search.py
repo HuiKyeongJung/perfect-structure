@@ -209,7 +209,7 @@ def search_keywords(claim_id: str, keywords: list[str]) -> dict[str, Any]:
     ]
 
     return {
-        "claim_id": "claim_001",
+        "claim_id": claim_id,
         "module": "kosis_keyword_search",
         "status": "success",
         "searched_count": len(results),
@@ -230,9 +230,19 @@ def search_claims(claims: list[dict[str, Any]]) -> dict[str, Any]:
         keywords = claim.get("expanded_keywords", [])
 
         result = search_keywords(claim_id, keywords)
-        result["metric"] = metric
 
-        claim_results.append(result)
+        claim_results.append(
+            {
+                "claim_id": result["claim_id"],
+                "metric": metric,
+                "module": result["module"],
+                "status": result["status"],
+                "searched_count": result["searched_count"],
+                "matched_count": result["matched_count"],
+                "results": result["results"],
+                "matched_keywords": result["matched_keywords"],
+            }
+        )
 
     return {
         "module": "kosis_keyword_search",

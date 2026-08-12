@@ -4,7 +4,8 @@
   "claim_count": 5,
   "claims": [
     {
-      "claim_id": "claim_001",
+      "claim_id": "C001",
+      "metric": "청년 취업",
       "module": "kosis_keyword_search",
       "status": "success",
       "searched_count": 20,
@@ -419,11 +420,11 @@
         "취업자 수",
         "취업 준비자 규모",
         "취업 기회 지수"
-      ],
-      "metric": "청년 취업"
+      ]
     },
     {
-      "claim_id": "claim_001",
+      "claim_id": "C002",
+      "metric": "비경제 인구",
       "module": "kosis_keyword_search",
       "status": "success",
       "searched_count": 24,
@@ -916,11 +917,11 @@
         "지역별 비경제인구",
         "총인구",
         "인구밀도"
-      ],
-      "metric": "비경제 인구"
+      ]
     },
     {
-      "claim_id": "claim_001",
+      "claim_id": "C003",
+      "metric": "하루 평균 수출액",
       "module": "kosis_keyword_search",
       "status": "success",
       "searched_count": 33,
@@ -1558,11 +1559,11 @@
         "지역별 수출액",
         "국가별 수출액",
         "산업별 수출"
-      ],
-      "metric": "하루 평균 수출액"
+      ]
     },
     {
-      "claim_id": "claim_001",
+      "claim_id": "C004",
+      "metric": "무역수지 흑자",
       "module": "kosis_keyword_search",
       "status": "success",
       "searched_count": 21,
@@ -1911,11 +1912,11 @@
         "월별 무역수지",
         "흑자 규모",
         "흑자 비율"
-      ],
-      "metric": "무역수지 흑자"
+      ]
     },
     {
-      "claim_id": "claim_001",
+      "claim_id": "C005",
+      "metric": "국가 채무 증가율",
       "module": "kosis_keyword_search",
       "status": "success",
       "searched_count": 37,
@@ -2519,8 +2520,7 @@
         "중앙정부 채무 증가율",
         "채무 부담률",
         "중앙 및 지방 정부 부채 증가율"
-      ],
-      "metric": "국가 채무 증가율"
+      ]
     }
   ]
 }
