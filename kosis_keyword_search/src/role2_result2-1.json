@@ -2,6 +2,8 @@
   "module": "kosis_keyword_search",
   "status": "success",
   "claim_count": 5,
+  "total_search_count": 112,
+  "elapsed_seconds": 24.997,
   "claims": [
     {
       "claim_id": "C001",
