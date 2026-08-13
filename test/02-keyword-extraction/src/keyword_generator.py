@@ -1,7 +1,25 @@
-# 입력 객체의 metric을 원키워드로 보존하는 기능을 제공합니다.
-"""KOSIS 검색 키워드 생성의 metric 입력 단계를 제공한다."""
+# 입력 객체의 metric을 원키워드로 보존하고 관련 키워드 후보를 생성합니다.
+"""metric 기반 관련 키워드 후보 생성의 기본 로직을 제공한다."""
 
-from typing import Any, Dict, List, TypedDict, Union
+import json
+from pathlib import Path
+import logging
+
+from typing import Any, Callable, Dict, List, Optional, Tuple, TypedDict, Union
+
+from kiwipiepy import Kiwi
+
+try:
+    from src.embedding_ranker import rank_keywords
+    from src.hcx_keyword_expander import expand_and_filter_keyword
+    from src.keyword_dictionary import RELATED_KEYWORD_DICTIONARY
+except ModuleNotFoundError:
+    from embedding_ranker import rank_keywords
+    from hcx_keyword_expander import expand_and_filter_keyword
+    from keyword_dictionary import RELATED_KEYWORD_DICTIONARY
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 class InvalidMetricInputError(ValueError):
@@ -24,6 +42,9 @@ GENERAL_MEASUREMENT_EXPRESSIONS = {
     "규모",
     "현황",
 }
+
+KIWI_NOUN_TAGS = {"NNG", "NNP", "SL"}
+KIWI = Kiwi()
 
 
 def extract_metric(input_data: Any) -> str:
@@ -62,7 +83,7 @@ def create_original_candidate(metric: str) -> OriginalKeywordCandidate:
 
 
 def extract_initial_keywords(metric: str) -> List[str]:
-    """metric에서 규칙 기반 1차 KOSIS 검색 키워드 후보를 만든다."""
+    """metric에서 규칙 기반 1차 관련 키워드 후보를 만든다."""
 
     normalized_metric = " ".join(metric.split())
     if not normalized_metric:
@@ -79,6 +100,62 @@ def extract_initial_keywords(metric: str) -> List[str]:
         _append_keyword_candidate(candidates, " ".join(tokens[1:]))
 
     return candidates
+
+
+def extract_kiwi_nouns(metric: str) -> List[str]:
+    """metric에서 Kiwi의 일반명사·고유명사·영문 표현 후보를 추출한다."""
+
+    normalized_metric = " ".join(metric.split())
+    if not normalized_metric:
+        return []
+
+    nouns: List[str] = []
+    for token in KIWI.tokenize(normalized_metric):
+        if token.tag in KIWI_NOUN_TAGS and token.form not in nouns:
+            nouns.append(token.form)
+
+    return nouns
+
+
+def extract_surface_keywords(metric: str) -> List[str]:
+    """metric에 원문 공백 단위로 있던 단어를 순서대로 추출한다."""
+
+    normalized_metric = " ".join(metric.split())
+    if not normalized_metric:
+        return []
+
+    surface_keywords: List[str] = []
+    for keyword in normalized_metric.split():
+        if keyword not in surface_keywords:
+            surface_keywords.append(keyword)
+
+    return surface_keywords
+
+
+def filter_meaningful_seed_candidates(
+    metric: str,
+    candidates: List[str],
+    semantic_validator: Callable[[str, str], bool],
+) -> List[str]:
+    """의미 검증기를 통과한 후보만 원래 순서대로 반환한다."""
+
+    validated_candidates: List[str] = []
+    for candidate in candidates:
+        if semantic_validator(metric, candidate) and candidate not in validated_candidates:
+            validated_candidates.append(candidate)
+
+    return validated_candidates
+
+
+def needs_compound_fallback(metric: str, kiwi_nouns: List[str]) -> bool:
+    """Kiwi가 metric을 하나의 명사 덩어리로만 반환했는지 확인한다."""
+
+    normalized_metric = "".join(metric.split())
+    if not normalized_metric or len(kiwi_nouns) != 1:
+        return False
+
+    normalized_kiwi_noun = "".join(kiwi_nouns[0].split())
+    return bool(normalized_kiwi_noun) and normalized_metric == normalized_kiwi_noun
 
 
 def merge_keyword_candidates(*candidate_groups: List[str]) -> List[str]:
@@ -111,7 +188,57 @@ def normalize_and_deduplicate_candidates(candidates: List[Any]) -> List[str]:
     return normalized_candidates
 
 
-def generate_kosis_keywords(input_data: Any) -> Dict[str, Union[str, List[str]]]:
+def expand_seed_keywords_from_dictionary(seed_keywords: List[str]) -> List[str]:
+    """seed keyword를 정적 관련어 사전으로 조회해 확장한다."""
+
+    expanded_keywords: List[str] = []
+    for seed_keyword in seed_keywords:
+        if not isinstance(seed_keyword, str):
+            continue
+
+        normalized_seed = " ".join(seed_keyword.split())
+        if not normalized_seed:
+            continue
+
+        expanded_keywords.extend(
+            RELATED_KEYWORD_DICTIONARY.get(normalized_seed, [])
+        )
+
+    return normalize_and_deduplicate_candidates(expanded_keywords)
+
+
+def _expand_keyword_with_hcx(
+    original_keyword: str,
+    seed_keyword: str,
+    expansion_cache: Dict[Tuple[str, str], List[str]],
+) -> List[str]:
+    """HCX 확장 결과를 함수 실행 범위에서 캐시하고 실패 시 빈 목록을 반환한다."""
+
+    cache_key = (original_keyword, seed_keyword)
+    if cache_key not in expansion_cache:
+        try:
+            expanded_keywords = expand_and_filter_keyword(
+                original_keyword,
+                seed_keyword,
+            )
+            expansion_cache[cache_key] = normalize_and_deduplicate_candidates(
+                expanded_keywords
+            )
+        except Exception as error:
+            LOGGER.warning(
+                "HCX 키워드 확장에 실패해 해당 seed를 건너뜁니다. seed=%s error=%s",
+                seed_keyword,
+                error,
+            )
+            expansion_cache[cache_key] = []
+
+    return list(expansion_cache[cache_key])
+
+
+def generate_kosis_keywords(
+    input_data: Any,
+    semantic_validator: Optional[Callable[[str, str], bool]] = None,
+) -> Dict[str, Union[str, List[str]]]:
     """metric에서 생성한 키워드 후보를 정리해 반환한다."""
 
     if not isinstance(input_data, dict):
@@ -123,6 +250,9 @@ def generate_kosis_keywords(input_data: Any) -> Dict[str, Union[str, List[str]]]
         "claim_id": input_data.get("claim_id", ""),
         "metric": metric,
         "original_keyword": original_candidate["keyword"],
+        "seed_keywords": [],
+        "original_expanded_keywords": [],
+        "seed_expanded_keywords": [],
         "keywords": [],
         "status": "not_eligible",
         "error_message": "",
@@ -130,8 +260,73 @@ def generate_kosis_keywords(input_data: Any) -> Dict[str, Union[str, List[str]]]
 
     if is_kosis_eligible(input_data):
         rule_candidates = extract_initial_keywords(metric)
-        all_candidates = merge_keyword_candidates(rule_candidates)
-        result["keywords"] = normalize_and_deduplicate_candidates(all_candidates)
+        surface_seed_keywords = extract_surface_keywords(metric)
+        kiwi_raw_keywords = extract_kiwi_nouns(metric)
+        validated_kiwi_keywords = []
+        if semantic_validator is not None:
+            validated_kiwi_keywords = filter_meaningful_seed_candidates(
+                metric,
+                kiwi_raw_keywords,
+                semantic_validator,
+            )
+        kiwi_seed_keywords = normalize_and_deduplicate_candidates(
+            merge_keyword_candidates(surface_seed_keywords, validated_kiwi_keywords)
+        )
+        dictionary_expanded_keywords = expand_seed_keywords_from_dictionary(
+            kiwi_seed_keywords
+        )
+        expansion_cache: Dict[Tuple[str, str], List[str]] = {}
+        original_expanded_keywords = _expand_keyword_with_hcx(
+            metric,
+            metric,
+            expansion_cache,
+        )
+        seed_expanded_keywords: List[str] = []
+        for seed_keyword in kiwi_seed_keywords:
+            seed_expanded_keywords.extend(
+                _expand_keyword_with_hcx(
+                    metric,
+                    seed_keyword,
+                    expansion_cache,
+                )
+            )
+        seed_expanded_keywords = normalize_and_deduplicate_candidates(
+            seed_expanded_keywords
+        )
+
+        all_candidates = merge_keyword_candidates(
+            [original_candidate["keyword"]],
+            rule_candidates,
+            kiwi_seed_keywords,
+            dictionary_expanded_keywords,
+            original_expanded_keywords,
+            seed_expanded_keywords,
+        )
+        result["seed_keywords"] = kiwi_seed_keywords
+        result["original_expanded_keywords"] = original_expanded_keywords
+        result["seed_expanded_keywords"] = seed_expanded_keywords
+        merged_keywords = normalize_and_deduplicate_candidates(all_candidates)
+        try:
+            ranked_keywords = rank_keywords(
+                reference_text=original_candidate["keyword"],
+                keywords=merged_keywords,
+            )
+            if (
+                len(ranked_keywords) != len(merged_keywords)
+                or set(ranked_keywords) != set(merged_keywords)
+            ):
+                LOGGER.warning(
+                    "Embedding ranking 결과의 후보 구성이 달라 기존 순서를 유지합니다."
+                )
+                ranked_keywords = merged_keywords
+        except Exception as error:
+            LOGGER.warning(
+                "Embedding ranking에 실패해 기존 키워드 순서를 유지합니다. error=%s",
+                error,
+            )
+            ranked_keywords = merged_keywords
+
+        result["keywords"] = ranked_keywords
         result["status"] = "success"
 
     return result
@@ -145,21 +340,46 @@ def _append_keyword_candidate(candidates: List[str], candidate: str) -> None:
     if candidate not in candidates:
         candidates.append(candidate)
 
+
 if __name__ == "__main__":
-    sample_input = {
-        "claim_id": "C002",
-        "metric": "청년 취업자 수",
-        "kosis_eligible": True,
-    }
+    test_inputs = [
+        {
+            "claim_id": "C001",
+            "metric": "청년 취업",
+        },
+        {
+            "claim_id": "C002",
+            "metric": "비경제 인구",
+        },
+        {
+            "claim_id": "C003",
+            "metric": "하루 평균 수출액",
+        },
+        {
+            "claim_id": "C004",
+            "metric": "무역수지 흑자",
+        },
+        {
+            "claim_id": "C005",
+            "metric": "국가 채무 증가율",
+        },
+    ]
 
-    result = generate_kosis_keywords(sample_input)
+    generated_results = []
 
-    print("\n=== KOSIS 키워드 생성 결과 ===")
-    print(f"claim_id        : {result['claim_id']}")
-    print(f"metric          : {result['metric']}")
-    print(f"original_keyword: {result['original_keyword']}")
-    print(f"status          : {result['status']}")
-    print("keywords:")
+    for index, test_input in enumerate(test_inputs):
+        if index:
+            print("=" * 50)
 
-    for i, keyword in enumerate(result["keywords"], start=1):
-        print(f"  {i}. {keyword}")
+        result = generate_kosis_keywords(
+            {**test_input, "kosis_eligible": True},
+        )
+        generated_results.append(result)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+
+    output_path = Path(__file__).resolve().parents[1] / "data" / "generated_keywords.json"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(
+        json.dumps(generated_results, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
