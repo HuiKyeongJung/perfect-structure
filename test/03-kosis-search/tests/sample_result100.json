@@ -1,0 +1,2347 @@
+{
+  "claim_id": "claim_001",
+  "module": "kosis_keyword_search",
+  "status": "success",
+  "searched_count": 100,
+  "matched_count": 97,
+  "results": [
+    {
+      "keyword": "소비자물가지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2IFS002",
+          "title": "소비자물가지수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22001",
+          "title": "지출목적별 소비자물가지수(품목포함, 2020=100)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22003",
+          "title": "소비자물가지수(2020=100)"
+        }
+      ]
+    },
+    {
+      "keyword": "소비자 물가 지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1C8015",
+          "title": "경기종합지수(2020=100)(10차)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1C8016",
+          "title": "경기종합지수(2020=100) 구성지표 시계열 (10차)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_401Y018",
+          "title": "수입물가지수(용도별)"
+        }
+      ]
+    },
+    {
+      "keyword": "CPI",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2IFS002",
+          "title": "소비자물가지수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OEEO0121",
+          "title": "소비자물가지수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WEO011",
+          "title": "물가상승률, 소비자물가지수"
+        }
+      ]
+    },
+    {
+      "keyword": "물가상승률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WEO012",
+          "title": "물가상승률, 기간말 소비자물가지수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WEO011",
+          "title": "물가상승률, 소비자물가지수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22042",
+          "title": "월별 소비자물가 등락률"
+        }
+      ]
+    },
+    {
+      "keyword": "생활물가지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22005",
+          "title": "생활물가지수(2020=100)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22042",
+          "title": "월별 소비자물가 등락률"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22041",
+          "title": "연도별 소비자물가 등락률"
+        }
+      ]
+    },
+    {
+      "keyword": "근원물가지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 1,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OEEO0122",
+          "title": "근원물가지수 증감률"
+        }
+      ]
+    },
+    {
+      "keyword": "신선식품지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22042",
+          "title": "월별 소비자물가 등락률"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22004",
+          "title": "신선식품지수(2020=100)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22041",
+          "title": "연도별 소비자물가 등락률"
+        }
+      ]
+    },
+    {
+      "keyword": "외식 물가",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22005",
+          "title": "생활물가지수(2020=100)"
+        },
+        {
+          "org_id": "114",
+          "tbl_id": "DT_114053_007_2019",
+          "title": "최근 1년간 식품 지출 변화 이유"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_511Y004",
+          "title": "소비자동향조사(지역, 월)"
+        }
+      ]
+    },
+    {
+      "keyword": "석유류 물가",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1J22042",
+          "title": "월별 소비자물가 등락률"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_405Y007",
+          "title": "총산출물가지수"
+        },
+        {
+          "org_id": "318",
+          "tbl_id": "TX_31802_A000",
+          "title": "주유소 제품별 평균 판매가격"
+        }
+      ]
+    },
+    {
+      "keyword": "농축수산물 물가",
+      "exists": true,
+      "status": "success",
+      "result_count": 2,
+      "top_results": [
+        {
+          "org_id": "565",
+          "tbl_id": "DT_56501_E000063",
+          "title": "수산물가공품 생산량"
+        },
+        {
+          "org_id": "565",
+          "tbl_id": "DT_56501_E000038",
+          "title": "축산물 위생관계업소"
+        }
+      ]
+    },
+    {
+      "keyword": "취업자 수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "INH_1DA7030S",
+          "title": "취업자수(시도)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7011S",
+          "title": "취업시간별 취업자"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20541",
+          "title": "취업자증감(시도)"
+        }
+      ]
+    },
+    {
+      "keyword": "취업자",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7036S",
+          "title": "행정구역(시도)/취업시간별 취업자"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7011S",
+          "title": "취업시간별 취업자"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7028S",
+          "title": "성/종사상지위별 취업자"
+        }
+      ]
+    },
+    {
+      "keyword": "경제활동인구",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7004S",
+          "title": "행정구역(시도)별 경제활동인구"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7002S",
+          "title": "연령별 경제활동인구 총괄"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7001S",
+          "title": "성별 경제활동인구 총괄"
+        }
+      ]
+    },
+    {
+      "keyword": "고용률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7001S",
+          "title": "성별 경제활동인구 총괄"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7004S",
+          "title": "행정구역(시도)별 경제활동인구"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7002S",
+          "title": "연령별 경제활동인구 총괄"
+        }
+      ]
+    },
+    {
+      "keyword": "실업률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7105S",
+          "title": "연령/교육정도별 실업률"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7104S",
+          "title": "행정구역(시도)/성별 실업률"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7102S",
+          "title": "성/연령별 실업률"
+        }
+      ]
+    },
+    {
+      "keyword": "청년 실업률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20531E",
+          "title": "청년실업률(시도)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2AX052",
+          "title": "청년 실업률, 남성(15~24세 남성 경제활동인구 중 %)(ILO 모델 추계)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2AX051",
+          "title": "청년 실업률, 여성(15~24세 여성 경제활동인구 중 %)(ILO 모델 추계)"
+        }
+      ]
+    },
+    {
+      "keyword": "청년 고용률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "INH_1DA7015S",
+          "title": "청년고용률(시도)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "INH_1ES3A03_A01S",
+          "title": "청년고용률(시/군/구)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DE9046S",
+          "title": "연령별 경제활동상태"
+        }
+      ]
+    },
+    {
+      "keyword": "비경제활동인구",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7146S",
+          "title": "행정구역(시도)/활동상태별 비경제활동인구"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7179S",
+          "title": "연령별 비경제활동인구"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7145S",
+          "title": "성/활동상태별 비경제활동인구"
+        }
+      ]
+    },
+    {
+      "keyword": "구직단념자",
+      "exists": true,
+      "status": "success",
+      "result_count": 9,
+      "top_results": [
+        {
+          "org_id": "383",
+          "tbl_id": "DT_38304_2013_N021",
+          "title": "장애인 비경제활동인구의 구직단념자 규모"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DA7156AS",
+          "title": "성별 구직단념자(2014.1월~현재)"
+        },
+        {
+          "org_id": "109",
+          "tbl_id": "DT_109006_J001",
+          "title": "경제활동 참여 상태"
+        }
+      ]
+    },
+    {
+      "keyword": "임금근로자",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "437",
+          "tbl_id": "DT_43701N_037",
+          "title": "임금근로자 근속기간"
+        },
+        {
+          "org_id": "118",
+          "tbl_id": "DT_118N_MON054",
+          "title": "산업/규모별 임금 및 근로시간"
+        },
+        {
+          "org_id": "118",
+          "tbl_id": "DT_118N_MON055",
+          "title": "산업/규모별 임금 및 근로시간(누계)"
+        }
+      ]
+    },
+    {
+      "keyword": "출생아 수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000G",
+          "title": "월.분기.연간 인구동향(출생,사망,혼인,이혼)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000H",
+          "title": "시도/인구동태건수 및 동태율(출생,사망,혼인,이혼)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000I",
+          "title": "시군구/인구동태건수 및 동태율(출생,사망,혼인,이혼)"
+        }
+      ]
+    },
+    {
+      "keyword": "출생아",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_CC2024B001",
+          "title": "출생아 부모 중 출생아 100명당 육아휴직자"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_CC2024C001",
+          "title": "출생아 부모 중 출생아 100명당 육아휴직 대상자"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_CC2024C002",
+          "title": "출생아 부모 중  육아휴직 대상자"
+        }
+      ]
+    },
+    {
+      "keyword": "합계출산율",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "INH_1B81A17",
+          "title": "합계출산율(시도/시/군/구)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAA207",
+          "title": "합계출산율"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1BPA101",
+          "title": "장래 합계출산율 / 전국"
+        }
+      ]
+    },
+    {
+      "keyword": "사망자 수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B34E11",
+          "title": "시도/사망원인(104항목)/성/연령(5세)별/ 사망자수, 사망률(1996~)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B34E07",
+          "title": "사망원인(237항목)/성/연령(5세)별 사망자수, 사망률"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B34E08",
+          "title": "영아사망원인(67항목)/성/생존기간별 사망자수, 영아사망률(2005~)"
+        }
+      ]
+    },
+    {
+      "keyword": "혼인 건수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B83A11",
+          "title": "시도/부부의 혼인종류별 혼인"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B83A24",
+          "title": "시도/시군구별 외국인과의 혼인"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "INH_1B8000F_03",
+          "title": "혼인건수, 조혼인율"
+        }
+      ]
+    },
+    {
+      "keyword": "이혼 건수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000F",
+          "title": "인구동태건수 및 동태율 추이(출생,사망,혼인,이혼)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000K",
+          "title": "읍면동/성별/인구동태건수(출생,사망,혼인,이혼)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000H",
+          "title": "시도/인구동태건수 및 동태율(출생,사망,혼인,이혼)"
+        }
+      ]
+    },
+    {
+      "keyword": "인구동향",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000G",
+          "title": "월.분기.연간 인구동향(출생,사망,혼인,이혼)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1B8000K",
+          "title": "읍면동/성별/인구동태건수(출생,사망,혼인,이혼)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "INH_1B83A09",
+          "title": "평균 초혼연령(시도/시/군/구)"
+        }
+      ]
+    },
+    {
+      "keyword": "고령인구",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1BPA003",
+          "title": "주요 연령계층별 추계인구(생산연령인구, 고령인구 등) / 전국"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1BPB003",
+          "title": "주요 연령계층별 추계인구(생산연령인구, 고령인구 등)/시도"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "INH_PB0002_2022_23",
+          "title": "주요 연령계층별 추계인구(생산연령인구, 고령인구 등)"
+        }
+      ]
+    },
+    {
+      "keyword": "노년부양비",
+      "exists": false,
+      "status": "error",
+      "result_count": 0,
+      "top_results": [],
+      "error_reason": "Expecting ',' delimiter: line 1 column 744 (char 743)"
+    },
+    {
+      "keyword": "생산연령인구",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1BPA003",
+          "title": "주요 연령계층별 추계인구(생산연령인구, 고령인구 등) / 전국"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1BPB003",
+          "title": "주요 연령계층별 추계인구(생산연령인구, 고령인구 등)/시도"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "INH_PB0002_2022_33",
+          "title": "주요 연령계층별 추계인구(생산연령인구, 고령인구 등)"
+        }
+      ]
+    },
+    {
+      "keyword": "국내총생산",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OENA01",
+          "title": "1. 국내총생산"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WEO002",
+          "title": "국내총생산, 당해년가격"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y111",
+          "title": "경제활동별 국내총생산 디플레이터(분기 및 연간)"
+        }
+      ]
+    },
+    {
+      "keyword": "GDP",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y104",
+          "title": "경제활동별 GDP 및 GNI(계절조정, 실질, 분기)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y106",
+          "title": "경제활동별 GDP 및 GNI(원계열, 실질, 분기 및 연간)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y105",
+          "title": "경제활동별 GDP 및 GNI(원계열, 명목, 분기 및 연간)"
+        }
+      ]
+    },
+    {
+      "keyword": "경제성장률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAA905",
+          "title": "경제성장률(불변가격)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20571",
+          "title": "경제성장률(시도)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_XNS0110",
+          "title": "경제성장률(불변가격) - 남부·동남아시아"
+        }
+      ]
+    },
+    {
+      "keyword": "국민총소득",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAA901",
+          "title": "국민총소득(2015년 기준년가격)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y101",
+          "title": "주요지표(연간지표)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2AQ4510",
+          "title": "국민소득"
+        }
+      ]
+    },
+    {
+      "keyword": "GNI",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y102",
+          "title": "주요지표(분기지표)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y101",
+          "title": "주요지표(연간지표)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2UNS0390",
+          "title": "GNI 대비 저개발국 순공적개발원조 비율(OECD 개발원조위원회 공여국)"
+        }
+      ]
+    },
+    {
+      "keyword": "민간소비",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OEEO003",
+          "title": "민간최종소비지출 증감률(실질)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAA907",
+          "title": "지출항목별 국내총생산(당해년가격)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2IFS025",
+          "title": "국민계정(연간, 최종소비지출)"
+        }
+      ]
+    },
+    {
+      "keyword": "설비투자",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1F70013",
+          "title": "설비투자지수(국산/수입)"
+        },
+        {
+          "org_id": "406",
+          "tbl_id": "DT_406N_302001_A003",
+          "title": "투자동기별 설비투자"
+        },
+        {
+          "org_id": "114",
+          "tbl_id": "DT_1E206",
+          "title": "설비투자 실적 및 계획"
+        }
+      ]
+    },
+    {
+      "keyword": "건설투자",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y112",
+          "title": "국내총생산에 대한 지출 디플레이터(분기 및 연간)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y134",
+          "title": "주체별 총고정자본형성(계절조정, 실질, 분기)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y129",
+          "title": "자본재형태별 총자본형성(원계열, 명목, 분기 및 연간)"
+        }
+      ]
+    },
+    {
+      "keyword": "수출액",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "142",
+          "tbl_id": "DT_B10066",
+          "title": "대륙별·국가별 중소기업 수출"
+        },
+        {
+          "org_id": "142",
+          "tbl_id": "DT_B10062",
+          "title": "지역별 중소기업 수출"
+        },
+        {
+          "org_id": "115",
+          "tbl_id": "DT_115035_A009",
+          "title": "전체사업체 업종별 수출액"
+        }
+      ]
+    },
+    {
+      "keyword": "수입액",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL7001",
+          "title": "수입액(시도)"
+        },
+        {
+          "org_id": "145",
+          "tbl_id": "DT_145014_051",
+          "title": "유형별 위생용품 수입액 상위 10개 현황"
+        },
+        {
+          "org_id": "145",
+          "tbl_id": "DT_145009_021",
+          "title": "완제의약품·원료의약품 수입액 상위 10개국 및 수입업체 현황"
+        }
+      ]
+    },
+    {
+      "keyword": "무역수지",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "360",
+          "tbl_id": "DT_1R11001_FRM101",
+          "title": "품목별 수출액, 수입액"
+        },
+        {
+          "org_id": "360",
+          "tbl_id": "DT_1R11006_FRM101",
+          "title": "국가별 수출액, 수입액"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_301Y014",
+          "title": "서비스무역세분류통계"
+        }
+      ]
+    },
+    {
+      "keyword": "경상수지",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WEO028",
+          "title": "경상수지"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2STES001",
+          "title": "국제수지 > 경상수지"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_301Y013",
+          "title": "국제수지"
+        }
+      ]
+    },
+    {
+      "keyword": "서비스수지",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_301Y014",
+          "title": "서비스무역세분류통계"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_301Y017",
+          "title": "경상수지(계절조정)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_301Y013",
+          "title": "국제수지"
+        }
+      ]
+    },
+    {
+      "keyword": "외환보유액",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_XNN0124",
+          "title": "외환보유액 - 동북·중앙아시아"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_XNS0124",
+          "title": "외환보유액 - 남부·동남아시아"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAA809",
+          "title": "외환보유액"
+        }
+      ]
+    },
+    {
+      "keyword": "환율",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2IFS010",
+          "title": "실효환율"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAA815",
+          "title": "실질실효환율"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_30404_N0009",
+          "title": "규모별 전월세전환율"
+        }
+      ]
+    },
+    {
+      "keyword": "원달러 환율",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_XNS0166",
+          "title": "세계 관광 수입 및 관광 지출 - 남부·동남아시아"
+        },
+        {
+          "org_id": "113",
+          "tbl_id": "DT_113_STBL_1017919",
+          "title": "광고산업 : 매체별 수출입액 현황"
+        },
+        {
+          "org_id": "145",
+          "tbl_id": "TX_14503_A045",
+          "title": "농림부 허가품목-전체"
+        }
+      ]
+    },
+    {
+      "keyword": "기준금리",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_121Y010",
+          "title": "예금은행 고정 및 변동금리대출 비중(신규취급액 기준)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_121Y011",
+          "title": "예금은행 고정 및 변동금리대출 비중(잔액 기준)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OEEO032",
+          "title": "중앙은행 기준금리"
+        }
+      ]
+    },
+    {
+      "keyword": "소비자심리지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_511Y002",
+          "title": "소비자동향조사(전국, 월, 2008.9~)"
+        },
+        {
+          "org_id": "390",
+          "tbl_id": "DT_39002_02",
+          "title": "주택시장 소비심리지수"
+        },
+        {
+          "org_id": "390",
+          "tbl_id": "DT_39002_03",
+          "title": "토지시장 소비심리지수"
+        }
+      ]
+    },
+    {
+      "keyword": "기업경기실사지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_512Y007",
+          "title": "업종별 기업경기실사지수, 2009.8~(실적)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_512Y008",
+          "title": "업종별 기업경기실사지수, 2009.9~(전망)"
+        },
+        {
+          "org_id": "127",
+          "tbl_id": "DT_37404_02D",
+          "title": "부문별 BSI"
+        }
+      ]
+    },
+    {
+      "keyword": "경기종합지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1C8016",
+          "title": "경기종합지수(2020=100) 구성지표 시계열 (10차)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1C8015",
+          "title": "경기종합지수(2020=100)(10차)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1C800A",
+          "title": "생산확산지수"
+        }
+      ]
+    },
+    {
+      "keyword": "가구소득",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDAAB02",
+          "title": "가구특성별 소득분위별 가구소득"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1SSIC021R",
+          "title": "가구소득 변화(1년 전과 비교하여, 19세 이상 가구주)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDAAB04_1",
+          "title": "소득원천별 소득10분위별  가구소득"
+        }
+      ]
+    },
+    {
+      "keyword": "가계소득",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "INH_1C96_04",
+          "title": "1인당 가계총처분가능소득(시도)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1C96",
+          "title": "시도별 1인당 지역내총생산, 지역총소득, 가계총처분가능소득"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9U132",
+          "title": "가구주 산업별 가구당 월평균 가계수지 (도시,1인이상)"
+        }
+      ]
+    },
+    {
+      "keyword": "소득분위",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9V140",
+          "title": "가구당 월평균 분위경계값 및 적자가구비율 (2인이상)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9U144",
+          "title": "가구당 월평균 분위경계값 및 적자가구비율 (1인이상)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9V040",
+          "title": "가구당 월평균 분위경계값 및 적자가구비율 (2인이상)"
+        }
+      ]
+    },
+    {
+      "keyword": "소득5분위",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9V139",
+          "title": "소득5분위별 가구당 가계수지 (도시,2인이상,실질)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9U103",
+          "title": "소득5분위별 가구당 가계수지 (전국,1인이상)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9U125",
+          "title": "소득5분위별 가구당 가계수지 (도시,1인이상)"
+        }
+      ]
+    },
+    {
+      "keyword": "처분가능소득",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y121",
+          "title": "제도부문별 소득계정(명목, 연간)"
+        },
+        {
+          "org_id": "301",
+          "tbl_id": "DT_200Y115",
+          "title": "국민처분가능소득과 처분(명목, 연간)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1C96",
+          "title": "시도별 1인당 지역내총생산, 지역총소득, 가계총처분가능소득"
+        }
+      ]
+    },
+    {
+      "keyword": "가계지출",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1E4B139",
+          "title": "가계지출-소비지출(어가경제)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9U105",
+          "title": "가구원수별 가구당 월평균 가계수지 (전국,1인이상)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1L9V102",
+          "title": "가구당 월평균 가계수지 표본오차 (전국,2인이상)"
+        }
+      ]
+    },
+    {
+      "keyword": "소비지출",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDAAB07",
+          "title": "가구특성별 비목별 소비지출"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDAAB06",
+          "title": "가구특성별 비목별 비소비지출"
+        },
+        {
+          "org_id": "109",
+          "tbl_id": "DT_109006_C001",
+          "title": "항목별 월간 평균 소비지출"
+        }
+      ]
+    },
+    {
+      "keyword": "주거비",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "154",
+          "tbl_id": "DT_MOGE_3021300351",
+          "title": "주거지원정책 인지도 및 이용경험"
+        },
+        {
+          "org_id": "146",
+          "tbl_id": "DT_146009_F00021",
+          "title": "주거비 현황"
+        },
+        {
+          "org_id": "146",
+          "tbl_id": "DT_146009_C00015",
+          "title": "주거비 현황"
+        }
+      ]
+    },
+    {
+      "keyword": "교육비",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "437",
+          "tbl_id": "DT_43701N_173",
+          "title": "자녀 교육비 가계 부담 정도 및 가장 부담스러운 자녀 교육비 유형"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAAB05",
+          "title": "정부 교육비 지출 비율(GDP 대비)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2AV003",
+          "title": "총정부지출대비 교육비 비율"
+        }
+      ]
+    },
+    {
+      "keyword": "의료비",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "117",
+          "tbl_id": "DT_117099_A007_2018",
+          "title": "보건의료제도 인식"
+        },
+        {
+          "org_id": "117",
+          "tbl_id": "DT_11768_2009NN3",
+          "title": "기능별-재원별 의료비 지출규모"
+        },
+        {
+          "org_id": "117",
+          "tbl_id": "DT_11768_2009NN1",
+          "title": "공급자별-재원별 의료비 지출규모"
+        }
+      ]
+    },
+    {
+      "keyword": "노인빈곤율",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDALF07",
+          "title": "소득분배지표(성별)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDALF06",
+          "title": "소득분배지표(연령계층별)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2UNS0004",
+          "title": "성별 사회보장 현금 수혜 빈곤층 비율"
+        }
+      ]
+    },
+    {
+      "keyword": "상대적 빈곤율",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDALF05",
+          "title": "소득분배지표"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAAD25",
+          "title": "가처분소득 기준 빈곤율"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1HDALF06",
+          "title": "소득분배지표(연령계층별)"
+        }
+      ]
+    },
+    {
+      "keyword": "기초생활수급자",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL13801E",
+          "title": "국민기초생활보장 수급자수(시도)"
+        },
+        {
+          "org_id": "117",
+          "tbl_id": "DT_11714_N001",
+          "title": "국민기초생활수급자총괄(일반,시설)-시도별"
+        },
+        {
+          "org_id": "117",
+          "tbl_id": "DT_11714_N004",
+          "title": "국민기초생활보장수급자가구-시도별,특성별"
+        }
+      ]
+    },
+    {
+      "keyword": "국민기초생활보장",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL13801E",
+          "title": "국민기초생활보장 수급자수(시도)"
+        },
+        {
+          "org_id": "331",
+          "tbl_id": "DT_33109_A304",
+          "title": "국민기초생활보장 수급 신청탈락 후 생계문제 해결방법"
+        },
+        {
+          "org_id": "438",
+          "tbl_id": "DT_438001_BB007",
+          "title": "국민기초생활보장 수급 현황"
+        }
+      ]
+    },
+    {
+      "keyword": "장애인 등록 현황",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "383",
+          "tbl_id": "DT_38302_2016_N008",
+          "title": "장애인 근로자 고용현황"
+        },
+        {
+          "org_id": "117",
+          "tbl_id": "DT_11761_N010",
+          "title": "신규등록 장애인현황"
+        },
+        {
+          "org_id": "117",
+          "tbl_id": "DT_117098_2024A004",
+          "title": "노숙인의 장애 등록 현황"
+        }
+      ]
+    },
+    {
+      "keyword": "아동수당",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "143",
+          "tbl_id": "DT_11437195_2025",
+          "title": "아동(자녀)복지서비스 이용"
+        },
+        {
+          "org_id": "452",
+          "tbl_id": "DT_452001_C003",
+          "title": "차상위장애아동수당 수급자 현황   월별, 시도별"
+        },
+        {
+          "org_id": "452",
+          "tbl_id": "DT_452001_C004",
+          "title": "차상위장애아동수당 수급자 현황 - 장애유형별"
+        }
+      ]
+    },
+    {
+      "keyword": "국민연금 수급자",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "331",
+          "tbl_id": "DT_33109_N049",
+          "title": "국민연금 급여종류별 수급자 현황"
+        },
+        {
+          "org_id": "331",
+          "tbl_id": "DT_33109_N042",
+          "title": "공적연금 가입 및 수급실태"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1DE6015S",
+          "title": "국민연금 가입현황"
+        }
+      ]
+    },
+    {
+      "keyword": "건강보험 적용인구",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL202114E",
+          "title": "건강보험적용인구현황(시도/시/군/구)"
+        },
+        {
+          "org_id": "350",
+          "tbl_id": "TX_35001_A008",
+          "title": "시군구별 적용인구 현황"
+        },
+        {
+          "org_id": "350",
+          "tbl_id": "DT_35006_N028",
+          "title": "세대당 및 적용인구 1인당 월평균 장기요양보험료 현황"
+        }
+      ]
+    },
+    {
+      "keyword": "의료기관 수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "145",
+          "tbl_id": "DT_145013_015",
+          "title": "의료용 마약류 관리구분별 취급 의료기관·약국 현황"
+        },
+        {
+          "org_id": "411",
+          "tbl_id": "DT_411002_01",
+          "title": "시도별 공공의료기관 기능별 기관 수"
+        },
+        {
+          "org_id": "411",
+          "tbl_id": "DT_41104_411",
+          "title": "응급의료기관 및 응급의료시설 운영기관 수(시·도별)"
+        }
+      ]
+    },
+    {
+      "keyword": "병상 수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OEHG020",
+          "title": "병상 수"
+        },
+        {
+          "org_id": "411",
+          "tbl_id": "DT_411002_02",
+          "title": "시도별 공공의료기관 기능별 병상 수"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OEHG079",
+          "title": "장기요양 병상 수"
+        }
+      ]
+    },
+    {
+      "keyword": "주택매매가격지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL13502E",
+          "title": "주택매매가격지수(시도/시/군/구)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL1701",
+          "title": "주택매매가격변동률(시도/시/군/구)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20162E",
+          "title": "아파트매매가격지수(시도/시/군/구)"
+        }
+      ]
+    },
+    {
+      "keyword": "전세가격지수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "408",
+          "tbl_id": "DT_304004_WEEK_004_A",
+          "title": "주간 아파트 전세가격지수"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_304004_WEEK_004_B",
+          "title": "주간 아파트 전세가격지수"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_30404_B015",
+          "title": "규모별 전세가격지수"
+        }
+      ]
+    },
+    {
+      "keyword": "아파트 매매가격",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20162E",
+          "title": "아파트매매가격지수(시도/시/군/구)"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_304004_WEEK_001_B",
+          "title": "주간 아파트 매매가격지수 변동률"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_304004_WEEK_009_B",
+          "title": "주간 연령별 아파트 매매가격지수 변동률"
+        }
+      ]
+    },
+    {
+      "keyword": "아파트 전세가격",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20172E",
+          "title": "아파트전세가격지수(시도/시/군/구)"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_304004_WEEK_004_A",
+          "title": "주간 아파트 전세가격지수"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_304004_WEEK_012_C",
+          "title": "주간 연령별 아파트 전세가격지수"
+        }
+      ]
+    },
+    {
+      "keyword": "주택보급률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL13401E",
+          "title": "주택보급률(시도)"
+        },
+        {
+          "org_id": "116",
+          "tbl_id": "DT_MLTM_2100",
+          "title": "(新)주택보급률"
+        },
+        {
+          "org_id": "116",
+          "tbl_id": "DT_MLTM_5416",
+          "title": "주택멸실현황"
+        }
+      ]
+    },
+    {
+      "keyword": "미분양주택",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "133",
+          "tbl_id": "DT_133N_A751",
+          "title": "7.5.1 종합부동산세 기타주택 합산배제 현황[2008~]"
+        },
+        {
+          "org_id": "116",
+          "tbl_id": "DT_MLTM_810",
+          "title": "주택분양보증현황"
+        },
+        {
+          "org_id": "116",
+          "tbl_id": "DT_MLTM_5557",
+          "title": "주택건설 분양실적(공동주택)"
+        }
+      ]
+    },
+    {
+      "keyword": "건축허가면적",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL7701",
+          "title": "건축허가면적증감률(시도)"
+        },
+        {
+          "org_id": "116",
+          "tbl_id": "DT_MLTM_6906",
+          "title": "동수별 연면적별 건축허가현황"
+        },
+        {
+          "org_id": "116",
+          "tbl_id": "DT_MLTM_6920",
+          "title": "연도별 건축허가현황"
+        }
+      ]
+    },
+    {
+      "keyword": "건설수주액",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1G1B035",
+          "title": "공사지역/공종별 건설수주액(경상)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1G1B034",
+          "title": "공사지역/발주자별 건설수주액(경상)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1G1B013",
+          "title": "공종별(국내대규모공사) 건설수주액(경상)"
+        }
+      ]
+    },
+    {
+      "keyword": "토지거래량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "408",
+          "tbl_id": "DT_408_2006_S0011",
+          "title": "토지거래허가처리별 토지거래현황"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_408_2006_S0023",
+          "title": "토지거래허가처리별 순수토지거래현황"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_408_2006_S0020",
+          "title": "거래주체별 순수토지거래현황"
+        }
+      ]
+    },
+    {
+      "keyword": "지가변동률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20881E",
+          "title": "지가변동률(시도/시/군/구)"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_31501N_010",
+          "title": "읍면동별 지가변동률"
+        },
+        {
+          "org_id": "408",
+          "tbl_id": "DT_PLCAHTUSE",
+          "title": "시군구별/용도지역별/이용상황별 지가변동률"
+        }
+      ]
+    },
+    {
+      "keyword": "전력사용량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "106",
+          "tbl_id": "DT_11507N_237",
+          "title": "전부문_로 종류별 에너지사용현황"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_11507N_235",
+          "title": "전부문_요 종류별 에너지사용현황"
+        },
+        {
+          "org_id": "388",
+          "tbl_id": "TX_38803_A026",
+          "title": "연도별 전력수급 실적"
+        }
+      ]
+    },
+    {
+      "keyword": "전력소비량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "310",
+          "tbl_id": "DT_3664N_1",
+          "title": "주택용 월별 1~24시 전력소비계수"
+        },
+        {
+          "org_id": "310",
+          "tbl_id": "DT_3664N_75",
+          "title": "산업별(표준산업코드 중분류) 월별 1~24시 전력소비계수"
+        },
+        {
+          "org_id": "310",
+          "tbl_id": "DT_3664N_2008",
+          "title": "주택용 요일특성별 1~24시 전력소비계수"
+        }
+      ]
+    },
+    {
+      "keyword": "석유소비량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "106",
+          "tbl_id": "DT_11507N_203",
+          "title": "전부문_부문별 석유제품소비량"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_11507N_048",
+          "title": "산업부문_지역별 석유제품소비량"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_11507N_096",
+          "title": "건물부문_업종별 석유제품소비량"
+        }
+      ]
+    },
+    {
+      "keyword": "온실가스 배출량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "337",
+          "tbl_id": "DT_337_2017_H1011G",
+          "title": "제조업부문 용도별 온실가스 배출량"
+        },
+        {
+          "org_id": "337",
+          "tbl_id": "DT_337_2017_H1016G",
+          "title": "광업부문 업종별 온실가스 배출량"
+        },
+        {
+          "org_id": "337",
+          "tbl_id": "DT_337_2017_H1015G",
+          "title": "제조업부문 공정별 온실가스 배출량"
+        }
+      ]
+    },
+    {
+      "keyword": "미세먼지 농도",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2UNS0109",
+          "title": "지역별 연평균 미립자 농도(인구가중치, 입방미터당 마이크로그램)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2OEEG024",
+          "title": "WHO 기준치(㎍/㎥ 5초과) 초과 미세먼지(PM2.5) 농도 노출 비율(노출 인구 비중)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2WH23202",
+          "title": "대기오염: 미세먼지(PM2.5) 농도"
+        }
+      ]
+    },
+    {
+      "keyword": "초미세먼지",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_03_0200176",
+          "title": "미세먼지(PM2.5) 월별 대기오염도(측정망별,시도별,도시별,측정지점별)"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_03_0200076",
+          "title": "미세먼지(PM10) 월별 대기오염도(측정망별,시도별,도시별,측정지점별)"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_03_0200045",
+          "title": "미세먼지(PM10) 월별 도시별 대기오염도"
+        }
+      ]
+    },
+    {
+      "keyword": "재생에너지 발전량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "337",
+          "tbl_id": "DT_337N_A002",
+          "title": "신·재생에너지 발전량(비재생폐기물 제외, 2019년 4/4분기~)"
+        },
+        {
+          "org_id": "337",
+          "tbl_id": "DT_337004_2021_D004",
+          "title": "신재생에너지 발전 및 열공급업 현황 - 투자액"
+        },
+        {
+          "org_id": "337",
+          "tbl_id": "DT_337004_2021_D003",
+          "title": "신재생에너지 발전 및 열공급업 현황 - 매출액"
+        }
+      ]
+    },
+    {
+      "keyword": "에너지소비량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "337",
+          "tbl_id": "TX_337_2013_H1007",
+          "title": "제조업부문 지역별 에너지소비량"
+        },
+        {
+          "org_id": "337",
+          "tbl_id": "TX_337_2013_H1009",
+          "title": "제조업부문 종사자규모별 에너지소비량"
+        },
+        {
+          "org_id": "337",
+          "tbl_id": "TX_337_2013_H1008",
+          "title": "광업부문 종사자규모별 에너지소비량"
+        }
+      ]
+    },
+    {
+      "keyword": "상수도 보급률",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_06_0100043",
+          "title": "상수도 보급현황"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_06_0100042",
+          "title": "상수도 보급현황(총괄)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL20741",
+          "title": "상수도보급률(시도/시/군/구)"
+        }
+      ]
+    },
+    {
+      "keyword": "폐기물 발생량",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_29_2020005",
+          "title": "폐기물 발생량 및 처리현황_생활폐기물"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_29_2020006",
+          "title": "폐기물 발생량 및 처리현황_사업장비배출시설계(생활계)폐기물"
+        },
+        {
+          "org_id": "106",
+          "tbl_id": "DT_106N_29_2020008",
+          "title": "폐기물 발생량 및 처리현황_건설폐기물"
+        }
+      ]
+    },
+    {
+      "keyword": "대학교 재학생 수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "112",
+          "tbl_id": "DT_112017N_060",
+          "title": "창업동아리 현황"
+        },
+        {
+          "org_id": "112",
+          "tbl_id": "DT_112017N_94",
+          "title": "창업경진대회 개최"
+        },
+        {
+          "org_id": "112",
+          "tbl_id": "DT_112017N_95",
+          "title": "창업캠프 개최"
+        }
+      ]
+    },
+    {
+      "keyword": "초등학생 수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "112",
+          "tbl_id": "DT_11216N_30532A",
+          "title": "학생의 진로개발역량 수준"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL21241",
+          "title": "초등학교 학생수(시도/시/군/구)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL21171",
+          "title": "교원 1인당 학생수(시도/시/군/구)"
+        }
+      ]
+    },
+    {
+      "keyword": "사교육비",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1PE201",
+          "title": "학교급별  학생 1인당 월평균 사교육비"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1PE209",
+          "title": "가구의 월평균 소득별 학생 1인당 월평균 사교육비"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1PE202",
+          "title": "지역별 학생 1인당 월평균 사교육비"
+        }
+      ]
+    },
+    {
+      "keyword": "평생교육 참여율",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "334",
+          "tbl_id": "DT_33409N_001",
+          "title": "학습영역별 평생학습 참여율"
+        },
+        {
+          "org_id": "143",
+          "tbl_id": "DT_11437059_2025",
+          "title": "평생교육 참여 경험"
+        },
+        {
+          "org_id": "438",
+          "tbl_id": "DT_438001_CD013",
+          "title": "평생교육 참여 현황"
+        }
+      ]
+    },
+    {
+      "keyword": "인터넷 이용률",
+      "exists": false,
+      "status": "error",
+      "result_count": 0,
+      "top_results": [],
+      "error_reason": "Expecting ',' delimiter: line 1 column 7686 (char 7685)"
+    },
+    {
+      "keyword": "스마트폰 보유율",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "405",
+          "tbl_id": "DT_405001_I182",
+          "title": "스마트폰 보유 여부"
+        },
+        {
+          "org_id": "405",
+          "tbl_id": "DT_405001_I198",
+          "title": "스마트폰 제조사별 점유율"
+        },
+        {
+          "org_id": "405",
+          "tbl_id": "DT_405001_I008",
+          "title": "스마트폰 및 키즈폰 보유대수"
+        }
+      ]
+    },
+    {
+      "keyword": "교통사고 사망자",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_2KAAD31",
+          "title": "교통사고 사망자 수"
+        },
+        {
+          "org_id": "118",
+          "tbl_id": "DT_11806_N018",
+          "title": "사망재해 현황 및 분석-요일별"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_XNN0204",
+          "title": "교통사고 사망자 수 - 동북·중앙아시아"
+        }
+      ]
+    },
+    {
+      "keyword": "범죄 발생 건수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL3001",
+          "title": "인구 천명당 범죄발생건수(시도)"
+        },
+        {
+          "org_id": "135",
+          "tbl_id": "DT_13501N_A120",
+          "title": "범죄발생 지역"
+        },
+        {
+          "org_id": "132",
+          "tbl_id": "DT_13204_A0404",
+          "title": "죄종별 범죄발생 및 검거현황(인천청)"
+        }
+      ]
+    },
+    {
+      "keyword": "화재 발생 건수",
+      "exists": true,
+      "status": "success",
+      "result_count": 10,
+      "top_results": [
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL8601",
+          "title": "화재발생건수(시도/시/군/구)"
+        },
+        {
+          "org_id": "101",
+          "tbl_id": "DT_1YL21081",
+          "title": "주민 만명당 화재발생건수(시도/시/군/구)"
+        },
+        {
+          "org_id": "110",
+          "tbl_id": "DT_110001_A047",
+          "title": "화재발생건수"
+        }
+      ]
+    },
+    {
+      "keyword": "없는키워드테스트",
+      "exists": false,
+      "status": "success",
+      "result_count": 0,
+      "top_results": []
+    }
+  ],
+  "matched_keywords": [
+    "소비자물가지수",
+    "소비자 물가 지수",
+    "CPI",
+    "물가상승률",
+    "생활물가지수",
+    "근원물가지수",
+    "신선식품지수",
+    "외식 물가",
+    "석유류 물가",
+    "농축수산물 물가",
+    "취업자 수",
+    "취업자",
+    "경제활동인구",
+    "고용률",
+    "실업률",
+    "청년 실업률",
+    "청년 고용률",
+    "비경제활동인구",
+    "구직단념자",
+    "임금근로자",
+    "출생아 수",
+    "출생아",
+    "합계출산율",
+    "사망자 수",
+    "혼인 건수",
+    "이혼 건수",
+    "인구동향",
+    "고령인구",
+    "생산연령인구",
+    "국내총생산",
+    "GDP",
+    "경제성장률",
+    "국민총소득",
+    "GNI",
+    "민간소비",
+    "설비투자",
+    "건설투자",
+    "수출액",
+    "수입액",
+    "무역수지",
+    "경상수지",
+    "서비스수지",
+    "외환보유액",
+    "환율",
+    "원달러 환율",
+    "기준금리",
+    "소비자심리지수",
+    "기업경기실사지수",
+    "경기종합지수",
+    "가구소득",
+    "가계소득",
+    "소득분위",
+    "소득5분위",
+    "처분가능소득",
+    "가계지출",
+    "소비지출",
+    "주거비",
+    "교육비",
+    "의료비",
+    "노인빈곤율",
+    "상대적 빈곤율",
+    "기초생활수급자",
+    "국민기초생활보장",
+    "장애인 등록 현황",
+    "아동수당",
+    "국민연금 수급자",
+    "건강보험 적용인구",
+    "의료기관 수",
+    "병상 수",
+    "주택매매가격지수",
+    "전세가격지수",
+    "아파트 매매가격",
+    "아파트 전세가격",
+    "주택보급률",
+    "미분양주택",
+    "건축허가면적",
+    "건설수주액",
+    "토지거래량",
+    "지가변동률",
+    "전력사용량",
+    "전력소비량",
+    "석유소비량",
+    "온실가스 배출량",
+    "미세먼지 농도",
+    "초미세먼지",
+    "재생에너지 발전량",
+    "에너지소비량",
+    "상수도 보급률",
+    "폐기물 발생량",
+    "대학교 재학생 수",
+    "초등학생 수",
+    "사교육비",
+    "평생교육 참여율",
+    "스마트폰 보유율",
+    "교통사고 사망자",
+    "범죄 발생 건수",
+    "화재 발생 건수"
+  ]
+}
