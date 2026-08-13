@@ -1,0 +1,2526 @@
+{
+  "module": "kosis_keyword_search",
+  "status": "success",
+  "claim_count": 5,
+  "claims": [
+    {
+      "claim_id": "C001",
+      "metric": "청년 취업",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 20,
+      "matched_count": 16,
+      "results": [
+        {
+          "keyword": "청년 취업",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1DA7015S",
+              "title": "청년고용률(시도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1ES3A03_A01S",
+              "title": "청년고용률(시/군/구)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7300AS",
+              "title": "고용보조지표(청년층, 15~29세)"
+            }
+          ]
+        },
+        {
+          "keyword": "청년",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "170",
+              "tbl_id": "DT_170002_A003",
+              "title": "가구 유형별 청년 비율 Ⅰ"
+            },
+            {
+              "org_id": "170",
+              "tbl_id": "DT_170002_B007",
+              "title": "부모 비동거 청년의 현재 거주 주택 선택 이유"
+            },
+            {
+              "org_id": "170",
+              "tbl_id": "DT_170002_A004",
+              "title": "가구 유형별 청년 비율 Ⅱ"
+            }
+          ]
+        },
+        {
+          "keyword": "취업",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7011S",
+              "title": "취업시간별 취업자"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7036S",
+              "title": "행정구역(시도)/취업시간별 취업자"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7029S",
+              "title": "성/취업시간별 취업자"
+            }
+          ]
+        },
+        {
+          "keyword": "청년 고용률",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1DA7015S",
+              "title": "청년고용률(시도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1ES3A03_A01S",
+              "title": "청년고용률(시/군/구)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DE9046S",
+              "title": "연령별 경제활동상태"
+            }
+          ]
+        },
+        {
+          "keyword": "청년 취업자 수",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "154",
+              "tbl_id": "DT_MOGE_3000400129_2021_12",
+              "title": "중앙행정기관 위원회별 여성참여 현황"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1LC0006",
+              "title": "종사상지위별 산업별 등록취업자 수_시도"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1LC0013",
+              "title": "종전 등록취업자의 산업별 일자리 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "20대 취업 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "154",
+              "tbl_id": "DT_154018_25BB020022",
+              "title": "성희롱 2차 피해 경험 여부"
+            },
+            {
+              "org_id": "437",
+              "tbl_id": "DT_43701N_027",
+              "title": "직업교육훈련 수료 여부 및 미수료 이유"
+            },
+            {
+              "org_id": "437",
+              "tbl_id": "DT_43701N_025",
+              "title": "직업교육훈련 경험 여부 및 분야"
+            }
+          ]
+        },
+        {
+          "keyword": "30대 미만 취업 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "청년층 경제활동 참가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "212",
+              "tbl_id": "DT_212008_2023A043",
+              "title": "성별·연령별 청년 경제활동"
+            },
+            {
+              "org_id": "212",
+              "tbl_id": "DT_212008_2023A044",
+              "title": "성별·시군별 청년 경제활동"
+            },
+            {
+              "org_id": "605",
+              "tbl_id": "DT_605006_C001",
+              "title": "청년 경제활동"
+            }
+          ]
+        },
+        {
+          "keyword": "청년 실업자 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1030932",
+              "title": "향후 문화예술교육 활성화 영역 : 문제해소 - 1+2순위 (미참여자)"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1030929",
+              "title": "향후 문화예술교육 활성화 영역 : 문제해소 - 1순위 (참여자)"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1030927",
+              "title": "7세 이상 전체_향후 문화예술교육 활성화 대상_문제해소 - 1순위"
+            }
+          ]
+        },
+        {
+          "keyword": "청년 구직 단념자 비율",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "대학 졸업 후 취업률",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "183",
+              "tbl_id": "DT_12701N_031",
+              "title": "졸업인원 및 우주산업 취업현황-대학"
+            },
+            {
+              "org_id": "334",
+              "tbl_id": "DT_33403N_001",
+              "title": "졸업상황 및 건강보험DB연계 취업상황"
+            }
+          ]
+        },
+        {
+          "keyword": "청년 실업률",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1YL20531E",
+              "title": "청년실업률(시도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AX052",
+              "title": "청년 실업률, 남성(15~24세 남성 경제활동인구 중 %)(ILO 모델 추계)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AX051",
+              "title": "청년 실업률, 여성(15~24세 여성 경제활동인구 중 %)(ILO 모델 추계)"
+            }
+          ]
+        },
+        {
+          "keyword": "청년 경제활동참가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "212",
+              "tbl_id": "DT_212008_2023A044",
+              "title": "성별·시군별 청년 경제활동"
+            },
+            {
+              "org_id": "212",
+              "tbl_id": "DT_212008_2023A043",
+              "title": "성별·연령별 청년 경제활동"
+            },
+            {
+              "org_id": "605",
+              "tbl_id": "DT_605006_C001",
+              "title": "청년 경제활동"
+            }
+          ]
+        },
+        {
+          "keyword": "청년 인구 대비 취업 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 9,
+          "top_results": [
+            {
+              "org_id": "796",
+              "tbl_id": "DT_796003_2023A069",
+              "title": "가입자격별 국민연금 가입인구"
+            },
+            {
+              "org_id": "691",
+              "tbl_id": "DT_691006_2023D008",
+              "title": "고용보험 피보험자 현황"
+            },
+            {
+              "org_id": "732",
+              "tbl_id": "DT_732003_B046A",
+              "title": "성별 구직신청자"
+            }
+          ]
+        },
+        {
+          "keyword": "청년층 취업률 변화",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "청년 실업자 수",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1SSFA196R",
+              "title": "저출생 대책(복수응답, 13세 이상 인구)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1SSFA195R",
+              "title": "저출생 대책(주된응답, 13세 이상 인구)"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1030406",
+              "title": "향후 문화예술교육 활성화 영역 - 문제 해소(복수응답) - 문화예술교육 참여자"
+            }
+          ]
+        },
+        {
+          "keyword": "취업자 수",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1DA7030S",
+              "title": "취업자수(시도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1YL20541",
+              "title": "취업자증감(시도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7011S",
+              "title": "취업시간별 취업자"
+            }
+          ]
+        },
+        {
+          "keyword": "취업률 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "취업 준비자 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "142",
+              "tbl_id": "DT_G26050",
+              "title": "중소기업에 대한 인식개선 필요 대상"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_DT_1K52F03_21",
+              "title": "부산광역시·산업·종사자규모별 사업체수, 종사자수"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_DT_1K52F03_32",
+              "title": "강원도·산업·종사자규모별 사업체수, 종사자수"
+            }
+          ]
+        },
+        {
+          "keyword": "취업 기회 지수",
+          "exists": true,
+          "status": "success",
+          "result_count": 7,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_511Y002",
+              "title": "소비자동향조사(전국, 월, 2008.9~)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_511Y004",
+              "title": "소비자동향조사(지역, 월)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_511Y001",
+              "title": "소비자동향조사(전국, 분기, 1995.3/4~2008.2/4)"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "청년 취업",
+        "청년",
+        "취업",
+        "청년 고용률",
+        "청년 취업자 수",
+        "20대 취업 현황",
+        "청년층 경제활동 참가율",
+        "청년 실업자 규모",
+        "대학 졸업 후 취업률",
+        "청년 실업률",
+        "청년 경제활동참가율",
+        "청년 인구 대비 취업 비율",
+        "청년 실업자 수",
+        "취업자 수",
+        "취업 준비자 규모",
+        "취업 기회 지수"
+      ]
+    },
+    {
+      "claim_id": "C002",
+      "metric": "비경제 인구",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 24,
+      "matched_count": 19,
+      "results": [
+        {
+          "keyword": "비경제 인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7001S",
+              "title": "성별 경제활동인구 총괄"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7145S",
+              "title": "성/활동상태별 비경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7016S",
+              "title": "행정구역(시도)/교육정도별 경제활동인구"
+            }
+          ]
+        },
+        {
+          "keyword": "비경제",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "464",
+              "tbl_id": "DT_464002_A004",
+              "title": "경제활동 상태: 노인 일자리 참여자"
+            },
+            {
+              "org_id": "464",
+              "tbl_id": "DT_464002_A005",
+              "title": "경제활동 상태: 노인 일자리 비참여자"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7004S",
+              "title": "행정구역(시도)별 경제활동인구"
+            }
+          ]
+        },
+        {
+          "keyword": "인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1BPA003",
+              "title": "주요 연령계층별 추계인구(생산연령인구, 고령인구 등) / 전국"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1BPA402",
+              "title": "시나리오별 추계인구(성 및 5세별 추계인구) / 전국"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1BPA401",
+              "title": "시나리오별 추계인구(총인구, 인구구조, 성비 등) / 전국"
+            }
+          ]
+        },
+        {
+          "keyword": "비경제활동인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7147S",
+              "title": "연령/활동상태별(쉬었음) 비경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7145S",
+              "title": "성/활동상태별 비경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7146S",
+              "title": "행정구역(시도)/활동상태별 비경제활동인구"
+            }
+          ]
+        },
+        {
+          "keyword": "15세 이상 비경제활동인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7012S",
+              "title": "성/연령별 경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7015S",
+              "title": "행정구역(시도)/연령별 경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA9002S",
+              "title": "연령별 계절조정"
+            }
+          ]
+        },
+        {
+          "keyword": "취업자도 실업자도 아닌 인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_2OEEM3017",
+              "title": "비경제활동 인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_2OEEM3017",
+              "title": "비경제활동 인구"
+            },
+            {
+              "org_id": "383",
+              "tbl_id": "DT_383003_C03058",
+              "title": "미취업자의 향후 취업 의사"
+            }
+          ]
+        },
+        {
+          "keyword": "학생 외 비경제활동인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 8,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1SSED128R",
+              "title": "온라인 매체를 이용한 학습(13세 이상 인구)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1PF2021",
+              "title": "가구주의 종사상지위별/보육상태별 아동인구(12세이하, 일반가구)-시도"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1PF2020",
+              "title": "가구주의 경제활동상태별/보육상태별 아동인구(12세이하, 일반가구)-시도"
+            }
+          ]
+        },
+        {
+          "keyword": "쉬었음 인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA9011S",
+              "title": "연령/활동상태별(쉬었음) 비경제활동인구 계절조정"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7147S",
+              "title": "연령/활동상태별(쉬었음) 비경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DE5011S",
+              "title": "＇쉬었음＇의 쉰 주된 이유"
+            }
+          ]
+        },
+        {
+          "keyword": "연령별 비경제활동인구 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "154",
+              "tbl_id": "DT_117079_25CC003010",
+              "title": "경제활동 현황"
+            },
+            {
+              "org_id": "117",
+              "tbl_id": "DT_11732S0125",
+              "title": "연령별 취업 인구 및 취업률"
+            },
+            {
+              "org_id": "154",
+              "tbl_id": "DT_117079_25DD004026",
+              "title": "경제활동 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "지역별 비경제활동인구 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1DA7014S_03",
+              "title": "고용률(시도)"
+            },
+            {
+              "org_id": "118",
+              "tbl_id": "DT_11844N_7374_F",
+              "title": "지역별 구직급여 신청자수"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1ES3A02S_03",
+              "title": "고용률(시/군/구)"
+            }
+          ]
+        },
+        {
+          "keyword": "비경제활동인구 추이",
+          "exists": true,
+          "status": "success",
+          "result_count": 1,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1B83A09",
+              "title": "평균 초혼연령(시도/시/군/구)"
+            }
+          ]
+        },
+        {
+          "keyword": "비경제인구 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127009_001",
+              "title": "학과별 경제활동 상태"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AX023",
+              "title": "경제활동인구, 여성(총 경제활동인구 중 %)"
+            },
+            {
+              "org_id": "154",
+              "tbl_id": "DT_117079_25DD004026",
+              "title": "경제활동 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "15세 이상 비경제인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA9002S",
+              "title": "연령별 계절조정"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7012S",
+              "title": "성/연령별 경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7015S",
+              "title": "행정구역(시도)/연령별 경제활동인구"
+            }
+          ]
+        },
+        {
+          "keyword": "경제활동 외 인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7300S",
+              "title": "고용보조지표(전체)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_2OEEM3017",
+              "title": "비경제활동 인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_2OEEM3017",
+              "title": "비경제활동 인구"
+            }
+          ]
+        },
+        {
+          "keyword": "비경제활동 인구 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "117",
+              "tbl_id": "DT_11732S0126",
+              "title": "성별 취업 인구 및 취업률"
+            },
+            {
+              "org_id": "154",
+              "tbl_id": "DT_117079_22BB013900",
+              "title": "경제활동 현황"
+            },
+            {
+              "org_id": "154",
+              "tbl_id": "DT_117079_22CC012300",
+              "title": "경제활동 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "연령별 비경제인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7012S",
+              "title": "성/연령별 경제활동인구"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7002S",
+              "title": "연령별 경제활동인구 총괄"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1DA7015S",
+              "title": "행정구역(시도)/연령별 경제활동인구"
+            }
+          ]
+        },
+        {
+          "keyword": "지역별 비경제인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "383",
+              "tbl_id": "DT_38304_2020_N030",
+              "title": "장애인 경제활동상태 - 지역별(서울, 경기도, 광역시도, 기타 시도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2FA004F",
+              "title": "거주지역별 경제활동인구(이민자)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2FA011F",
+              "title": "출생지역별 경제활동인구(이민자)"
+            }
+          ]
+        },
+        {
+          "keyword": "총인구",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1YL20622",
+              "title": "인구총조사 연평균 인구증감률(시도/시/군/구)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1BPA401",
+              "title": "시나리오별 추계인구(총인구, 인구구조, 성비 등) / 전국"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1IN1502",
+              "title": "인구, 가구 및 주택   읍면동(연도 끝자리 0, 5), 시군구(그 외 연도)"
+            }
+          ]
+        },
+        {
+          "keyword": "인구 구조",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 4876 (char 4875)"
+        },
+        {
+          "keyword": "생산가능인구",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 12109 (char 12108)"
+        },
+        {
+          "keyword": "유소년인구",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 10952 (char 10951)"
+        },
+        {
+          "keyword": "노년부양비",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 697 (char 696)"
+        },
+        {
+          "keyword": "인구 피라미드",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "인구밀도",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1B08024",
+              "title": "인구밀도(인구주택총조사기준) - 시도"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA205",
+              "title": "인구동태 및 밀도"
+            },
+            {
+              "org_id": "110",
+              "tbl_id": "DT_110001_A001",
+              "title": "성 및 연령별 인구와 인구밀도"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "비경제 인구",
+        "비경제",
+        "인구",
+        "비경제활동인구",
+        "15세 이상 비경제활동인구",
+        "취업자도 실업자도 아닌 인구",
+        "학생 외 비경제활동인구",
+        "쉬었음 인구",
+        "연령별 비경제활동인구 비율",
+        "지역별 비경제활동인구 현황",
+        "비경제활동인구 추이",
+        "비경제인구 비율",
+        "15세 이상 비경제인구",
+        "경제활동 외 인구",
+        "비경제활동 인구 현황",
+        "연령별 비경제인구",
+        "지역별 비경제인구",
+        "총인구",
+        "인구밀도"
+      ]
+    },
+    {
+      "claim_id": "C003",
+      "metric": "하루 평균 수출액",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 33,
+      "matched_count": 24,
+      "results": [
+        {
+          "keyword": "하루 평균 수출액",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "하루 평균",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "439",
+              "tbl_id": "DT_439001N_021",
+              "title": "재취업자의 월평균 근무일 및 일평균 근로시간"
+            },
+            {
+              "org_id": "439",
+              "tbl_id": "DT_439001N_006",
+              "title": "원직장복귀자의 월평균 근무일 및 일평균 근로시간"
+            },
+            {
+              "org_id": "331",
+              "tbl_id": "DT_33109_D021",
+              "title": "하루 평균 흡연량 및 금연계획"
+            }
+          ]
+        },
+        {
+          "keyword": "평균 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115034_B021",
+              "title": "당해년도 말 기준 매출 및 수출 현황"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127019_019",
+              "title": "대분류별 VR/AR 수출액"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_14217M_259",
+              "title": "신규 진출 국가 여부"
+            }
+          ]
+        },
+        {
+          "keyword": "하루",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "405",
+              "tbl_id": "DT_405001_I146",
+              "title": "SNS 이용현황"
+            },
+            {
+              "org_id": "331",
+              "tbl_id": "DT_33109_D021",
+              "title": "하루 평균 흡연량 및 금연계획"
+            },
+            {
+              "org_id": "437",
+              "tbl_id": "DT_43701N_140",
+              "title": "흡연 여부 및 하루 흡연량, 과거 흡연 여부"
+            }
+          ]
+        },
+        {
+          "keyword": "평균",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR094",
+              "title": "신계약의 평균적인 조건(유럽)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR091",
+              "title": "신계약의 평균적인 조건(아프리카)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR093",
+              "title": "신계약의 평균적인 조건(아시아)"
+            }
+          ]
+        },
+        {
+          "keyword": "수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10066",
+              "title": "대륙별·국가별 중소기업 수출"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10062",
+              "title": "지역별 중소기업 수출"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115035_A009",
+              "title": "전체사업체 업종별 수출액"
+            }
+          ]
+        },
+        {
+          "keyword": "1일 평균 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_776",
+              "title": "받은 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_781",
+              "title": "결제한 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_815",
+              "title": "외상의 경우, 대금수취일"
+            }
+          ]
+        },
+        {
+          "keyword": "일평균 수출 금액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "152",
+              "tbl_id": "DT_152009_C105",
+              "title": "새로 도입된 제도에 대한 인지도_경영정보 요구 금지, 특정 사업자와 거래유도 금지, 기술 수출 제한 행위 금지"
+            },
+            {
+              "org_id": "152",
+              "tbl_id": "DT_152009_E105",
+              "title": "새로 도입된 제도에 대한 인지도_경영정보 요구 금지, 특정 사업자와 거래유도 금지, 기술 수출 제한 행위 금지"
+            },
+            {
+              "org_id": "152",
+              "tbl_id": "DT_152009_A143",
+              "title": "새로 도입된 제도에 대한 인지도_경영정보 요구 금지, 특정 사업자와 거래유도 금지, 기술 수출 제한 행위 금지"
+            }
+          ]
+        },
+        {
+          "keyword": "하루 수출 실적",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "수출액 일평균치",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_781",
+              "title": "결제한 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_776",
+              "title": "받은 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS010",
+              "title": "실효환율"
+            }
+          ]
+        },
+        {
+          "keyword": "일 수출액 평균값",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "152",
+              "tbl_id": "DT_152009_C105",
+              "title": "새로 도입된 제도에 대한 인지도_경영정보 요구 금지, 특정 사업자와 거래유도 금지, 기술 수출 제한 행위 금지"
+            },
+            {
+              "org_id": "152",
+              "tbl_id": "DT_152009_A143",
+              "title": "새로 도입된 제도에 대한 인지도_경영정보 요구 금지, 특정 사업자와 거래유도 금지, 기술 수출 제한 행위 금지"
+            },
+            {
+              "org_id": "152",
+              "tbl_id": "DT_152009_E105",
+              "title": "새로 도입된 제도에 대한 인지도_경영정보 요구 금지, 특정 사업자와 거래유도 금지, 기술 수출 제한 행위 금지"
+            }
+          ]
+        },
+        {
+          "keyword": "일별 수출액 평균",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_780",
+              "title": "외상의 경우, 대금지급일"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_815",
+              "title": "외상의 경우, 대금수취일"
+            }
+          ]
+        },
+        {
+          "keyword": "하루 평균 수출입액",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1일 평균 무역수지",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "일평균 수출입 규모",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "일별 수출 금액",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "일별 수출입 현황",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "일평균 수출 통계",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS010",
+              "title": "실효환율"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_776",
+              "title": "받은 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_781",
+              "title": "결제한 약속어음 평균 지급기간"
+            }
+          ]
+        },
+        {
+          "keyword": "일평균 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_781",
+              "title": "결제한 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_776",
+              "title": "받은 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS010",
+              "title": "실효환율"
+            }
+          ]
+        },
+        {
+          "keyword": "하루 평균 수출 실적",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1일 평균 수출 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_815",
+              "title": "외상의 경우, 대금수취일"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_776",
+              "title": "받은 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_781",
+              "title": "결제한 약속어음 평균 지급기간"
+            }
+          ]
+        },
+        {
+          "keyword": "평균 수출 금액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "115",
+              "tbl_id": "DT_14217M_261",
+              "title": "신규 진출 대륙별 수출금액"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_14217C_059",
+              "title": "중견기업 후보기업 신규 진출 대륙별 수출금액"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_14217C_058",
+              "title": "중견기업 후보기업 신규 진출 국가별 수출금액"
+            }
+          ]
+        },
+        {
+          "keyword": "일평균 무역액",
+          "exists": true,
+          "status": "success",
+          "result_count": 5,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS010",
+              "title": "실효환율"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1J22003",
+              "title": "소비자물가지수(시도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1F15202",
+              "title": "2003년 산업단지/산업분류별 주요지표(5명이상)"
+            }
+          ]
+        },
+        {
+          "keyword": "일평균 상품 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "142",
+              "tbl_id": "DT_F40114",
+              "title": "매출형태별 매출액"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_E10500",
+              "title": "세계최고대비 기술능력 수준"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_A15075",
+              "title": "제품(상품)기획능력"
+            }
+          ]
+        },
+        {
+          "keyword": "월별 수출액",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 9670 (char 9669)"
+        },
+        {
+          "keyword": "연간 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "110",
+              "tbl_id": "DT_175001_041",
+              "title": "수출현황"
+            },
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145013_035",
+              "title": "의료용 마약류 연간 수출실적"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115040_21",
+              "title": "연간 총 수출액"
+            }
+          ]
+        },
+        {
+          "keyword": "일평균 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_781",
+              "title": "결제한 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_776",
+              "title": "받은 약속어음 평균 지급기간"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS010",
+              "title": "실효환율"
+            }
+          ]
+        },
+        {
+          "keyword": "연도별 수출 실적",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145009_033",
+              "title": "완제의약품 수출액 상위 10개 품목 현황(수출실적 보고의무자)-연도별"
+            },
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145009_034",
+              "title": "원료의약품 수출액 상위 10개 품목 현황(수출실적 보고의무자)-연도별"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_CAA0001_S10502",
+              "title": "연도별 국가별 기술수출 추이"
+            }
+          ]
+        },
+        {
+          "keyword": "수출 금액 추이",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1027295",
+              "title": "광고산업 : 수출 및 수입액 현황(연도별)"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "TX_10504_B001",
+              "title": "RI 수출추이"
+            }
+          ]
+        },
+        {
+          "keyword": "상품별 수출 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "303",
+              "tbl_id": "DT_303003_770",
+              "title": "금융자산 운용 예치금융기관 - 펀드, 신탁, 시장성상품(복수응답)"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_G26054",
+              "title": "수출여부 및 수출방식"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1EP1320",
+              "title": "산업중분류별 자본금규모별 기업간 거래"
+            }
+          ]
+        },
+        {
+          "keyword": "지역별 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145014_045",
+              "title": "지역별 세척제 판매(수출) 현황"
+            },
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145014_046",
+              "title": "지역별 헹굼보조제 판매(수출) 현황"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10062",
+              "title": "지역별 중소기업 수출"
+            }
+          ]
+        },
+        {
+          "keyword": "국가별 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127012_03701",
+              "title": "직·간접 수출 국가"
+            },
+            {
+              "org_id": "134",
+              "tbl_id": "DT_13405_001",
+              "title": "협정(수출국가)별 FTA 수출활용률"
+            },
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145013_035",
+              "title": "의료용 마약류 연간 수출실적"
+            }
+          ]
+        },
+        {
+          "keyword": "산업별 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A001",
+              "title": "품목별 수출산업경기전망지수(EBSI)"
+            },
+            {
+              "org_id": "110",
+              "tbl_id": "DT_175001_041",
+              "title": "수출현황"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A023",
+              "title": "플라스틱·고무·가죽제품 항목별 EBSI 전망"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "하루 평균",
+        "평균 수출액",
+        "하루",
+        "평균",
+        "수출액",
+        "1일 평균 수출액",
+        "일평균 수출 금액",
+        "수출액 일평균치",
+        "일 수출액 평균값",
+        "일별 수출액 평균",
+        "일평균 수출 통계",
+        "일평균 수출액",
+        "1일 평균 수출 규모",
+        "평균 수출 금액",
+        "일평균 무역액",
+        "일평균 상품 수출",
+        "연간 수출액",
+        "일평균 수출",
+        "연도별 수출 실적",
+        "수출 금액 추이",
+        "상품별 수출 규모",
+        "지역별 수출액",
+        "국가별 수출액",
+        "산업별 수출"
+      ]
+    },
+    {
+      "claim_id": "C004",
+      "metric": "무역수지 흑자",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 21,
+      "matched_count": 12,
+      "results": [
+        {
+          "keyword": "무역수지 흑자",
+          "exists": true,
+          "status": "success",
+          "result_count": 1,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA805",
+              "title": "국제수지"
+            }
+          ]
+        },
+        {
+          "keyword": "무역수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "360",
+              "tbl_id": "DT_1R11001_FRM101",
+              "title": "품목별 수출액, 수입액"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_1R11006_FRM101",
+              "title": "국가별 수출액, 수입액"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES044",
+              "title": "국제 상품 무역 통계 > 무역수지"
+            }
+          ]
+        },
+        {
+          "keyword": "흑자",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "133",
+              "tbl_id": "TX_13301_A096",
+              "title": "8.4.1 법인세 재무상태표 주요 계정과목 명세[2005~]"
+            },
+            {
+              "org_id": "133",
+              "tbl_id": "TX_13301_A100",
+              "title": "8.4.5 법인세 손익계산서 주요 계정과목 명세[2005~]"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1L9U134",
+              "title": "미혼자녀수별 가구당 월평균 가계수지 (도시,1인이상)"
+            }
+          ]
+        },
+        {
+          "keyword": "경상수지 흑자",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA805",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1L9U110",
+              "title": "가구주 산업별 가구당 월평균 가계수지 (전국,1인이상)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1L9V106",
+              "title": "소득구간별 가구당 월평균 가계수지 (전국,2인이상)"
+            }
+          ]
+        },
+        {
+          "keyword": "상품수지 흑자",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA805",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1L9V117",
+              "title": "가구당 월평균 가계수지 (전국,2인이상,실질)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1L9V118",
+              "title": "소비구간별 가구당 월평균 가계수지 (전국,2인이상,실질)"
+            }
+          ]
+        },
+        {
+          "keyword": "서비스수지 흑자",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA805",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1L9V117",
+              "title": "가구당 월평균 가계수지 (전국,2인이상,실질)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1L9U134",
+              "title": "미혼자녀수별 가구당 월평균 가계수지 (도시,1인이상)"
+            }
+          ]
+        },
+        {
+          "keyword": "무역흑자 규모",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "월별 무역수지 흑자 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "연간 무역수지 흑자 실적",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "산업별 무역수지 흑자 현황",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "국가별 무역수지 흑자 순위",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "상품수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y017",
+              "title": "경상수지(계절조정)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y013",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y015",
+              "title": "지역별 경상수지"
+            }
+          ]
+        },
+        {
+          "keyword": "서비스수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y013",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y014",
+              "title": "서비스무역세분류통계"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y017",
+              "title": "경상수지(계절조정)"
+            }
+          ]
+        },
+        {
+          "keyword": "수출입동향",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "360",
+              "tbl_id": "DT_1R11006_FRM101",
+              "title": "국가별 수출액, 수입액"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_1R11001_FRM101",
+              "title": "품목별 수출액, 수입액"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_403Y004",
+              "title": "수입물량지수"
+            }
+          ]
+        },
+        {
+          "keyword": "월별 무역수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 3,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y013",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y014",
+              "title": "서비스무역세분류통계"
+            },
+            {
+              "org_id": "631",
+              "tbl_id": "DT_63101_H000009",
+              "title": "수출입 통관실적"
+            }
+          ]
+        },
+        {
+          "keyword": "연간 무역수지 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "흑자 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "133",
+              "tbl_id": "DT_133001N_8211",
+              "title": "8.2.11 중소기업의 소득금액 규모별 법인세 주요항목 신고 현황"
+            },
+            {
+              "org_id": "133",
+              "tbl_id": "DT_133N_836",
+              "title": "8.3.15 법인세 광고선전비·감가상각비 신고 현황[2006~]"
+            },
+            {
+              "org_id": "133",
+              "tbl_id": "DT_133N_813A",
+              "title": "8.1.3  법인세 신고 현황Ⅲ(수입금액,자산,자본금)[2007~]"
+            }
+          ]
+        },
+        {
+          "keyword": "무역 흑자국",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "흑자 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "133",
+              "tbl_id": "TX_13301_A168",
+              "title": "업태별 흑·적자 법인별 신고현황 [2003~2004]"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1LB1032",
+              "title": "연간소득 5분위별 가구당 월평균 가계수지"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1LB109",
+              "title": "세대구분별 자가용보유 유·무별 가구당 월평균 가계수지"
+            }
+          ]
+        },
+        {
+          "keyword": "연간 흑자 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "월별 흑자 현황",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        }
+      ],
+      "matched_keywords": [
+        "무역수지 흑자",
+        "무역수지",
+        "흑자",
+        "경상수지 흑자",
+        "상품수지 흑자",
+        "서비스수지 흑자",
+        "상품수지",
+        "서비스수지",
+        "수출입동향",
+        "월별 무역수지",
+        "흑자 규모",
+        "흑자 비율"
+      ]
+    },
+    {
+      "claim_id": "C005",
+      "metric": "국가 채무 증가율",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 37,
+      "matched_count": 21,
+      "results": [
+        {
+          "keyword": "국가 채무 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS006",
+              "title": "펀드계정(IMF 예비 포지션)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAAD34",
+              "title": "가계부채"
+            }
+          ]
+        },
+        {
+          "keyword": "국가 채무",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102006_001",
+              "title": "국가채무(D1)"
+            },
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102N_A001",
+              "title": "국가채무현황"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA810",
+              "title": "외채"
+            }
+          ]
+        },
+        {
+          "keyword": "채무 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR011",
+              "title": "대외채무 관련자료 개요(아프리카)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR014",
+              "title": "대외채무 관련자료 개요(유럽)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR015",
+              "title": "대외채무 관련자료 개요(오세아니아)"
+            }
+          ]
+        },
+        {
+          "keyword": "국가",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "150",
+              "tbl_id": "DT_150002_A008",
+              "title": "국가지정·등록유산 지정·등록 및 지정해제·등록말소 현황"
+            },
+            {
+              "org_id": "150",
+              "tbl_id": "DT_15002_A083",
+              "title": "업종별 국가유산수리업체 현황"
+            },
+            {
+              "org_id": "150",
+              "tbl_id": "DT_15002_A080",
+              "title": "국가유산지킴이 운영 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "채무",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102006_001",
+              "title": "국가채무(D1)"
+            },
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102N_A001",
+              "title": "국가채무현황"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_311Y004",
+              "title": "대외채무"
+            }
+          ]
+        },
+        {
+          "keyword": "증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "154",
+              "tbl_id": "DT_117082_26AA001001",
+              "title": "가족친화지수 비교(2025년, 2021년)"
+            },
+            {
+              "org_id": "336",
+              "tbl_id": "DT_336003N_CH3_015",
+              "title": "직종별 임금 증가 형태"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO017",
+              "title": "고용 증가율"
+            }
+          ]
+        },
+        {
+          "keyword": "국가채무 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS006",
+              "title": "펀드계정(IMF 예비 포지션)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAAD34",
+              "title": "가계부채"
+            }
+          ]
+        },
+        {
+          "keyword": "GDP 대비 국가채무 비율 변화",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "정부부채 증가 속도",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "국채 발행 증가세",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "공공 부채 확대 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "나라빚 증가 추세",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "국가부채 성장률",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OENA07",
+              "title": "5. 가계"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS005",
+              "title": "펀드계정(IMF 대출)"
+            }
+          ]
+        },
+        {
+          "keyword": "국가채무 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNN0117",
+              "title": "주요 국제금리 - 동북·중앙아시아"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA716",
+              "title": "주요 국제금리"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNS0117",
+              "title": "주요 국제금리 - 남부·동남아시아"
+            }
+          ]
+        },
+        {
+          "keyword": "GDP 대비 국가채무",
+          "exists": true,
+          "status": "success",
+          "result_count": 8,
+          "top_results": [
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102006_001",
+              "title": "국가채무(D1)"
+            },
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102N_A001",
+              "title": "국가채무현황"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO024",
+              "title": "일반정부 기초재정수지"
+            }
+          ]
+        },
+        {
+          "keyword": "정부 부채 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 9,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y017",
+              "title": "기타예금취급기관 개관표(말잔)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y015",
+              "title": "예금취급기관 개관표(말잔)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y016",
+              "title": "중앙은행 개관표(말잔)"
+            }
+          ]
+        },
+        {
+          "keyword": "공공부채 증가세",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR011",
+              "title": "대외채무 관련자료 개요(아프리카)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR014",
+              "title": "대외채무 관련자료 개요(유럽)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR012",
+              "title": "대외채무 관련자료 개요(아메리카)"
+            }
+          ]
+        },
+        {
+          "keyword": "지방정부 부채 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "국가채무 총량",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "재정적자 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA722",
+              "title": "일반정부 총부채 비율(GDP 대비)"
+            },
+            {
+              "org_id": "154",
+              "tbl_id": "DT_MOGE_3000400129_2024_7",
+              "title": "중앙행정기관 위원회별 여성참여 현황"
+            },
+            {
+              "org_id": "154",
+              "tbl_id": "DT_MOGE_3000400129_2024_6",
+              "title": "중앙행정기관 위원회별 여성참여 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "국가채무 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 7,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES041",
+              "title": "국제투자대조표"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO026",
+              "title": "일반정부 총부채"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS006",
+              "title": "펀드계정(IMF 예비 포지션)"
+            }
+          ]
+        },
+        {
+          "keyword": "정부부채 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 3,
+          "top_results": [
+            {
+              "org_id": "106",
+              "tbl_id": "DT_106N_07_0100048",
+              "title": "도시별 재정현황"
+            },
+            {
+              "org_id": "106",
+              "tbl_id": "DT_106N_07_0100046",
+              "title": "도시별 재정현황(총괄)"
+            },
+            {
+              "org_id": "453",
+              "tbl_id": "TX_39301_A408",
+              "title": "재무제표 및 매출구성 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "국채 발행 잔액",
+          "exists": true,
+          "status": "success",
+          "result_count": 5,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_281Y002",
+              "title": "금융자산부채잔액표(2008~)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_103Y002",
+              "title": "한국은행 주요계정(말잔)"
+            },
+            {
+              "org_id": "343",
+              "tbl_id": "DT_343_2010_S0090",
+              "title": "채권종류별 상장현황"
+            }
+          ]
+        },
+        {
+          "keyword": "공공부문 부채 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "GDP 대비 국가채무 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 3,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO031",
+              "title": "GDP 대비 마스트리히트 조약에 따른 공공부채 비율"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO029",
+              "title": "GDP 대비 일반정부 총금융부채 비율"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA722",
+              "title": "일반정부 총부채 비율(GDP 대비)"
+            }
+          ]
+        },
+        {
+          "keyword": "지방정부 채무 잔액",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_281Y002",
+              "title": "금융자산부채잔액표(2008~)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_281Y007",
+              "title": "금융자산부채잔액표(2002~)"
+            }
+          ]
+        },
+        {
+          "keyword": "중앙정부 채무 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 4,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y016",
+              "title": "중앙은행 개관표(말잔)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y015",
+              "title": "예금취급기관 개관표(말잔)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y017",
+              "title": "기타예금취급기관 개관표(말잔)"
+            }
+          ]
+        },
+        {
+          "keyword": "연도별 국가채무 실적",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "채무 부담률",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102006_001",
+              "title": "국가채무(D1)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS004",
+              "title": "펀드계정(IMF 쿼터 및 연체 채무)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO025",
+              "title": "일반정부 순부채"
+            }
+          ]
+        },
+        {
+          "keyword": "국채 발행 증가율",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "정부 부채 증가 속도",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "공공부채 확대율",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "나랏빚 증가세",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "GDP 대비 부채 증가율",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "공공부문 차입금 증가율",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "지방정부 빚 증가 속도",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "중앙 및 지방 정부 부채 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 6,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y016",
+              "title": "중앙은행 개관표(말잔)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y017",
+              "title": "기타예금취급기관 개관표(말잔)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y015",
+              "title": "예금취급기관 개관표(말잔)"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "국가 채무 증가율",
+        "국가 채무",
+        "채무 증가율",
+        "국가",
+        "채무",
+        "증가율",
+        "국가채무 증가율",
+        "국가부채 성장률",
+        "국가채무 비율",
+        "GDP 대비 국가채무",
+        "정부 부채 증가율",
+        "공공부채 증가세",
+        "재정적자 비율",
+        "국가채무 규모",
+        "정부부채 현황",
+        "국채 발행 잔액",
+        "GDP 대비 국가채무 비율",
+        "지방정부 채무 잔액",
+        "중앙정부 채무 증가율",
+        "채무 부담률",
+        "중앙 및 지방 정부 부채 증가율"
+      ]
+    }
+  ]
+}
