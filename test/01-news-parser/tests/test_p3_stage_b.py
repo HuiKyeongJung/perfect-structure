@@ -33,6 +33,83 @@ class FakeClient:
         return self.responses.pop(0)
 
 
+class TestUsageExtraction:
+    """과금 근거가 되는 토큰 필드 — 응답 스키마가 바뀌면 여기서 먼저 깨져야 한다."""
+
+    def test_v3_usage_shape(self):
+        from src.p3_stage_b import extract_usage
+        # 2026-08-13 실측(v3 chat-completions): usage.promptTokens / completionTokens
+        assert extract_usage({"usage": {"promptTokens": 3757, "completionTokens": 81,
+                                        "totalTokens": 3838}}) == (3757, 81)
+
+    def test_v1_doc_shape_fallback(self):
+        from src.p3_stage_b import extract_usage
+        # API 문서(v1 계열)의 표기도 통용 — 둘 다 읽는다
+        assert extract_usage({"inputLength": 100, "outputLength": 20}) == (100, 20)
+
+    def test_missing_usage_is_none_not_zero(self):
+        from src.p3_stage_b import extract_usage
+        # 0으로 채우면 요금이 조용히 과소 집계된다 — 반드시 None
+        assert extract_usage({}) == (None, None)
+        assert extract_usage({"usage": {}}) == (None, None)
+
+    def test_client_records_usage_and_latency(self, tmp_path, monkeypatch):
+        """HCXClient가 응답의 토큰·지연·재시도를 계측기에 넘기는지 (HTTP는 가짜)."""
+        import io
+        import json as _json
+        from src import p3_stage_b
+        from src.llm_meter import UsageMeter
+
+        class FakeResp:
+            status = 200
+
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+
+            def read(self):
+                return _json.dumps({"status": {"code": "20000"},
+                                    "result": {"message": {"content": "[]"},
+                                               "usage": {"promptTokens": 4000,
+                                                         "completionTokens": 100}}}).encode()
+
+        monkeypatch.setattr(p3_stage_b.urllib.request, "urlopen", lambda *a, **k: FakeResp())
+        meter = UsageMeter(tmp_path / "u.jsonl", model="HCX-005")
+        client = p3_stage_b.HCXClient(api_key="dummy", meter=meter)
+        client.chat("sys", [{"role": "user", "content": "hi"}],
+                    meta={"article_id": "A1", "sent_id": "s001", "attempt": "initial"})
+
+        rec = meter.records[0]
+        assert (rec.input_tokens, rec.output_tokens) == (4000, 100)
+        assert rec.article_id == "A1" and rec.attempt == "initial" and rec.ok
+        assert rec.latency_ms is not None and rec.latency_ms >= 0
+        # 4000*1.25/1000 + 100*5/1000 = 5.0 + 0.5
+        assert rec.cost_krw == pytest.approx(5.5)
+
+    def test_meter_failure_does_not_break_call(self, tmp_path, monkeypatch):
+        """계측은 부수효과 — 기록이 터져도 추출은 계속돼야 한다."""
+        import json as _json
+        from src import p3_stage_b
+
+        class FakeResp:
+            status = 200
+
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+
+            def read(self):
+                return _json.dumps({"result": {"message": {"content": "OK"},
+                                               "usage": {"promptTokens": 1,
+                                                         "completionTokens": 1}}}).encode()
+
+        class BrokenMeter:
+            def record(self, **kw):
+                raise RuntimeError("디스크 가득 참")
+
+        monkeypatch.setattr(p3_stage_b.urllib.request, "urlopen", lambda *a, **k: FakeResp())
+        client = p3_stage_b.HCXClient(api_key="dummy", meter=BrokenMeter())
+        assert client.chat("sys", [{"role": "user", "content": "hi"}]) == "OK"
+
+
 class TestParse:
     def test_clean_and_fenced(self):
         assert parse_items(GOOD)[0] is not None

@@ -17,7 +17,7 @@ import re
 import urllib.request
 from pathlib import Path
 
-from src import config
+from src import config, llm_meter
 from src.p3_schemas import VALUE_TYPES, DIRECTIONS, CONTRACT_EXCLUSION_CODES
 from src.p3_stage_a import SentenceCandidate
 from src.p3_cache import ReplayCache
@@ -188,21 +188,42 @@ def enum_deviations(items: list[dict]) -> list[str]:
     return dev
 
 
+def extract_usage(result: dict) -> tuple[int | None, int | None]:
+    """CLOVA 응답에서 (입력 토큰, 출력 토큰). 과금 기준값이라 추정하지 않는다.
+
+    표기가 버전마다 다르다 — **v3 실측은 `usage.promptTokens`·`usage.completionTokens`**이고,
+    API 문서(v1 계열)의 `inputLength`·`outputLength`도 아직 통용되므로 둘 다 읽는다.
+    어느 쪽도 없으면 None(집계에서 제외) — 0으로 채우면 요금이 조용히 과소 집계된다.
+    """
+    u = result.get("usage") or {}
+    tin = u.get("promptTokens", u.get("inputTokens", result.get("inputLength")))
+    tout = u.get("completionTokens", u.get("outputTokens", result.get("outputLength")))
+    return (tin if isinstance(tin, int) else None,
+            tout if isinstance(tout, int) else None)
+
+
 # ── HCX 클라이언트 ───────────────────────────────────────────
 class HCXClient:
     def __init__(self, api_key: str | None = None, model: str | None = None,
-                 endpoint: str | None = None, timeout: int = 60):
+                 endpoint: str | None = None, timeout: int = 60, meter=None):
         # 키·엔드포인트는 `.env` 소관(src/config.py). 값은 로그·예외에 싣지 않는다(§7).
         self.api_key = api_key or config.get_hcx_api_key()
         self.model = model or config.get_env(config.ENV_HCX_MODEL) or MODEL_DEFAULT
         self.endpoint = (endpoint or config.get_env(config.ENV_HCX_ENDPOINT)
                          or ENDPOINT_DEFAULT).format(model=self.model)
         self.timeout = timeout
+        self.meter = meter            # src.llm_meter.UsageMeter | None — 없으면 계측 생략
+        self.last_usage: dict | None = None
 
     def chat(self, system: str, messages: list[dict], temperature: float = 0.0,
-             max_tokens: int = 2000) -> str:
+             max_tokens: int = 2000, meta: dict | None = None) -> str:
         """429·5xx는 지수 백오프 재시도(일시 스로틀링을 서킷브레이커의 계통 결함으로
-        오판하지 않게 — 리뷰), HTTPError 본문(CLOVA status.code)은 예외 메시지에 보존."""
+        오판하지 않게 — 리뷰), HTTPError 본문(CLOVA status.code)은 예외 메시지에 보존.
+
+        meta: 계측용 꼬리표({article_id, sent_id, attempt, stage}) — 리소스 산정에서
+        "어느 시도가 비용을 쓰는지"를 가르는 축이라 호출부가 넘겨준다.
+        토큰 수는 추정하지 않고 응답의 inputLength·outputLength를 그대로 기록한다(과금 기준).
+        """
         import time
         import urllib.error
         payload = {
@@ -214,46 +235,111 @@ class HCXClient:
             self.endpoint, data=json.dumps(payload).encode("utf-8"),
             headers={"Authorization": f"Bearer {self.api_key}",
                      "Content-Type": "application/json"})
+        meta = dict(meta or {})
         delay = 2.0
+        retries = 0
+        wall0 = time.perf_counter()
         for attempt in range(4):
+            t0 = time.perf_counter()
             try:
                 with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                     data = json.loads(resp.read().decode("utf-8"))
-                return data["result"]["message"]["content"]
+                    status = resp.status
+                latency_ms = (time.perf_counter() - t0) * 1000
+                result = data.get("result") or {}
+                tin, tout = extract_usage(result)
+                self.last_usage = {"input_tokens": tin, "output_tokens": tout,
+                                   "latency_ms": latency_ms}
+                self._meter(meta, ok=True, status=status, retries=retries,
+                            latency_ms=latency_ms,
+                            wall_ms=(time.perf_counter() - wall0) * 1000,
+                            usage=(tin, tout))
+                return result["message"]["content"]
             except urllib.error.HTTPError as e:
+                latency_ms = (time.perf_counter() - t0) * 1000
                 body = ""
                 try:
                     body = e.read().decode("utf-8", "replace")[:300]
                 except Exception:
                     pass
                 if e.code in (429, 500, 502, 503) and attempt < 3:
+                    retries += 1
                     time.sleep(delay)
                     delay *= 2
                     continue
+                # 실패도 기록한다 — 입력 토큰은 이미 소비됐고, 실패율이 곧 운영 리스크다
+                self._meter(meta, ok=False, status=e.code, retries=retries,
+                            latency_ms=latency_ms,
+                            wall_ms=(time.perf_counter() - wall0) * 1000,
+                            usage=None, error=f"HTTP {e.code}: {body[:120]}")
                 raise RuntimeError(f"HCX HTTP {e.code}: {body}") from e
+            except Exception as e:      # 타임아웃·연결 실패 등
+                self._meter(meta, ok=False, status=None, retries=retries,
+                            latency_ms=(time.perf_counter() - t0) * 1000,
+                            wall_ms=(time.perf_counter() - wall0) * 1000,
+                            usage=None, error=f"{type(e).__name__}: {e}"[:160])
+                raise
         raise RuntimeError("HCX 재시도 소진")   # 도달 불가(위에서 raise) — 방어
+
+    def _meter(self, meta: dict, *, ok: bool, status, retries: int,
+               latency_ms: float, wall_ms: float, usage, error: str = "") -> None:
+        """계측은 부수효과일 뿐 — 실패해도 파이프라인을 죽이지 않는다."""
+        if self.meter is None:
+            return
+        tin, tout = usage if usage else (None, None)
+        try:
+            self.meter.record(
+                model=self.model,
+                stage=meta.get("stage", "stage_b"),
+                attempt=meta.get("attempt", "initial"),
+                article_id=meta.get("article_id", ""),
+                sent_id=meta.get("sent_id", ""),
+                ok=ok, http_status=status, http_retries=retries,
+                latency_ms=latency_ms, wall_ms=wall_ms,
+                input_tokens=tin, output_tokens=tout,
+                error=error,
+            )
+        except Exception:
+            pass
 
 
 # ── 추출기(파이프라인 주입용) ─────────────────────────────────
-def make_hcx_extractor(client, cache: ReplayCache, system_prompt: str, sent_index: dict):
+def make_hcx_extractor(client, cache: ReplayCache, system_prompt: str, sent_index: dict,
+                       meter=None, use_cache: bool = True):
     """재시도 정책(§5.6): 원 호출 → 수리 대화 → temp 0.5 재샘플 → 예외.
 
     client는 .chat(system, messages, temperature=...) 인터페이스면 무엇이든(테스트 fake 포함).
     캐시에는 최종 성공 응답과 수리 체인이 payload 키 아래 저장된다.
+    meter: 캐시 재생을 기록하기 위한 UsageMeter(실호출 계측은 client가 한다).
+    use_cache=False: 재생을 끄고 전부 실호출 — 사용량 실측(요금·지연) 수집용.
     """
+    def _cached(cand: SentenceCandidate) -> None:
+        if meter is None:
+            return
+        try:
+            meter.record(model=getattr(client, "model", ""), cached=True, ok=True,
+                         attempt="replay", article_id=cand.article_id, sent_id=cand.sent_id)
+        except Exception:
+            pass
+
+    def _meta(cand: SentenceCandidate, attempt: str) -> dict:
+        return {"article_id": cand.article_id, "sent_id": cand.sent_id, "attempt": attempt}
+
     def extractor(cand: SentenceCandidate) -> list[dict]:
         payload = build_user_message(cand, sent_index)
-        hit = cache.get(payload)
+        hit = cache.get(payload) if use_cache else None
         if hit is not None:
             items, err = parse_items(hit["response"])
             # 재생 경로도 현행 게이트로 재검증 — 빈 배열·구버전 enum 응답이 우회 재생되면
             # 해당 문장이 영구 오류로 고착된다(리뷰 실증). 미달이면 미스로 강등해 재호출.
             if items and not enum_deviations(items):
+                _cached(cand)
                 return items   # 재생 — HCX 0콜
 
         chain: list[dict] = []
         messages = [{"role": "user", "content": payload}]
-        resp = client.chat(system_prompt, messages, temperature=0.0)
+        resp = client.chat(system_prompt, messages, temperature=0.0,
+                           meta=_meta(cand, "initial"))
         chain.append({"attempt": "initial", "temperature": 0.0, "response": resp})
         items, err = parse_items(resp)
         dev = enum_deviations(items) if items is not None else []
@@ -267,7 +353,8 @@ def make_hcx_extractor(client, cache: ReplayCache, system_prompt: str, sent_inde
             {"role": "assistant", "content": resp},
             {"role": "user", "content": f"출력에 문제가 있다 — {feedback}. "
              "규칙을 다시 확인하고 JSON 배열만 다시 출력하라."}]
-        resp2 = client.chat(system_prompt, repair_msgs, temperature=0.0)
+        resp2 = client.chat(system_prompt, repair_msgs, temperature=0.0,
+                            meta=_meta(cand, "repair"))
         chain.append({"attempt": "repair", "temperature": 0.0, "response": resp2})
         items2, err2 = parse_items(resp2)
         if items2 and not enum_deviations(items2):
@@ -275,7 +362,8 @@ def make_hcx_extractor(client, cache: ReplayCache, system_prompt: str, sent_inde
             return items2
 
         # ② temp 재샘플 — 결정적 동일 실패 복제 금지(temp 0 재시도 금지, §5.6)
-        resp3 = client.chat(system_prompt, messages, temperature=0.5)
+        resp3 = client.chat(system_prompt, messages, temperature=0.5,
+                            meta=_meta(cand, "resample"))
         chain.append({"attempt": "resample", "temperature": 0.5, "response": resp3})
         items3, err3 = parse_items(resp3)
         if items3 and not enum_deviations(items3):
@@ -288,17 +376,19 @@ def make_hcx_extractor(client, cache: ReplayCache, system_prompt: str, sent_inde
         """Stage C 검증 실패의 수리 재추출(§5.6) — 실패 사유를 명시한 교정 프롬프트 1콜."""
         base_payload = build_user_message(cand, sent_index)
         payload = base_payload + f"\n[STAGE_C_REPAIR] {feedback}"   # 원 호출과 캐시 키 분리
-        hit = cache.get(payload)
+        hit = cache.get(payload) if use_cache else None
         if hit is not None:
             items, _ = parse_items(hit["response"])
             if items and not enum_deviations(items):
+                _cached(cand)
                 return items
         msg = (base_payload + "\n\n이전 추출의 검증 실패 사유: " + feedback +
                "\n고치는 법: ① value·unit은 '대상 문장'에 있는 표기를 글자 그대로(자릿수 축약·"
                "단위·경계어 혼입 금지) ② 대상 문장에 없는 수치(앞뒤 문장 것)로는 항목을 만들지 "
                "마라 — 그 항목은 삭제 ③ metric은 기사 실존 어휘로만(접미사 창작 금지) "
                "④ 값이 없는 주장·비통계 수치는 excluded로. 문제를 고쳐 JSON 배열만 다시 출력하라.")
-        resp = client.chat(system_prompt, [{"role": "user", "content": msg}], temperature=0.3)
+        resp = client.chat(system_prompt, [{"role": "user", "content": msg}], temperature=0.3,
+                           meta=_meta(cand, "stage_c_repair"))
         items, _ = parse_items(resp)
         if items and not enum_deviations(items):
             cache.put(payload, resp, [{"attempt": "stage_c_repair", "temperature": 0.3, "response": resp}])
@@ -321,18 +411,23 @@ def _filter_docs(ds, article_ids: set, drop_keys: set):
     return out
 
 
-def run_dev(outdir: Path, cache_path: Path) -> None:
-    """6단계 — dev 8 전체 실행(실 HCX) + 골든 채점 리포트."""
+def run_dev(outdir: Path, cache_path: Path, meter=None, fresh: bool = False) -> None:
+    """6단계 — dev 8 전체 실행(실 HCX) + 골든 채점 리포트.
+
+    fresh=True: 캐시 재생을 끄고 전부 실호출 — 사용량 실측용(과금 발생).
+    이때는 **동결 캐시를 오염시키지 않도록 별도 cache_path를 주는 것**을 권한다.
+    """
     from src.p3_pipeline import run
     from src.p3_emit import load_documents_jsonl
     from src.p3_golden import load_golden
     from src.p3_eval import evaluate
 
-    client = HCXClient()
+    client = HCXClient(meter=meter)
     cache = ReplayCache(cache_path, PROMPT_VERSION, client.model)
     sent_index = build_sentence_index()
     system_prompt = PROMPT_V1.read_text(encoding="utf-8")
-    extractor = make_hcx_extractor(client, cache, system_prompt, sent_index)
+    extractor = make_hcx_extractor(client, cache, system_prompt, sent_index,
+                                   meter=meter, use_cache=not fresh)
 
     # dev 튜닝 런은 브레이커 해제 — 성적표(오류 목록 포함)를 산출하는 것이 목적이고,
     # 오류는 리포트의 FN·검토 목록으로 드러난다. 전량 실행(7단계)은 기본 3% 유지.
@@ -353,7 +448,7 @@ def run_dev(outdir: Path, cache_path: Path) -> None:
     print(f"\n리포트 저장: {report_path}")
 
 
-def run_test(outdir: Path, cache_path: Path) -> None:
+def run_test(outdir: Path, cache_path: Path, meter=None) -> None:
     """7단계 — test 43 동결 실행(§5.6: 프롬프트 동결 후 버전당 1회, 블라인드 소진).
 
     dev 8을 제외한 43기사. 튜닝 근거로 쓰지 않는다 — 결과는 보고용이며, 여기서 발견한
@@ -367,11 +462,11 @@ def run_test(outdir: Path, cache_path: Path) -> None:
 
     cands, _, _ = collect_candidates()
     test_ids = {c.article_id for c in cands} - set(DEV_ARTICLES)
-    client = HCXClient()
+    client = HCXClient(meter=meter)
     cache = ReplayCache(cache_path, PROMPT_VERSION, client.model)
     sent_index = build_sentence_index()
     system_prompt = PROMPT_V1.read_text(encoding="utf-8")
-    extractor = make_hcx_extractor(client, cache, system_prompt, sent_index)
+    extractor = make_hcx_extractor(client, cache, system_prompt, sent_index, meter=meter)
 
     # 채점 실행이므로 브레이커는 해제(성적표 산출이 목적) — 오류율은 리포트에 명시
     summary = run(extractor, outdir, article_filter=test_ids, breaker_rate=1.0)
@@ -399,14 +494,24 @@ def main() -> None:
     ap.add_argument("--outdir", type=Path, default=dev_out)
     ap.add_argument("--cache", type=Path,
                     default=config.cache_dir() / "replay_extract_v1.jsonl")
+    ap.add_argument("--fresh", action="store_true",
+                    help="캐시 재생을 끄고 전부 실호출 — 사용량(토큰·요금·지연) 실측용. 과금 발생")
+    ap.add_argument("--meter", type=Path, default=None,
+                    help=f"사용량 로그 경로 (기본: data/{llm_meter.USAGE_LOG_DEFAULT})")
+    ap.add_argument("--no-meter", action="store_true", help="사용량 기록 끄기")
     args = ap.parse_args()
+
+    meter = None if args.no_meter else llm_meter.UsageMeter(
+        args.meter, prompt_version=PROMPT_VERSION)
 
     if args.test_run:
         out = args.outdir if args.outdir != dev_out else config.data_dir() / "test_run"
-        run_test(out, args.cache)
+        run_test(out, args.cache, meter=meter)
+        _print_usage(meter)
         return
     if args.dev_run:
-        run_dev(args.outdir, args.cache)
+        run_dev(args.outdir, args.cache, meter=meter, fresh=args.fresh)
+        _print_usage(meter)
         return
     if not args.spike:
         ap.error("--spike N / --dev-run / --test-run 중 하나를 지정하세요")
@@ -418,21 +523,27 @@ def main() -> None:
     dev = [c for c in candidates if c.article_id in DEV_ARTICLES and c.key not in FEW_SHOT_KEYS]
     target = dev[:args.spike]
 
-    client = HCXClient()   # .env의 NCP_CLOVASTUDIO_API_KEY 필요
+    client = HCXClient(meter=meter)   # .env의 NCP_CLOVASTUDIO_API_KEY 필요
     cache = ReplayCache(args.cache, PROMPT_VERSION, client.model)
     n_ok = n_repair = n_fail = n_replay = 0
     enum_dev_total = 0
     for cand in target:
         payload = build_user_message(cand, sent_index)
-        hit = cache.get(payload)   # 성공분은 재생 — 스파이크 반복 시 재과금 방지
+        # --fresh면 재생하지 않는다 — 토큰·지연 실측이 목적이라 캐시가 있으면 측정이 안 된다
+        hit = None if args.fresh else cache.get(payload)
         if hit is not None:
             items, _ = parse_items(hit["response"])
             if items and not enum_deviations(items):
                 n_ok += 1
                 n_replay += 1
+                if meter is not None:
+                    meter.record(model=client.model, cached=True, attempt="replay",
+                                 article_id=cand.article_id, sent_id=cand.sent_id)
                 continue
         try:
-            resp = client.chat(system_prompt, [{"role": "user", "content": payload}])
+            resp = client.chat(system_prompt, [{"role": "user", "content": payload}],
+                               meta={"article_id": cand.article_id, "sent_id": cand.sent_id,
+                                     "attempt": "initial", "stage": "spike"})
             items, err = parse_items(resp)
             dev_list = enum_deviations(items) if items is not None else []
             if items and not dev_list:
@@ -449,6 +560,17 @@ def main() -> None:
     print(f"\n스파이크 {total}건 — 1차 성공 {n_ok}({n_ok / total:.0%}, 재생 {n_replay}) · "
           f"수리 필요 {n_repair} · 호출 실패 {n_fail} · enum 이탈 {enum_dev_total}건")
     print("판정 기준(§5.6): 1차 파싱 성공률·enum 이탈률로 HCX-005 구조화 출력 채택 여부 결정")
+    _print_usage(meter)
+
+
+def _print_usage(meter) -> None:
+    """실행 끝에 사용량 한 줄 — 상세 집계는 `python -m src.llm_meter --report`."""
+    if meter is None or not meter.records:
+        return
+    s = meter.summary()
+    print(f"\n[사용량] API {s['calls_api']}콜 · 캐시 재생 {s['calls_cached']} · "
+          f"토큰 입력 {s['input_tokens']:,}/출력 {s['output_tokens']:,} · "
+          f"요금 {s['cost_krw']:,.2f}원(VAT 별도) → 로그 {meter.path}")
 
 
 if __name__ == "__main__":
