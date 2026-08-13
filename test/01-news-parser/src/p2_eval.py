@@ -16,6 +16,8 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+from src import config
+
 
 def collapse(s: str) -> str:
     return "".join(ch for ch in s if not ch.isspace())
@@ -65,7 +67,8 @@ def main(argv=None) -> None:
         pass
     ap = argparse.ArgumentParser(description="P2 문장 분할을 골든셋과 경계 기준으로 채점")
     ap.add_argument("--system", type=Path, default=Path("data/sentences.jsonl"))
-    ap.add_argument("--golden", type=Path, default=Path("D:/part1/cleaned_sentences_ex.xlsx"))
+    ap.add_argument("--golden", type=Path,
+                    default=config.part1_dir() / "cleaned_sentences_ex.xlsx")
     ap.add_argument("--articles", type=Path, default=Path("data/articles_clean.jsonl"),
                     help="기사 목록 기준 파일 — 0문장(빈 본문) 기사도 대조에 포함하기 위함")
     ap.add_argument("--detail", type=int, default=10, help="불일치 상세 출력 기사 수")

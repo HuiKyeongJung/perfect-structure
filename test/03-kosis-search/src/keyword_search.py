@@ -9,6 +9,7 @@ KOSIS keyword search MVP.
 import json
 import os
 import re
+import time
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlencode
@@ -223,6 +224,7 @@ def search_claims(claims: list[dict[str, Any]]) -> dict[str, Any]:
     여러 claim을 받아서 claim별로 키워드 검색을 실행한다.
     """
     claim_results = []
+    start_time = time.perf_counter()
 
     for claim in claims:
         claim_id = claim["claim_id"]
@@ -244,10 +246,19 @@ def search_claims(claims: list[dict[str, Any]]) -> dict[str, Any]:
             }
         )
 
+    total_search_count = sum(
+        claim["searched_count"]
+           for claim in claim_results
+    )
+
+    elapsed_seconds = round(time.perf_counter() - start_time, 3)
+
     return {
         "module": "kosis_keyword_search",
         "status": "success",
         "claim_count": len(claim_results),
+        "total_search_count": total_search_count,
+        "elapsed_seconds": elapsed_seconds,
         "claims": claim_results,
     }
 
@@ -335,7 +346,7 @@ def main() -> None:
     """
     base_dir = Path(__file__).resolve().parent
     input_path = base_dir / "role2_convert_keywords2.json"
-    output_path = base_dir / "role2_result2.json"
+    output_path = base_dir / "role2_result2-1.json"
 
     claims = load_keywords_from_json(str(input_path))
     result = search_claims(claims)
