@@ -45,7 +45,7 @@ def extract_comparison_inputs(
     ineligible_excluded = 0
     empty_metric_excluded = 0
     empty_metric_normalized_excluded = 0
-    valid_pairs: List[Tuple[str, str]] = []
+    valid_pairs: List[Tuple[str, str, str]] = []
 
     for row in rows:
         if _normalize(row.get("forecast")).upper() == "Y":
@@ -67,9 +67,10 @@ def extract_comparison_inputs(
             empty_metric_normalized_excluded += 1
             continue
 
-        valid_pairs.append((metric, metric_normalized))
+        claim = _normalize(row.get("claim"))
+        valid_pairs.append((metric, metric_normalized, claim))
 
-    unique_pairs: List[Tuple[str, str]] = []
+    unique_pairs: List[Tuple[str, str, str]] = []
     seen_metrics = set()
     for pair in valid_pairs:
         metric = pair[0]
@@ -79,14 +80,18 @@ def extract_comparison_inputs(
         unique_pairs.append(pair)
 
     selected_pairs = unique_pairs if limit is None else unique_pairs[:limit]
-    inputs = [
-        {
+    inputs = []
+    for index, (metric, metric_normalized, claim) in enumerate(
+        selected_pairs, start=1
+    ):
+        item = {
             "claim_id": f"C{index:03d}",
             "metric": metric,
             "metric_normalized": metric_normalized,
         }
-        for index, (metric, metric_normalized) in enumerate(selected_pairs, start=1)
-    ]
+        if claim:
+            item["claim"] = claim
+        inputs.append(item)
     stats = {
         "total_rows": len(rows),
         "forecast_excluded_rows": forecast_excluded,
