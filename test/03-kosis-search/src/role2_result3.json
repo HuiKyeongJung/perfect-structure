@@ -1,0 +1,1753 @@
+{
+  "module": "kosis_keyword_search",
+  "status": "success",
+  "claim_count": 5,
+  "total_search_count": 99,
+  "elapsed_seconds": 22.355,
+  "claims": [
+    {
+      "claim_id": "C001",
+      "metric": "수출",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 8,
+      "matched_count": 5,
+      "results": [
+        {
+          "keyword": "수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10062",
+              "title": "지역별 중소기업 수출"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10066",
+              "title": "대륙별·국가별 중소기업 수출"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115035_A009",
+              "title": "전체사업체 업종별 수출액"
+            }
+          ]
+        },
+        {
+          "keyword": "수출 금액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_403Y001",
+              "title": "수출금액지수"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_403Y002",
+              "title": "수출물량지수"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_403Y003",
+              "title": "수입금액지수"
+            }
+          ]
+        },
+        {
+          "keyword": "상품 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A011",
+              "title": "화학공업제품 항목별 EBSI 전망"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A026",
+              "title": "무선통신기기 및 부품 항목별 EBSI 전망"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A027",
+              "title": "전기·전자 제품 항목별 EBSI 전망"
+            }
+          ]
+        },
+        {
+          "keyword": "총수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "458",
+              "tbl_id": "DT_11533N_010",
+              "title": "첨단세라믹수출/기업총수출 비중"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115031_009",
+              "title": "나노수출/업체 총 수출 비중"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127013_007",
+              "title": "정보보호산업 수출현황"
+            }
+          ]
+        },
+        {
+          "keyword": "수출 품목별 액수",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "월별 수출액",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 9524 (char 9523)"
+        },
+        {
+          "keyword": "서비스 수출액",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 5877 (char 5876)"
+        },
+        {
+          "keyword": "연간 수출 실적",
+          "exists": true,
+          "status": "success",
+          "result_count": 5,
+          "top_results": [
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145013_035",
+              "title": "의료용 마약류 연간 수출실적"
+            },
+            {
+              "org_id": "114",
+              "tbl_id": "DT_114052_019",
+              "title": "판매실적 존재 종자업체의 연간 판매액"
+            },
+            {
+              "org_id": "622",
+              "tbl_id": "DT_622001_H000002",
+              "title": "수출입 통관실적"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "수출액",
+        "수출 금액",
+        "상품 수출액",
+        "총수출액",
+        "연간 수출 실적"
+      ]
+    },
+    {
+      "claim_id": "C002",
+      "metric": "미국 수출",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 26,
+      "matched_count": 19,
+      "results": [
+        {
+          "keyword": "미국 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "134",
+              "tbl_id": "DT_13405_001",
+              "title": "협정(수출국가)별 FTA 수출활용률"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA513",
+              "title": "상대국가별 자동차 수출·수입"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AQ651",
+              "title": "상품교역"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "134",
+              "tbl_id": "DT_13405_001",
+              "title": "협정(수출국가)별 FTA 수출활용률"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA513",
+              "title": "상대국가별 자동차 수출·수입"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AQ651",
+              "title": "상품교역"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 상품 수출",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 7229 (char 7228)"
+        },
+        {
+          "keyword": "미국 수출 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "115",
+              "tbl_id": "DT_14217M_254",
+              "title": "주요수출 국가 1+2+3+4+5순위(상위 14개)"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127012_03701",
+              "title": "직·간접 수출 국가"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_P211",
+              "title": "종사자규모별 주요국가별 수출입"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 수출 금액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_303Y001",
+              "title": "지역별 결제통화(수출)"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_14217C_058",
+              "title": "중견기업 후보기업 신규 진출 국가별 수출금액"
+            },
+            {
+              "org_id": "146",
+              "tbl_id": "DT_MLTM_5002629",
+              "title": "국가별 수출현황"
+            }
+          ]
+        },
+        {
+          "keyword": "미국의 상품 수출",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 7235 (char 7234)"
+        },
+        {
+          "keyword": "미국 연간 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES042",
+              "title": "국제 상품 무역 통계 > 수출"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_092_115_2009_S027",
+              "title": "국가별/IT산업별/월별 수출 현황"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_303Y003",
+              "title": "지역별,국가별 원화결제(수출)"
+            }
+          ]
+        },
+        {
+          "keyword": "수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10066",
+              "title": "대륙별·국가별 중소기업 수출"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10062",
+              "title": "지역별 중소기업 수출"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A015",
+              "title": "기계류 항목별 EBSI 전망"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 수출국별 교역",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "미국 수출입 동향",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1ZGA96",
+              "title": "주요국별 수출입액"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1ZGA99A",
+              "title": "북한의 주요국별/품목별 수출입액"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 수출 시장 점유율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEST013",
+              "title": "R&D 집약산업의 국제무역"
+            },
+            {
+              "org_id": "658",
+              "tbl_id": "DT_658002_082",
+              "title": "수출시장(국가) 개척 우선순위"
+            },
+            {
+              "org_id": "667",
+              "tbl_id": "DT_667002_082",
+              "title": "수출시장(국가) 개척 우선순위"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 수출 산업 비중",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127013_008",
+              "title": "정보보호산업 국가별 수출 비중"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020539",
+              "title": "영화산업 : 주요 국가별 수출액 현황"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020579",
+              "title": "방송 및 영상산업 : 방송프로그램(완성품) 주요 국가·대륙별 수출액 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 국가별 수출 순위",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115034_B036",
+              "title": "희망 수출국 현황"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_14217M_254",
+              "title": "주요수출 국가 1+2+3+4+5순위(상위 14개)"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115034_B035",
+              "title": "주요 수출국 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 연간 수출 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "미국 대외무역",
+          "exists": true,
+          "status": "success",
+          "result_count": 9,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA805",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAAA04",
+              "title": "국제해운수송"
+            },
+            {
+              "org_id": "135",
+              "tbl_id": "TX_13501_A078",
+              "title": "범죄자 국적"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 수출입 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 8,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_P211",
+              "title": "종사자규모별 주요국가별 수출입"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_P227",
+              "title": "기업규모별 주요국가별 수출입"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_N227",
+              "title": "기업규모별 주요국가별 수출입"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 수출 품목별 실적",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "미국 지역별 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_303Y001",
+              "title": "지역별 결제통화(수출)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_304Y104",
+              "title": "지식서비스 무역통계(지역별)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES042",
+              "title": "국제 상품 무역 통계 > 수출"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 국제무역량",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES042",
+              "title": "국제 상품 무역 통계 > 수출"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES044",
+              "title": "국제 상품 무역 통계 > 무역수지"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES043",
+              "title": "국제 상품 무역 통계 > 수입"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 산업별 수출 실적",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_CDA0001_S10502",
+              "title": "주요 국가별 산업별 기술수출 추이"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020540",
+              "title": "영화산업 : 주요 국가별 수입액 현황"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020539",
+              "title": "영화산업 : 주요 국가별 수출액 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 상품 수출입 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 1,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_IZGI02_402",
+              "title": "수산물 수출입현황"
+            }
+          ]
+        },
+        {
+          "keyword": "미국 주요 교역국 수출 비중",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "미국 대외무역 규모",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "미국 무역수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_ABA0003_S10502",
+              "title": "주요 국가별 기술무역수지 추이"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_ABA0005_S10502",
+              "title": "주요 국가별 기술무역수지비 추이"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_P315",
+              "title": "산업별(KSIC11차) 주요국가별 수출입"
+            }
+          ]
+        },
+        {
+          "keyword": "미국의 무역수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_ABA0003_S10502",
+              "title": "주요 국가별 기술무역수지 추이"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_ABA0005_S10502",
+              "title": "주요 국가별 기술무역수지비 추이"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_P315",
+              "title": "산업별(KSIC11차) 주요국가별 수출입"
+            }
+          ]
+        },
+        {
+          "keyword": "미국",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO042",
+              "title": "국내 경제 내 상대적 단위 노동비용에 기초한 경쟁력 지표"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO041",
+              "title": "상대적 소비자 물가에 기초한 경쟁력 지표"
+            },
+            {
+              "org_id": "343",
+              "tbl_id": "DT_343_2010_S0104",
+              "title": "미국달러선물 투자자별 거래실적"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "미국 수출",
+        "미국 수출액",
+        "미국 수출 규모",
+        "미국 수출 금액",
+        "미국 연간 수출",
+        "수출",
+        "미국 수출입 동향",
+        "미국 수출 시장 점유율",
+        "미국 수출 산업 비중",
+        "미국 국가별 수출 순위",
+        "미국 대외무역",
+        "미국 수출입 규모",
+        "미국 지역별 수출",
+        "미국 국제무역량",
+        "미국 산업별 수출 실적",
+        "미국 상품 수출입 현황",
+        "미국 무역수지",
+        "미국의 무역수지",
+        "미국"
+      ]
+    },
+    {
+      "claim_id": "C003",
+      "metric": "중국 수출",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 29,
+      "matched_count": 19,
+      "results": [
+        {
+          "keyword": "중국 수출",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 6810 (char 6809)"
+        },
+        {
+          "keyword": "중국 상품 수출",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 622 (char 621)"
+        },
+        {
+          "keyword": "중국 수출액",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 5438 (char 5437)"
+        },
+        {
+          "keyword": "중국 수출 품목",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115028_2021_A903",
+              "title": "해외 수출 품목, 국가별 수출액 규모"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020469",
+              "title": "음악산업 : 주요 국가·대륙별 수입액 현황"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020380",
+              "title": "출판산업 주요 국가·대륙별 수출액 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10066",
+              "title": "대륙별·국가별 중소기업 수출"
+            },
+            {
+              "org_id": "142",
+              "tbl_id": "DT_B10062",
+              "title": "지역별 중소기업 수출"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A015",
+              "title": "기계류 항목별 EBSI 전망"
+            }
+          ]
+        },
+        {
+          "keyword": "연간 중국 수출 실적",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "중국 수출입 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_092_115_2009_S027",
+              "title": "국가별/IT산업별/월별 수출 현황"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_092_115_2009_S028",
+              "title": "국가별/IT산업별/월별 수입 현황"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020469",
+              "title": "음악산업 : 주요 국가·대륙별 수입액 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "중국의 수출입 동향",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1ZGA96",
+              "title": "주요국별 수출입액"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1ZGA99A",
+              "title": "북한의 주요국별/품목별 수출입액"
+            }
+          ]
+        },
+        {
+          "keyword": "월별 중국 수출 동향",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "중국의 대외 무역",
+          "exists": true,
+          "status": "success",
+          "result_count": 9,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNN0120",
+              "title": "국제수지 - 동북·중앙아시아"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA805",
+              "title": "국제수지"
+            },
+            {
+              "org_id": "155",
+              "tbl_id": "DT_155008_B046",
+              "title": "피의자 국적"
+            }
+          ]
+        },
+        {
+          "keyword": "중국 경제 지표 - 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 1,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNN0121",
+              "title": "무역의존도(GDP 대비 수출입 비율) - 동북·중앙아시아"
+            }
+          ]
+        },
+        {
+          "keyword": "중국 지역별 수출 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_092_115_2009_S027",
+              "title": "국가별/IT산업별/월별 수출 현황"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1017786",
+              "title": "게임산업 : 주요 국가·대륙별 수출액 현황"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1025108",
+              "title": "게임산업 : 주요 국가·대륙별 수입액 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "중국의 대외무역 현황",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "중국 수출 품목별 변화 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "중국 지역별 수출 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_P211",
+              "title": "종사자규모별 주요국가별 수출입"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_P227",
+              "title": "기업규모별 주요국가별 수출입"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1TEC_N211",
+              "title": "종사자규모별 주요국가별 수출입"
+            }
+          ]
+        },
+        {
+          "keyword": "중국 산업별 수출 비중",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1020579",
+              "title": "방송 및 영상산업 : 방송프로그램(완성품) 주요 국가·대륙별 수출액 현황"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127013_008",
+              "title": "정보보호산업 국가별 수출 비중"
+            },
+            {
+              "org_id": "113",
+              "tbl_id": "DT_113_STBL_1017786",
+              "title": "게임산업 : 주요 국가·대륙별 수출액 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "상품 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A030",
+              "title": "생활용품 항목별 EBSI 전망"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A023",
+              "title": "플라스틱·고무·가죽제품 항목별 EBSI 전망"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_36005_A024",
+              "title": "섬유·의복제품 항목별 EBSI 전망"
+            }
+          ]
+        },
+        {
+          "keyword": "수출 금액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_403Y001",
+              "title": "수출금액지수"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_403Y002",
+              "title": "수출물량지수"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_403Y003",
+              "title": "수입금액지수"
+            }
+          ]
+        },
+        {
+          "keyword": "중국 수출대상 국가별 비중",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "중국 무역수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_ABA0005_S10502",
+              "title": "주요 국가별 기술무역수지비 추이"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_ABA0003_S10502",
+              "title": "주요 국가별 기술무역수지 추이"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_A_XNN0001",
+              "title": "국가별 수출입현황 - 동북·중앙아시아"
+            }
+          ]
+        },
+        {
+          "keyword": "서비스 수출",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 8013 (char 8012)"
+        },
+        {
+          "keyword": "수출 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO043",
+              "title": "상품과 서비스의 수출(명목)(USD 기준)"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_37404_01",
+              "title": "기업경영판단 BSI(2008.06~2026.02)"
+            },
+            {
+              "org_id": "358",
+              "tbl_id": "DT_358004_024",
+              "title": "수출액 및 해외 매출액 증가 주요 요인_1순위"
+            }
+          ]
+        },
+        {
+          "keyword": "중국",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "154",
+              "tbl_id": "DT_117079_25BB002016",
+              "title": "평소 가정 내 언어 사용"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_1JD1616",
+              "title": "국적취득연도 및 이전국적별 내국인(귀화ㆍ인지) - 시도"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115026_C311",
+              "title": "[디자인활용업체]해외 비즈니스 진출 지역_중국(중복응답)"
+            }
+          ]
+        },
+        {
+          "keyword": "연도별 수출",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "TX_10506_A041",
+              "title": "계약연도별·국가별 수출 계약금액"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "TX_10506_A040",
+              "title": "계약연도별·국가별 수출 계약건수"
+            },
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145009_034",
+              "title": "원료의약품 수출액 상위 10개 품목 현황(수출실적 보고의무자)-연도별"
+            }
+          ]
+        },
+        {
+          "keyword": "총수출액",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "458",
+              "tbl_id": "DT_11533N_010",
+              "title": "첨단세라믹수출/기업총수출 비중"
+            },
+            {
+              "org_id": "115",
+              "tbl_id": "DT_115031_009",
+              "title": "나노수출/업체 총 수출 비중"
+            },
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127013_007",
+              "title": "정보보호산업 수출현황"
+            }
+          ]
+        },
+        {
+          "keyword": "월별 수출액",
+          "exists": false,
+          "status": "error",
+          "result_count": 0,
+          "top_results": [],
+          "error_reason": "Expecting ',' delimiter: line 1 column 9524 (char 9523)"
+        },
+        {
+          "keyword": "수출입 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145011_A008",
+              "title": "화장품 수출액 상위 10개국 현황"
+            },
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145011_A009",
+              "title": "국내 화장품산업 현황"
+            },
+            {
+              "org_id": "145",
+              "tbl_id": "DT_145011_A007",
+              "title": "화장품 수입액 상위 10개국 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "중국의 국제수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNN0120",
+              "title": "국제수지 - 동북·중앙아시아"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES041",
+              "title": "국제투자대조표"
+            },
+            {
+              "org_id": "134",
+              "tbl_id": "DT_134001_002",
+              "title": "국가별 수출입현황"
+            }
+          ]
+        },
+        {
+          "keyword": "무역수지",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "360",
+              "tbl_id": "DT_1R11001_FRM101",
+              "title": "품목별 수출액, 수입액"
+            },
+            {
+              "org_id": "360",
+              "tbl_id": "DT_1R11006_FRM101",
+              "title": "국가별 수출액, 수입액"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_301Y014",
+              "title": "서비스무역세분류통계"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "중국 수출 품목",
+        "수출",
+        "중국 수출입 현황",
+        "중국의 수출입 동향",
+        "중국의 대외 무역",
+        "중국 경제 지표 - 수출",
+        "중국 지역별 수출 현황",
+        "중국 지역별 수출 규모",
+        "중국 산업별 수출 비중",
+        "상품 수출",
+        "수출 금액",
+        "중국 무역수지",
+        "수출 증가율",
+        "중국",
+        "연도별 수출",
+        "총수출액",
+        "수출입 현황",
+        "중국의 국제수지",
+        "무역수지"
+      ]
+    },
+    {
+      "claim_id": "C004",
+      "metric": "1차 추가경정예산(추경)",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 18,
+      "matched_count": 2,
+      "results": [
+        {
+          "keyword": "1차 추가경정예산(추경)",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "추가경정예산(추경)",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차 추경 예산안",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차 추경 지원금",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차 추경 편성액",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차 추경 규모",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차 추경 국회 통과",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "추경 예산 항목",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "2023년 1차 추경",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차 추경 편성 시기",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차 추경 주요 내용",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "추가경정예산 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 1,
+          "top_results": [
+            {
+              "org_id": "127",
+              "tbl_id": "DT_127003_001",
+              "title": "국가연구개발사업의 총괄 집행 추이"
+            }
+          ]
+        },
+        {
+          "keyword": "추경 재원 마련 방안",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "추경 예산 배정 현황",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "추경 편성 현황",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "2023년 1차 추경 세부 항목",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "지방자치단체 추경 현황",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "1차",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_DT_1K52F05_34",
+              "title": "충청남도·산업·대표자성별 사업체수"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_DT_1K52F06_36",
+              "title": "전라남도·산업·종사자성별 사업체수"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "INH_DT_1K52F04_21",
+              "title": "부산광역시·산업·종사상지위별 종사자수"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "추가경정예산 규모",
+        "1차"
+      ]
+    },
+    {
+      "claim_id": "C005",
+      "metric": "중앙정부 채무",
+      "module": "kosis_keyword_search",
+      "status": "success",
+      "searched_count": 18,
+      "matched_count": 16,
+      "results": [
+        {
+          "keyword": "중앙정부 채무",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y016",
+              "title": "중앙은행 개관표(말잔)"
+            },
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102006_001",
+              "title": "국가채무(D1)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_161Y015",
+              "title": "예금취급기관 개관표(말잔)"
+            }
+          ]
+        },
+        {
+          "keyword": "중앙정부 부채",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS088",
+              "title": "통화 및 금융 통계: 금융기관(주요 금융 부채)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS082",
+              "title": "통화 및 금융 통계: 예금취급기관(부채)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS094",
+              "title": "통화 및 금융 통계: 기타 예금취급기관(부문별 부채)"
+            }
+          ]
+        },
+        {
+          "keyword": "정부채무 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102N_A001",
+              "title": "국가채무현황"
+            },
+            {
+              "org_id": "350",
+              "tbl_id": "TX_35001_A023",
+              "title": "연도별 건강보험 재정현황"
+            }
+          ]
+        },
+        {
+          "keyword": "채무",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102006_001",
+              "title": "국가채무(D1)"
+            },
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102N_A001",
+              "title": "국가채무현황"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_311Y004",
+              "title": "대외채무"
+            }
+          ]
+        },
+        {
+          "keyword": "국가채무 잔액",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS061",
+              "title": "분기 정부재정통계(채무증권)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA701",
+              "title": "통화지표(M1, M3)"
+            }
+          ]
+        },
+        {
+          "keyword": "지방정부 및 중앙정부 부채",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OENA08",
+              "title": "6. 정부"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO025",
+              "title": "일반정부 순부채"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO024",
+              "title": "일반정부 기초재정수지"
+            }
+          ]
+        },
+        {
+          "keyword": "채무 규모",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "409",
+              "tbl_id": "DT_40901N_021_1",
+              "title": "자산 부채 자본의 회전율(활동성에 관한 지표)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_501Y007",
+              "title": "자산/자본 지표(제11차 한국표준산업분류, 2009~)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_501Y008",
+              "title": "자산/자본 회전율(제11차 한국표준산업분류, 2009~)"
+            }
+          ]
+        },
+        {
+          "keyword": "국가채무 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNN0117",
+              "title": "주요 국제금리 - 동북·중앙아시아"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNS0117",
+              "title": "주요 국제금리 - 남부·동남아시아"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA716",
+              "title": "주요 국제금리"
+            }
+          ]
+        },
+        {
+          "keyword": "GDP 대비 국가채무",
+          "exists": true,
+          "status": "success",
+          "result_count": 8,
+          "top_results": [
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102006_001",
+              "title": "국가채무(D1)"
+            },
+            {
+              "org_id": "184",
+              "tbl_id": "DT_102N_A001",
+              "title": "국가채무현황"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO025",
+              "title": "일반정부 순부채"
+            }
+          ]
+        },
+        {
+          "keyword": "정부 부채 현황",
+          "exists": true,
+          "status": "success",
+          "result_count": 3,
+          "top_results": [
+            {
+              "org_id": "106",
+              "tbl_id": "DT_106N_07_0100048",
+              "title": "도시별 재정현황"
+            },
+            {
+              "org_id": "106",
+              "tbl_id": "DT_106N_07_0100046",
+              "title": "도시별 재정현황(총괄)"
+            },
+            {
+              "org_id": "453",
+              "tbl_id": "TX_39301_A408",
+              "title": "재무제표 및 매출구성 현황"
+            }
+          ]
+        },
+        {
+          "keyword": "채무 증가율",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR014",
+              "title": "대외채무 관련자료 개요(유럽)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR011",
+              "title": "대외채무 관련자료 개요(아프리카)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2AR015",
+              "title": "대외채무 관련자료 개요(오세아니아)"
+            }
+          ]
+        },
+        {
+          "keyword": "중앙정부",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS069",
+              "title": "분기 정부재정통계(비금융자산 잔액)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS051",
+              "title": "분기 정부재정통계(이자, 보조금 및 지급 보조금 지출)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2IFS053",
+              "title": "분기 정부재정통계(총 지출)"
+            }
+          ]
+        },
+        {
+          "keyword": "공공부채 추이",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "GDP 대비 국가채무 비율",
+          "exists": true,
+          "status": "success",
+          "result_count": 3,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO029",
+              "title": "GDP 대비 일반정부 총금융부채 비율"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2OEEO031",
+              "title": "GDP 대비 마스트리히트 조약에 따른 공공부채 비율"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2KAA722",
+              "title": "일반정부 총부채 비율(GDP 대비)"
+            }
+          ]
+        },
+        {
+          "keyword": "국가부채 통계",
+          "exists": true,
+          "status": "success",
+          "result_count": 10,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "INH_1EA1611",
+              "title": "농가부채(9도)"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2STES041",
+              "title": "국제투자대조표"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_XNN0120",
+              "title": "국제수지 - 동북·중앙아시아"
+            }
+          ]
+        },
+        {
+          "keyword": "국채 발행 잔액",
+          "exists": true,
+          "status": "success",
+          "result_count": 5,
+          "top_results": [
+            {
+              "org_id": "301",
+              "tbl_id": "DT_103Y002",
+              "title": "한국은행 주요계정(말잔)"
+            },
+            {
+              "org_id": "301",
+              "tbl_id": "DT_281Y002",
+              "title": "금융자산부채잔액표(2008~)"
+            },
+            {
+              "org_id": "343",
+              "tbl_id": "DT_343_2010_S0090",
+              "title": "채권종류별 상장현황"
+            }
+          ]
+        },
+        {
+          "keyword": "국채 발행 규모",
+          "exists": false,
+          "status": "success",
+          "result_count": 0,
+          "top_results": []
+        },
+        {
+          "keyword": "재정 건전성 지표",
+          "exists": true,
+          "status": "success",
+          "result_count": 2,
+          "top_results": [
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO024",
+              "title": "일반정부 기초재정수지"
+            },
+            {
+              "org_id": "101",
+              "tbl_id": "DT_2WEO023",
+              "title": "일반정부 구조적 재정수지"
+            }
+          ]
+        }
+      ],
+      "matched_keywords": [
+        "중앙정부 채무",
+        "중앙정부 부채",
+        "정부채무 현황",
+        "채무",
+        "국가채무 잔액",
+        "지방정부 및 중앙정부 부채",
+        "채무 규모",
+        "국가채무 비율",
+        "GDP 대비 국가채무",
+        "정부 부채 현황",
+        "채무 증가율",
+        "중앙정부",
+        "GDP 대비 국가채무 비율",
+        "국가부채 통계",
+        "국채 발행 잔액",
+        "재정 건전성 지표"
+      ]
+    }
+  ]
+}
