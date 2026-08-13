@@ -17,7 +17,7 @@ JSON도 별도로 받기"는 버리고, 입력을 claim_payload + evidence_paylo
 import json
 from typing import Any, Dict, List, Optional, Union
 
-from comparison import ActualEvidence, Claim, EvidencePoint, SearchLog, UnitCategory
+from judgment import ActualEvidence, Claim, EvidencePoint, SearchLog, UnitCategory
 
 JsonLike = Union[str, Dict[str, Any]]
 
@@ -36,6 +36,24 @@ def _first_present(d: Dict[str, Any], keys, default=None):
         if k in d and d[k] is not None:
             return d[k]
     return default
+
+
+def _to_float(value: Any) -> Optional[float]:
+    """실제 KOSIS API는 수치를 JSON 문자열로 준다(예: "677421.7146").
+    judgment.py는 float 연산(뺄셈/나눗셈)을 전제로 하므로 4번 출력이
+    단일 시점이든(비교 아님) 다중 시점(비교)이든 이 함수를 거쳐 값을
+    통일한다. 예전엔 단일 시점 분기에서만 float() 변환이 있고 비교
+    분기는 문자열을 그대로 넘겨서, 실제 데이터로 비교 판정을 돌릴 때만
+    'str - str' TypeError가 났다(모킹 테스트는 항상 float를 썼기 때문에
+    안 잡혔음) - 2026-08-10 실사용 테스트에서 발견."""
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    try:
+        return float(str(value).replace(",", "").strip())
+    except (TypeError, ValueError):
+        return None
 
 
 # ---------------------------------------------------------------------
@@ -108,7 +126,7 @@ def parse_evidence_and_log(payload: JsonLike) -> "tuple":
         points = [
             EvidencePoint(
                 period=_first_present(p, ("period",)),
-                value=_first_present(p, ("value", "normalized_value")),
+                value=_to_float(_first_present(p, ("value", "normalized_value"))),
                 unit=_first_present(p, ("unit", "normalized_unit")),
             )
             for p in (raw_points or [])
@@ -124,7 +142,7 @@ def parse_evidence_and_log(payload: JsonLike) -> "tuple":
     else:
         value = _first_present(data, ("normalized_value", "value", "raw_value"))
         evidence = ActualEvidence(
-            value=float(value) if value is not None else None,
+            value=_to_float(value),
             unit=_first_present(data, ("normalized_unit", "unit", "raw_unit")),
             table_org_id=_first_present(data, ("org_id", "table_org_id")),
             table_tbl_id=_first_present(data, ("table_id", "tbl_id")),
@@ -178,8 +196,90 @@ def build_inputs(claim_payload: JsonLike, evidence_payload: JsonLike):
     return claim, actual, search_log
 
 
+# ---------------------------------------------------------------------
+# [종합 프로젝트 - 2.5절] claim 라우팅: KOSIS에서 직접 검색해야 하는
+# claim과, 이미 찾은 다른 claim들의 조합으로만 검증 가능한 파생 비교값
+# claim을 구분한다.
+#
+# 1번 Task 출력은 같은 원문장에서 여러 claim_id로 쪼개져 나온다(예:
+# "재배면적이 10만4943㏊로 작년 10만5959㏊보다 1.0% 감소했다"가 2025년
+# 값/2024년 값/1.0% 감소율 3개의 claim_id로 분리됨). 이 중 증감률
+# claim("1.0% 감소")은 KOSIS에 그런 컬럼이 애초에 없는 경우가 많아서,
+# 검색을 시도하는 대신 이미 찾은 절대값 claim 2개를 judgment.py의
+# is_comparison/EvidencePoint 경로로 넘기는 게 맞다 - 검색 자체를
+# 아예 하지 말아야 하는 claim을 미리 걸러내는 게 이 함수의 역할이다.
+# ---------------------------------------------------------------------
+def route_claim_group(claims: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """claim 목록을 "직접 검색 대상"과 "파생 비교값"으로 분류한다.
+
+    판별 기준(추측이 아니라 claim 자체의 필드로 결정론적으로 판별 -
+    Decision 003 원칙: 확실하지 않으면 추측하지 않는다):
+    - period가 없고(None/빈 값) unit이 "%"인 claim은 "증감률"류 파생값
+      후보다.
+    - 같은 원문장(claim 텍스트가 동일) 안에, period가 있고 metric이 같은
+      절대값 claim이 2개 이상 있으면, 그 파생값 claim은 그 절대값들의
+      비교로 검증 가능하다고 보고 "파생 비교값"으로 분류한다.
+    - 짝이 되는 절대값 claim이 부족하면(원문장이 다르거나 형제 claim이
+      1개 이하) "직접 검색 대상"으로 분류한다 - KOSIS가 등락률 자체를
+      공식 컬럼으로 제공하는 지표도 있으므로(예: 소비자물가 상승률),
+      "%"에 period가 없다는 사실만으로 무조건 파생값이라고 단정하지
+      않는다. 그런 경우는 검색해봐야 알 수 있으므로 안전한 기본값(직접
+      검색)으로 둔다.
+    - kosis_eligible이 명시적으로 False인 claim은 애초에 검색 대상이
+      아니므로 두 버킷 어디에도 넣지 않고 "excluded"로 따로 뺀다(1번
+      Task가 이미 KOSIS로 확인 불가능하다고 판단한 claim - 예: 예측치,
+      의견성 문장 등을 재추측하지 않는다).
+
+    반환:
+        {
+          "direct": [claim, ...],
+          "derived_comparison": [
+              {"claim": claim, "sources": [claim_a, claim_b]}, ...
+          ],
+          "excluded": [claim, ...],
+        }
+    """
+    eligible: List[Dict[str, Any]] = []
+    excluded: List[Dict[str, Any]] = []
+    for c in claims:
+        if c.get("kosis_eligible") is False:
+            excluded.append(c)
+        else:
+            eligible.append(c)
+
+    by_sentence: Dict[str, List[Dict[str, Any]]] = {}
+    for c in eligible:
+        by_sentence.setdefault(c.get("claim", ""), []).append(c)
+
+    direct: List[Dict[str, Any]] = []
+    derived: List[Dict[str, Any]] = []
+
+    for group in by_sentence.values():
+        absolute_by_metric: Dict[Any, List[Dict[str, Any]]] = {}
+        for c in group:
+            period = c.get("period")
+            if period not in (None, "null", ""):
+                absolute_by_metric.setdefault(c.get("metric"), []).append(c)
+
+        for c in group:
+            period = c.get("period")
+            unit = str(c.get("unit", "")).strip()
+            is_rate_shaped = period in (None, "null", "") and unit == "%"
+            siblings = [
+                s
+                for s in absolute_by_metric.get(c.get("metric"), [])
+                if s.get("claim_id") != c.get("claim_id")
+            ]
+            if is_rate_shaped and len(siblings) >= 2:
+                derived.append({"claim": c, "sources": siblings[:2]})
+            else:
+                direct.append(c)
+
+    return {"direct": direct, "derived_comparison": derived, "excluded": excluded}
+
+
 if __name__ == "__main__":
-    from comparison import Mode, judge_claim
+    from judgment import Mode, judge_claim
 
     # (1) 단일 시점 케이스 - 최저임금류
     claim1 = {
