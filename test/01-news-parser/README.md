@@ -3,7 +3,9 @@
 > **AI 기반 뉴스 사실검증 시스템 PoC** (멋사 NLP 5기 · 종합 프로젝트)의 **1번 파트 저장소**.
 > 뉴스 기사에서 검증 가능한 수치 Claim을 추출해 Claim JSON으로 다운스트림(검색 → 조회 → 판정)에 넘기는 **파이프라인의 입구**를 담당한다.
 
-**진행 현황 (2026-08-03)** — P0 적재 ✅ → P1 정제 ✅ (골든셋 **52/52 일치**, clean_v4) → P2 문장화 ✅ (정규식 스플리터 확정 — **경계 F1 97.4%**, kss 비교 전 지표 우위) → 다음: Claim 추출 3-Stage. 상세는 [§3.1 구현 현황](#31-구현-현황) 참조.
+**진행 현황 (2026-08-13)** — P0 적재 ✅ → P1 정제 ✅ (골든셋 **52/52 일치**, clean_v4) → P2 문장화 ✅ (**경계 F1 97.4%**) → **P3 Claim 추출 ✅ 전 구간 동작** (Stage A~E · HCX-005 · 골든 채점 하네스). 상세는 [§3.1 구현 현황](#31-구현-현황) 참조.
+
+> 📖 **코드를 처음 보신다면 [docs/CODE_GUIDE.md](docs/CODE_GUIDE.md)부터** — 무엇이 어떤 순서로 도는지, 어디를 고쳐야 하는지를 다이어그램과 함께 정리한 코드 안내서입니다.
 
 ---
 
@@ -75,77 +77,124 @@
 | **P1 채점** | `src/p1_eval.py` | ✅ 완료 | 정제 결과를 수작업 골든셋과 자동 대조 — **52/52 (100%) 일치** |
 | **P2 문장화** | `src/p2_split.py` (sent_v3) | ✅ 완료 (엔진 확정) | 경계 후보(종결형 + ◇☞▲▷ 기호형) → 보호 필터(따옴표·괄호 상태 추적, 따옴표는 방향 뒤집힘에 안전한 토글) → 절단·오프셋 부여 → 전수 보존 인바리언트. **kss 6과 동일 골든 비교로 확정**: 정규식 F1 97.4%·36/52·~0.1초 vs kss(pecab) 94.2%·23/52·253초 — kss는 ◇☞▲▷ 소제목 관례를 몰라 경계 27건 누락, 단어 중간 절단 사례도 존재 |
 | **P2 채점** | `src/p2_eval.py` | ✅ 완료 | 문장 골든셋과 **경계 위치 집합**으로 대조 — 정규식 sent_v3: **정밀도 99.0% · 재현율 95.9% · F1 97.4% · 기사 완전 일치 36/52** (남은 불일치는 개행 소실로 인한 소제목 끝 경계 등 구조적 한계로 유형 분류됨) |
-| Claim 추출 | — | 예정 | 3-Stage: 룰(후보 탐지) → LLM(구조화 추출) → 룰(역검증·정규화) |
+| **P3 Claim 추출** | `src/p3_*.py` | ✅ 전 구간 동작 | 5단계 — **A** 숫자 문장 필터(룰) → **B** HCX-005 구조화 추출(3단 파서·재시도 3단·record-replay 캐시) → **C** 역검증·시점 해소(룰) → **D** metric_normalized → **E** 산출·전수 회계. 산출 5종(`claims`·`claims_full`·`excluded`·`errors`·`claims_trace`) |
+| **P3 채점** | `src/p3_eval.py` | ✅ 완료 | 골든셋(Claim 508 + 제외 299) 대조 — 2단계 매칭 + 지표 3층(검출 F1 · 필드별 정확도 · 인수인계 품질·위험). dev 8 기준 **F1 0.748 · value 0.974 · unit 0.987 · period 0.883 · metric 0.753** |
 
-규칙은 **수작업 골든셋과의 차이를 역산**해 도출하고, 버전(clean_v1→v4, sent_v1→v3)마다 골든셋 점수로 회귀를 감시하며 개발한다. 골든셋은 2종 — 정제 정답(60건 본문)과 문장 분리 정답(60건·1,028문장). 테스트는 **pytest 79개** — 규칙별 케이스 테이블 + 실데이터 E2E.
+규칙은 **수작업 골든셋과의 차이를 역산**해 도출하고, 버전마다 골든셋 점수로 회귀를 감시하며 개발한다. 골든셋 3종 — 정제 정답(52건)·문장 분리 정답(1,028문장)·Claim 정답(807행). 테스트는 **pytest 261개**(규칙 케이스 테이블 + 실데이터 E2E + 무-LLM 스모크 3종).
 
 ### 3.2 저장소 구조
 
 ```
+.env.example    환경변수 변수명 정본 (복사해서 .env 생성 — 값은 커밋 금지)
+docs/
+  CODE_GUIDE.md 📖 코드 전체 안내서 (파이프라인 다이어그램·모듈별 규칙·수정 가이드)
 src/
-  p0_load.py    P0 적재 — xlsx → 표준 기사 JSONL (+보조 라벨 사이드카·제외 기록)
+  config.py     .env 로더 · API 키 조회 · 경로 (비밀키를 읽는 유일한 층)
+  p0_load.py    P0 적재 — xlsx·csv·json·크롤링 dict → 표준 기사 JSONL
   p1_clean.py   P1 정제 — 룰 기반 노이즈 제거 (removed_spans·보존 인바리언트)
-  p1_eval.py    P1 채점기 — 정제 결과 vs 골든셋 자동 채점
+  p1_eval.py    P1 채점기 — 정제 결과 vs 골든셋
   p2_split.py   P2 문장화 — 정규식 스플리터 (경계 후보 → 보호 필터 → 오프셋 부여)
-  p2_eval.py    P2 채점기 — 문장 분할 vs 골든셋 경계 위치 비교
-tests/          pytest 79개 (규칙 케이스 테이블 + 실데이터 E2E)
-data/           파이프라인 산출물 (기사 원문 포함 — 저장소 미포함, .gitignore)
-requirements.txt
+  p2_eval.py    P2 채점기 — 문장 경계 위치 비교
+  p3_schemas.py   17필드 레코드 · 8필드 계약 사영 · period 문법
+  p3_stage_a.py   숫자 문장 필터
+  p3_stage_b.py   HCX-005 추출 (프롬프트 조립·3단 파서·재시도)
+  p3_stage_c.py   역검증·실존 검사·룰 교차검증
+  p3_period.py    시점 해소 룰
+  p3_stage_d.py   metric_normalized
+  p3_pipeline.py  오케스트레이터 (A→E·앵커 상속·서킷브레이커)
+  p3_emit.py      산출 5종 · 원자적 쓰기 · 전수 회계
+  p3_cache.py     record-replay 캐시
+  p3_golden.py    골든셋 로더
+  p3_eval.py      채점기 — 2단계 매칭 · 지표 3층
+  prompts/        Stage B 시스템 프롬프트 (버전 관리)
+tests/          pytest 261개
+data/ · cache/  산출물·LLM 캐시 (기사 원문 포함 — 저장소 미포함, .gitignore)
 ```
 
 ### 3.3 실행 방법 (Windows 기준)
 
-데이터 파일(`articles.xlsx` · `cleaned_articles_ex.xlsx`)은 저작권·용량 문제로 저장소에 없다 — 팀 채널에서 받아 경로를 지정한다.
+기사 원문·골든셋(`articles.xlsx` · `news.csv` · `cleaned_*_ex.xlsx` · `claim_silver_set_ver2.xlsx`)은 저작권·용량 문제로 저장소에 없다 — 팀 채널에서 받아 경로를 지정한다.
+
+**① 설치와 키 설정**
 
 ```
 python -m venv venv
 venv\Scripts\pip install -r requirements.txt
-
-# P0 적재 (--input에 articles.xlsx 경로)
-venv\Scripts\python -m src.p0_load --input <articles.xlsx 경로> --outdir data
-
-# P1 정제 → 골든셋 채점
-venv\Scripts\python -m src.p1_clean
-venv\Scripts\python -m src.p1_eval --golden <cleaned_articles_ex.xlsx 경로>
-
-# P2 문장화 → 골든셋 채점
-venv\Scripts\python -m src.p2_split
-venv\Scripts\python -m src.p2_eval --golden <cleaned_sentences_ex.xlsx 경로>
-
-# 테스트
-venv\Scripts\python -m pytest tests
+copy .env.example .env
 ```
+
+`.env`를 열어 `NCP_CLOVASTUDIO_API_KEY`(CLOVA Studio)와 `KOSIS_API_KEY`(KOSIS Open API)를 채운다.
+`.env`는 `.gitignore`가 차단하며, 코드는 `src/config.py`를 통해서만 키를 읽는다 — **키를 커밋하지 말 것.**
+
+**② 파이프라인 실행**
+
+```
+# P0 적재 — 입력 형식은 확장자로 자동 판별
+venv\Scripts\python -m src.p0_load --input <articles.xlsx>        --outdir data
+venv\Scripts\python -m src.p0_load --input <news.csv>             --outdir data\bulk
+venv\Scripts\python -m src.p0_load --input <crawled.json>         --outdir data\one
+
+# P1 정제 → P2 문장화 → P3 Claim 추출
+venv\Scripts\python -m src.p1_clean
+venv\Scripts\python -m src.p2_split
+venv\Scripts\python -m src.p3_stage_b --dev-run
+```
+
+**③ 평가 (골든셋 필요)**
+
+```
+venv\Scripts\python -m src.p1_eval
+venv\Scripts\python -m src.p2_eval
+venv\Scripts\python -m src.p3_eval --self-check      # 채점기 자가 검증
+venv\Scripts\python -m src.p3_stage_c --passthrough  # 룰이 정답을 파괴하지 않는지 (LLM 0콜)
+venv\Scripts\python -m pytest -q
+```
+
+**입력 형식과 적재 정책**
+
+| 입력 | 형식 | 기본 정책 | 불량 행 처리 |
+|---|---|---|---|
+| 선별 기사 60건 | `.xlsx` | `strict` | 하나라도 실패하면 **전체 실패** (부분 산출 금지) |
+| 크롤링 원본 전량 | `.csv` / `.tsv` | `bulk` | `articles_rejected.jsonl`로 **격리**하고 계속 |
+| 크롤링 기사 1건 | `.json` / `.jsonl` | `bulk` | 상동 (`standardize_article()`은 즉시 예외) |
+
+`--format` · `--policy` 로 각각 덮어쓸 수 있다. 컬럼명은 한국어/영어 별칭을 모두 흡수하며(`기사제목`↔`title`, `작성일`↔`posted date`, `기사 본문 전체`↔`text` …), 어느 경로든 전수 회계가 유지된다: `적재 + 제외 + 거부 = 입력`.
 
 ---
 
-## 4. ★ 현재 유효한 인터페이스 계약 — Claim 스키마 v0.3 (7필드)
+## 4. ★ 현재 유효한 인터페이스 계약 — Claim 스키마 v0.4 (8필드)
 
-> **가장 중요한 현재 상태.** v0.1(4필드) → v0.2(`value`·`period` 추가, 2026-07-31 2차) → **v0.3: `value`에서 `unit`을 분리**한 7필드가 현행 (2026-07-31 4차 결정).
-> 초기 실행 계획에서 설계했던 풍부한 스키마 v1.1(value_type·field_source 등)은 여전히 백로그(§4.5).
+> **가장 중요한 현재 상태.** v0.1(4필드) → v0.2(`value`·`period` 추가) → v0.3(`unit` 분리, 7필드) → **v0.4: `metric_normalized` 승격, 8필드가 현행.**
+> 이 파일(`claims.jsonl`) 하나가 공식 계약이고, 나머지 산출물은 참조용이다.
 
-### 4.1 넘겨주는 스키마 (7필드)
+### 4.1 넘겨주는 스키마 (8필드)
 
 | 필드 | 타입 | 설명 |
 |---|---|---|
 | `claim_id` | string | `{article_id}-C{일련번호}` 예: `"Ae4300e50-C001"` — 기사 연결 정보를 ID에 내장 |
 | `claim` | string | Claim 문장 — **기사 원문 그대로(verbatim)**. 한 문장 다중 수치는 Claim별 분리 |
 | `metric` | string | 지표명 — **기사 표현 그대로** (KOSIS 정규화는 2번 소관) |
+| `metric_normalized` | string \| null | 표준 지표명 — **2번의 확장 씨앗**. 검증된 표준명이 없으면 verbatim `metric` 복사 |
 | `value` | string | **수치 표현부만, 기사 표기 그대로** 담은 문자열 (단위 제외). 예: `"13만"`, `"10만4943"`, `"1.0"`, `"0.3"` — 숫자 변환 없음(한글 수사 유지) |
 | `unit` | string \| null | **단위를 기사 표기 그대로**. 예: `"명"`, `"㏊"`, `"%"`, `"%p"`, `"배"`, `"원"` — 단위 표기 정규화 없음, 단위 없는 수치는 `null` |
 | `period` | string \| null | **작성일 기준 룰로 해소한 절대 시점.** 형식 `YYYY` · `YYYY-MM` · `YYYY-Qn` · `YYYY-Hn`만 허용, 특정 불가 시 `null` (억지 추정 금지) |
-| `kosis_eligible` | boolean | KOSIS로 검증 가능한 Claim인지 여부 |
+| `kosis_eligible` | boolean | 검증 시도 가능 상태. `false`는 두 경우뿐 — ① `period` 미상 ② 전망·추산 |
 
 ```json
 {
   "claim_id": "Ae4300e50-C001",
   "claim": "2025년 1월 취업자 수는 13만 명 감소했다.",
   "metric": "취업자 수",
+  "metric_normalized": "취업자 수",
   "value": "13만",
   "unit": "명",
   "period": "2025-01",
   "kosis_eligible": true
 }
 ```
+
+**파생식**: `kosis_eligible = not (period가 표준형이 아님 or forecast)`
+계약에 없는 필드(`value_type`·`direction`·`comparison_basis`·`forecast`·오프셋·시점 해소 방법)는 버리지 않고 `claims_full.jsonl`·`claims_trace.jsonl`에 **분리 보관**한다 — 다운스트림이 요청하면 계약에 올린다.
 
 **article_id 부여 규칙 (확정)** — URL 해시 기반: `"A" + sha1(url.strip().rstrip("/"))[:8]`
 기사를 추가·삭제·재정렬해도 같은 기사는 항상 같은 ID (재실행 안정). 60건 실측: URL 전부 고유, ID 충돌 0건. 적재 시 ID 중복 검사를 테스트로 강제.
@@ -182,9 +231,11 @@ Claim JSON 하나만 던지는 게 아니라, **아래 파일 묶음을 통째�
 | 2 | `data/articles_clean.jsonl` | 노이즈 제거 완료 본문 — **코어 5필드만**(article_id·title·posted_date·url·text), 원본과 같은 형태라 그대로 교체 사용 가능 | 정제 본문 열람 · **P2 입력** |
 | + | `data/articles_clean_trace.jsonl` | 정제 감사 사이드카 — `removed_spans`(무엇을·왜 지웠는지) + `pipeline_version` | 제거 내역 감사 · 리니지 (실사용 파일과 용량 분리) |
 | 3 | `data/sentences.jsonl` | 문장 단위 분리 (sent_id · 문단 · 오프셋) | Claim 주변 문장 맥락 참조 |
-| 4 | **`data/claims.jsonl`** | **§4.1의 7필드 Claim — 유일한 공식 인터페이스** | 2번 검색 · 5번 대조의 입력 |
+| 4 | **`data/claims.jsonl`** | **§4.1의 8필드 Claim(v0.4) — 유일한 공식 인터페이스** | 2번 키워드 확장(`metric_normalized` 우선) · 4번 유사도 · 5번 판정의 입력 |
+| + | `data/claims_full.jsonl` | 내부 표준 17필드 — 계약 밖 필드(`value_type`·`direction`·`comparison_basis`·`forecast`·`note`) 보존 | 계약 확장 요청 시 즉시 공급 가능 |
 | + | `data/excluded.jsonl` | 제외 대장 (사유 코드 포함) | 5번의 판단불가 물량 가늠 |
-| + | `data/claims_trace.jsonl` (예정) | **Claim 계보(데이터 리니지)** — claim_id → sent_id·문자 오프셋 · 단계별 변환 기록 · pipeline_version | 5번 요청 — 판정 시 "이 값이 어디서 와서 뭘 거쳤는지" 역추적 |
+| + | `data/errors.jsonl` | 추출·검증 실패 — 계약 파일과 분리된 사람 검토 큐 | 품질 감시 |
+| + | `data/claims_trace.jsonl` | **Claim 계보(데이터 리니지)** — claim_id → sent_id·문자 오프셋 · period 해소 방법 · 감사 플래그 · pipeline_version | 5번 요청 — 판정 시 "이 값이 어디서 와서 뭘 거쳤는지" 역추적 |
 
 > **P0 코어 스키마를 크롤링 현실에 맞춘 이유**: articles.xlsx의 나머지 컬럼(news source·query·journalist·temporary classification)은 1번의 작업 편의용 라벨이라, 실제 크롤링에서는 나오지 않는다. 그래서 표준 스키마는 `title·posted_date·url·text`(+부여한 `article_id`)로 고정하고, **보조 라벨은 별도 사이드카 파일**(예: `data/aux_labels.csv`, url 키 조인)로 분리 보관한다 — 나중에 크롤링 데이터로 교체돼도 파이프라인이 깨지지 않는다. 보조 라벨의 용도: 분류 4 제외 필터 · 분류 1/2/3과 시스템 판단 비교 평가.
 
@@ -242,33 +293,43 @@ Claim JSON 하나만 던지는 게 아니라, **아래 파일 묶음을 통째�
 
 ### 5.2 모듈 구성
 
+> 단계별 상세·다이어그램은 **[docs/CODE_GUIDE.md](docs/CODE_GUIDE.md)** 참조.
+
 ```
-기사 원본(xlsx → 이후 크롤링)
-  → P0 적재 (코어 4필드 표준화·article_id 부여(URL 해시)·날짜 정규화·분류4 제외 기록)
-                                                          → articles.jsonl (+aux_labels)
-  → P1 정제 (룰: 노이즈 제거, removed_spans 로그)          → articles_clean.jsonl (+_trace)
+기사 원본 (xlsx · csv · json · 크롤링 dict)
+  → P0 적재  (소스 어댑터 → 코어 5필드 표준화·article_id 부여(URL 해시)·날짜 정규화
+              ·분류4 제외 기록·불량 행 격리)      → articles.jsonl (+aux_labels, +rejected)
+  → P1 정제  (룰: 선두·말미 노이즈 제거, removed_spans 로그)
+                                                  → articles_clean.jsonl (+_trace)
   → P2 문장화 (룰: 정규식 스플리터 sent_v3 — kss 비교로 확정)      → sentences.jsonl
-  → Stage A 후보 탐지 (룰: 숫자·수사·%·배, Recall 우선)
-  → Stage B 구조화 추출 (LLM: 문장+맥락 윈도우 → claim·metric·value·unit·period_expr,
-                         다중 수치는 Claim별 분리 — 각자의 value·unit)
-  → Stage C 검증·정규화 (룰: value+unit 결합이 claim 문장에 실존하는지 역검증,
-                         period_expr → 절대 시점 해소(§5.5), 형식·enum 검사)
-  → 중복 제거 (dedup 키 해시·위치 병합)                    → claims.jsonl
-  각 단계 탈락분                                          → excluded.jsonl (제외 대장)
+  → Stage A 숫자 문장 필터 (룰, Recall 우선)
+  → Stage B 구조화 추출 (LLM/HCX-005: 문장+맥락+시점 앵커 → item 목록.
+                         다중 수치는 Claim별 분리 — 각자의 value·unit.
+                         3단 파서 · 재시도 3단 · record-replay 캐시)
+  → Stage C 검증·해소 (룰: value+unit 역검증 · metric 구성 어휘 실존 ·
+                       period 표면형 → 절대 시점(§5.5) · enum · 룰 교차검증)
+  → Stage D metric_normalized (검증된 표준명만 치환, 없으면 verbatim 복사)
+  → Stage E 산출·전수 회계 (원자적 쓰기 · 커버리지·유출·중복 검사)
+                                                  → claims.jsonl (8필드 계약)
+                                                  + claims_full · excluded · errors · trace
 ```
 
 ### 5.3 제외 대장 사유 코드
 
-`FORECAST`(전망·추산) · `NON_KOSIS_SOURCE`(민간·연구기관 출처) · `NON_STAT_NUMBER`(날짜·나이 등) · `METAPHOR_COMPARISON`(여의도 몇 배) · `AMBIGUOUS_METRIC`(지표 특정 불가) · `RELATIVE_NO_BASE`(기준 없는 상대 표현) · `DIRECTION_ONLY`(수치 없는 방향·최상급 주장 — 물량 집계용, 방향 검증 도입 시 재활성 후보) · `DUPLICATE`(중복, 대표 claim_id 링크)
+`NON_STAT_NUMBER`(통계적 주장이 아닌 수치 — 사건 날짜·행정 절차 수치) · `METAPHOR_COMPARISON`(여의도 몇 배) · `AMBIGUOUS_METRIC`(지표 특정 불가) · `RELATIVE_NO_BASE`(기준 없는 상대 표현) · `DUPLICATE`(중복, 대표 claim_id 링크)
+
+> `PARTIAL_PERIOD`(부분기간)와 `FORECAST`(전망)는 **제외 코드가 아니다** — Claim으로 유지하고 `kosis_eligible=false`로 내보낸다. 판단불가를 불일치로 처리하지 않기 위해서다.
 
 ※ 회계 단위는 문장이 아니라 **수치** — 한 문장 안에서 일부 수치만 제외될 수 있다.
 
 ### 5.4 품질 루프
 
-- 미니 dev set 30건 손 라벨링 (팀 골든셋과 분리)
-- **필드별** 정확도 측정 ("전체 78%"가 아니라 "period만 55%")
+- **dev 8 / test 43 분할** — dev로 프롬프트를 튜닝하고, test는 프롬프트 동결 후 **버전당 1회만** 실행(블라인드 유지)
+- **필드별** 정확도 측정 ("전체 78%"가 아니라 "period만 55%") — 지표 3층: 검출 P/R/F1 · 필드별 정확도(support 병기) · **인수인계 품질 + 위험 지표**(`eligible=true`인데 필드가 틀린 건)
 - 프롬프트 파일 버전 관리 + LLM 녹화-재생(record-replay) 회귀 테스트
-- HCX-003/005로 품질 상한 확보 후 → DASH로 비용 절감 검토 (순서 고정)
+- **무-LLM 스모크 3종** — 골든 패스스루(룰이 정답을 파괴하지 않는지) · 오염 출력 픽스처(수리 경로) · stub LLM E2E
+- 골든셋 수정은 **사용자 승인 필수**(생성자와 심판의 분리)
+- HCX-005로 품질 상한 확보 후 → DASH로 비용 절감 검토 (순서 고정)
 
 ### 5.5 period 해소 룰 설계 (v0.2 신규)
 
@@ -306,10 +367,13 @@ Claim JSON 하나만 던지는 게 아니라, **아래 파일 묶음을 통째�
 | `articles.xlsx` | **60행** | 1번이 news.csv에서 **선별·수기 분류한 작업 대상 기사** — 전처리·Claim 추출의 1차 입력 |
 | `cleaned_articles_ex.xlsx` | **60행** | 1번이 수작업으로 만든 **노이즈 제거 정답(P1 평가 골든셋)** — 정제 규칙을 이 정답과의 차이 역산으로 도출했고, 현재 정제 결과와 **52/52 완전 일치** |
 | `cleaned_sentences_ex.xlsx` | **60건 · 1,028문장** | 1번이 수작업으로 만든 **문장 분리 정답(P2 평가 골든셋)** — 한 행 = 한 문장, 경계 위치 비교로 채점. 특징: 무종결 소제목 72행(◇☞▲ 기호가 분리 신호), 따옴표 안 다문장 인용은 분리 금지 |
+| `claim_silver_set_ver2.xlsx` | **807행** | 1번이 수작업으로 만든 **Claim 정답(P3 평가 골든셋)** — Claim 508 + 제외 299. dev 8기사 / test 43기사로 분할해 채점 |
 
 ### news.csv
 - 레이블 분포: `TRUE`(국가데이터처·통계청 키워드 기사) **2,507** · `FALSE`(일반 기사) **199** · 빈 값 **2**
 - 데이터 활용은 지정된 기사 범위·기간 내로 한정 (과제 제약)
+- **인코딩 UTF-8 BOM** · 본문 필드에 개행·따옴표가 그대로 들어 있어 CSV 인용 처리가 필수다
+- 크롤링 아티팩트가 존재한다(필드 밀림 1행 · 중복 URL 10건 등) → P0의 `bulk` 정책이 격리하고 계속 진행한다. 전량 적재 실측: **입력 2,707건 = 적재 2,695 + 거부 12**
 
 ### articles.xlsx 컬럼 의미 (작성자: 1번 본인)
 
@@ -351,8 +415,9 @@ Claim JSON 하나만 던지는 게 아니라, **아래 파일 묶음을 통째�
 | 항목 | 내용 |
 |---|---|
 | OS/셸 | Windows 11 · PowerShell (경로 구분자·인코딩 주의: 파일 IO는 `utf-8` 명시) |
-| 언어 | Python 3.14 · `venv` + `requirements.txt` (openpyxl · pytest) — 설치는 §3.3 참조 |
-| LLM | NCP HCX (DASH-001/002 · 003/005/007 · 리랭커 · RAG Reasoning · 임베딩 v1/v2) — **API Key 외부 공유 절대 금지** |
-| KOSIS | KOSIS Open API (통계목록·통계자료·메타정보·통계설명) — 검증 기준 데이터 소스 |
-| 데이터 정책 | 기사 원문이 담긴 원본·산출물(`news.csv` · `articles.xlsx` · `data/`)은 **커밋하지 않는다** — `.gitignore` 참조 |
+| 언어 | Python 3.14 · `venv` + `requirements.txt` (openpyxl · pytest **뿐** — 그 외 외부 의존성 없음) |
+| LLM | NCP CLOVA Studio **HCX-005** (Stage B 한 곳에서만 호출) — **API Key 외부 공유 절대 금지** |
+| KOSIS | KOSIS Open API — 2~5번 Task의 검증 기준 데이터 소스 (이 저장소는 미사용, 변수명만 통일) |
+| **비밀키 관리** | **`.env` 파일** — 변수명 정본은 [`.env.example`](.env.example). `NCP_CLOVASTUDIO_API_KEY` · `KOSIS_API_KEY`. 코드는 `src/config.py`를 통해서만 읽고 **값을 로그·예외에 싣지 않는다** |
+| 데이터 정책 | 기사 원문이 담긴 원본·산출물(`news.csv` · `*.xlsx` · `data/` · `cache/`)과 `.env`는 **커밋하지 않는다** — `.gitignore` 참조 |
 

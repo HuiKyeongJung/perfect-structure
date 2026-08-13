@@ -13,6 +13,7 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+from src import config
 from src.p1_clean import PIPELINE_VERSION
 
 
@@ -53,7 +54,8 @@ def main(argv=None) -> None:
         pass
     ap = argparse.ArgumentParser(description="P1 정제 결과를 골든셋과 대조 채점")
     ap.add_argument("--clean", type=Path, default=Path("data/articles_clean.jsonl"))
-    ap.add_argument("--golden", type=Path, default=Path("D:/part1/cleaned_articles_ex.xlsx"))
+    ap.add_argument("--golden", type=Path,
+                    default=config.part1_dir() / "cleaned_articles_ex.xlsx")
     ap.add_argument("--detail", type=int, default=8, help="불일치 상세 출력 건수")
     args = ap.parse_args(argv)
 
