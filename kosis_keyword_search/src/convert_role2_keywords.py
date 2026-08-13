@@ -36,7 +36,8 @@ def convert_claim(item: dict[str, Any]) -> dict[str, Any]:
     """
     claim_id = item.get("claim_id", "claim_unknown")
     metric = item.get("metric", "")
-    keywords = item.get("keywords", [])
+    result = item.get("result", {})
+    keywords = item.get("keywords") or result.get("keywords", [])
 
     if not isinstance(keywords, list):
         raise ValueError(f"{claim_id}의 keywords는 list 형태여야 합니다.")
@@ -66,8 +67,8 @@ def convert_claim(item: dict[str, Any]) -> dict[str, Any]:
 def main() -> None:
     base_dir = Path(__file__).resolve().parent
 
-    input_path = base_dir / "role2_sample_keywords2.json"
-    output_path = base_dir / "role2_convert_keywords2.json"
+    input_path = base_dir / "role2_sample_keywords3.json"
+    output_path = base_dir / "role2_convert_keywords3.json"
 
     role2_data = load_json(input_path)
     claims = normalize_role2_data(role2_data)
