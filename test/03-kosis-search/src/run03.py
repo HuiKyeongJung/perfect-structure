@@ -243,18 +243,26 @@ def pick_first(data: dict[str, Any], keys: list[str]) -> Any:
             return value
     return None
 
-
-def search_keywords(claim_id: str, keywords: list[str]) -> dict[str, Any]:
+def search_keywords(
+    claim_id: str,
+    keywords: list[str],
+    metric: str = "",
+) -> dict[str, Any]:
     """
     키워드 여러 개를 순서대로 검색하고 전체 결과 JSON을 만든다.
+    실행 중 현재 검색 중인 키워드를 로그로 출력한다.
     """
     api_key = load_api_key()
     results = []
 
-    for keyword in keywords:
-        clean_keyword = keyword.strip()
+    total_keywords = len(keywords)
+
+    for index, keyword in enumerate(keywords, start=1):
+        clean_keyword = str(keyword).strip()
         if not clean_keyword:
             continue
+
+        print(f"  - 키워드 {index}/{total_keywords} 검색 중: {clean_keyword}")
 
         results.append(search_keyword(clean_keyword, api_key))
 
@@ -266,6 +274,7 @@ def search_keywords(claim_id: str, keywords: list[str]) -> dict[str, Any]:
 
     return {
         "claim_id": claim_id,
+        "metric": metric,
         "module": "kosis_keyword_search",
         "status": "success",
         "searched_count": len(results),
@@ -277,21 +286,35 @@ def search_keywords(claim_id: str, keywords: list[str]) -> dict[str, Any]:
 def search_claims(claims: list[dict[str, Any]]) -> dict[str, Any]:
     """
     여러 claim을 받아서 claim별로 키워드 검색을 실행한다.
+    실행 중 claim 단위 진행상황을 로그로 출력한다.
     """
     claim_results = []
     start_time = time.perf_counter()
+    total_claims = len(claims)
 
-    for claim in claims:
+    for claim_index, claim in enumerate(claims, start=1):
         claim_id = claim["claim_id"]
         metric = claim.get("metric", "")
         keywords = claim.get("expanded_keywords", [])
 
-        result = search_keywords(claim_id, keywords)
+        print(f"[{claim_index}/{total_claims}] {claim_id} 검색 시작: {metric}")
+
+        result = search_keywords(
+            claim_id=claim_id,
+            keywords=keywords,
+            metric=metric,
+        )
+
+        print(
+            f"[{claim_index}/{total_claims}] {claim_id} 검색 완료: "
+            f"{result['matched_count']}/{result['searched_count']}개 키워드 매칭"
+        )
+        print("-" * 40)
 
         claim_results.append(
             {
                 "claim_id": result["claim_id"],
-                "metric": metric,
+                "metric": result["metric"],
                 "module": result["module"],
                 "status": result["status"],
                 "searched_count": result["searched_count"],
@@ -303,7 +326,7 @@ def search_claims(claims: list[dict[str, Any]]) -> dict[str, Any]:
 
     total_search_count = sum(
         claim["searched_count"]
-           for claim in claim_results
+        for claim in claim_results
     )
 
     elapsed_seconds = round(time.perf_counter() - start_time, 3)
@@ -316,7 +339,6 @@ def search_claims(claims: list[dict[str, Any]]) -> dict[str, Any]:
         "elapsed_seconds": elapsed_seconds,
         "claims": claim_results,
     }
-
 
 def load_keywords_from_json(file_path: str) -> list[dict[str, Any]]:
     """
