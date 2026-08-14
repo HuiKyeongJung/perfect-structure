@@ -4,10 +4,17 @@
 import os
 import sys
 from pathlib import Path
+from time import perf_counter
 from typing import Any, Dict, List, Optional
 
 import requests
 from dotenv import load_dotenv
+
+import api_usage_logger
+# try:
+#     from src import api_usage_logger
+# except ModuleNotFoundError:
+#     import api_usage_logger
 
 
 API_BASE_URL = "https://clovastudio.stream.ntruss.com/v3/chat-completions"
@@ -93,6 +100,7 @@ def call_hcx(
     }
     body = _build_request_body(model_name, messages, thinking_effort)
 
+    request_started_at = perf_counter()
     try:
         response = requests.post(url, headers=headers, json=body, timeout=timeout)
     except requests.RequestException as error:
@@ -106,9 +114,22 @@ def call_hcx(
         ) from error
 
     try:
-        return response.json()
+        response_json = response.json()
     except ValueError as error:
         raise HCXResponseParseError("HCX API 응답을 JSON으로 읽을 수 없습니다.") from error
+
+    latency_ms = round((perf_counter() - request_started_at) * 1000, 3)
+    input_tokens, output_tokens, total_tokens = api_usage_logger.extract_hcx_usage(
+        response_json
+    )
+    api_usage_logger.record_api_usage(
+        service=model_name,
+        input_tokens=input_tokens,
+        output_tokens=output_tokens,
+        total_tokens=total_tokens,
+        latency_ms=latency_ms,
+    )
+    return response_json
 
 
 def extract_hcx_content(response_json: Dict[str, Any]) -> str:

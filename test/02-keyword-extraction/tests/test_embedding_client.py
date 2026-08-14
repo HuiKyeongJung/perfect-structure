@@ -21,6 +21,10 @@ def test_get_embedding_returns_float_list(monkeypatch):
     }
     post = Mock(return_value=response)
     monkeypatch.setattr(embedding_client.requests, "post", post)
+    clock = Mock(side_effect=[20.0, 20.075])
+    monkeypatch.setattr(embedding_client, "perf_counter", clock)
+    record = Mock()
+    monkeypatch.setattr(embedding_client.api_usage_logger, "record_api_usage", record)
 
     result = embedding_client.get_embedding("  국가채무 증가율  ")
 
@@ -29,6 +33,13 @@ def test_get_embedding_returns_float_list(monkeypatch):
     assert post.call_args.kwargs["json"] == {"text": "국가채무 증가율"}
     assert post.call_args.kwargs["timeout"] == 30
     assert post.call_args.kwargs["headers"]["Authorization"] == "Bearer test-api-key"
+    record.assert_called_once_with(
+        service="Embedding v2",
+        input_tokens=3,
+        output_tokens=0,
+        total_tokens=3,
+        latency_ms=75.0,
+    )
 
 
 @pytest.mark.parametrize("text", ["", "   \t\n"])
