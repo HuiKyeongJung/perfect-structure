@@ -1,4 +1,6 @@
 # HCX 모델별 요청 body의 thinking 설정을 검증합니다.
+from unittest.mock import Mock
+
 from src import hcx_client
 from src.hcx_client import _build_request_body
 
@@ -27,3 +29,36 @@ def test_hcx005_request_body_is_unchanged_by_thinking_effort():
 
     assert "thinking" not in body
     assert body["maxTokens"] == 300
+
+
+def test_call_hcx_records_successful_api_usage(monkeypatch):
+    monkeypatch.setattr(hcx_client, "_load_api_key", lambda: "test-key")
+    response_json = {
+        "result": {
+            "message": {"content": "완료"},
+            "usage": {
+                "promptTokens": 40,
+                "completionTokens": 10,
+                "totalTokens": 50,
+            },
+        }
+    }
+    response = Mock()
+    response.raise_for_status.return_value = None
+    response.json.return_value = response_json
+    monkeypatch.setattr(hcx_client.requests, "post", Mock(return_value=response))
+    clock = Mock(side_effect=[10.0, 10.125])
+    monkeypatch.setattr(hcx_client, "perf_counter", clock)
+    record = Mock()
+    monkeypatch.setattr(hcx_client.api_usage_logger, "record_api_usage", record)
+
+    result = hcx_client.call_hcx("HCX-005", [])
+
+    assert result == response_json
+    record.assert_called_once_with(
+        service="HCX-005",
+        input_tokens=40,
+        output_tokens=10,
+        total_tokens=50,
+        latency_ms=125.0,
+    )
