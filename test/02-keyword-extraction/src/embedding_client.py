@@ -3,11 +3,17 @@
 
 import os
 from pathlib import Path
+from time import perf_counter
 from typing import Any, Dict, List
 from uuid import uuid4
 
 import requests
 from dotenv import load_dotenv
+
+try:
+    from src import api_usage_logger
+except ModuleNotFoundError:
+    import api_usage_logger
 
 
 EMBEDDING_V2_URL = (
@@ -97,6 +103,7 @@ def get_embedding(text: str) -> List[float]:
         "Content-Type": "application/json",
     }
 
+    request_started_at = perf_counter()
     try:
         response = requests.post(
             EMBEDDING_V2_URL,
@@ -127,7 +134,17 @@ def get_embedding(text: str) -> List[float]:
         raise EmbeddingResponseParseError(
             "Embedding API 응답이 JSON 객체가 아닙니다."
         )
-    return _extract_embedding(response_json)
+    latency_ms = round((perf_counter() - request_started_at) * 1000, 3)
+    embedding = _extract_embedding(response_json)
+    input_tokens = api_usage_logger.extract_embedding_tokens(response_json)
+    api_usage_logger.record_api_usage(
+        service="Embedding v2",
+        input_tokens=input_tokens,
+        output_tokens=0,
+        total_tokens=input_tokens,
+        latency_ms=latency_ms,
+    )
+    return embedding
 
 
 if __name__ == "__main__":
